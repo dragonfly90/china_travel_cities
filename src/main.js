@@ -12,14 +12,13 @@ const app = document.querySelector('#app')
 
 // Navigation
 function navigate(path) {
-  window.history.pushState({}, path, window.location.origin + path)
-  render()
+  window.location.hash = path
 }
 
-window.onpopstate = render
+window.addEventListener('hashchange', render)
 
 function render() {
-  const path = window.location.pathname
+  const path = window.location.hash.slice(1) || '/'
   const route = routes[path] || (path.startsWith('/city/') ? CityDetail : Home)
   app.innerHTML = route()
 
@@ -59,13 +58,18 @@ function Footer(count = '...') {
 async function updateVisitCount() {
   try {
     const response = await fetch('/api/visits');
+    if (!response.ok) throw new Error('API not available');
     const data = await response.json();
     const countElement = document.getElementById('visit-count');
     if (countElement) {
       countElement.textContent = data.visits;
     }
   } catch (error) {
-    console.error('Failed to fetch visits:', error);
+    // console.error('Failed to fetch visits:', error);
+    const countElement = document.getElementById('visit-count');
+    if (countElement) {
+      countElement.textContent = 'N/A (Static)';
+    }
   }
 }
 
