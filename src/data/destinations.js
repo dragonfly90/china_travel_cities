@@ -27,7 +27,7 @@ export const destinations = {
         {
             id: 'chengdu',
             name: 'Chengdu',
-            image: './public/images/xian_terracotta_1766986821692.png', // Placeholder, reusing Xi'an for now or generic
+            image: 'https://en.wikipedia.org/wiki/Chengdu#/media/File:%E9%9B%AA%E5%B1%B1%E4%B8%8B%E7%9A%84%E6%88%90%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF_Chengdu_skyline_with_snow_capped_mountains.jpg', // Updated image
             description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
             highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
             bestTime: 'Spring and Autumn',
@@ -43,7 +43,7 @@ export const destinations = {
         {
             id: 'xiamen',
             name: 'Xiamen',
-            image: './public/images/shanghai_skyline_1766986808147.png', // Placeholder
+            image: 'https://en.wikipedia.org/wiki/Xiamen#/media/File:Haicang_Bridge_cropped.jpg', // Updated image
             description: 'A coastal city known for Gulangyu Island and colonial architecture.',
             highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
             bestTime: 'Autumn and Winter',
@@ -69,7 +69,7 @@ export const destinations = {
         {
             id: 'fenghuang',
             name: 'Fenghuang',
-            image: './public/images/lijiang_ancient_town_1766986847247.png', // Reusing Lijiang style for now
+            image: 'https://en.wikipedia.org/wiki/Fenghuang_County#/media/File:Fenghuang_hunan.jpg', // Updated image
             description: 'An ancient town built on stilts along the Tuo River.',
             highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
             bestTime: 'Spring and Autumn',
