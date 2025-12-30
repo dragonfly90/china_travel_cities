@@ -3,7 +3,7 @@ export const destinations = {
         {
             id: 'beijing',
             name: 'Beijing',
-            image: '/public/images/beijing_great_wall_1766986793824.png',
+            image: './public/images/beijing_great_wall_1766986793824.png',
             description: 'The capital of China, blending ancient history with modern innovation.',
             highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
             bestTime: 'Spring (April-May) and Autumn (September-October)',
@@ -11,7 +11,7 @@ export const destinations = {
         {
             id: 'shanghai',
             name: 'Shanghai',
-            image: '/public/images/shanghai_skyline_1766986808147.png',
+            image: './public/images/shanghai_skyline_1766986808147.png',
             description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
             highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
             bestTime: 'Spring and Autumn',
@@ -19,7 +19,7 @@ export const destinations = {
         {
             id: 'xian',
             name: "Xi'an",
-            image: '/public/images/xian_terracotta_1766986821692.png',
+            image: './public/images/xian_terracotta_1766986821692.png',
             description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
             highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
             bestTime: 'Spring and Autumn',
@@ -27,7 +27,7 @@ export const destinations = {
         {
             id: 'chengdu',
             name: 'Chengdu',
-            image: '/public/images/xian_terracotta_1766986821692.png', // Placeholder, reusing Xi'an for now or generic
+            image: './public/images/xian_terracotta_1766986821692.png', // Placeholder, reusing Xi'an for now or generic
             description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
             highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
             bestTime: 'Spring and Autumn',
@@ -35,7 +35,7 @@ export const destinations = {
         {
             id: 'suzhou',
             name: 'Suzhou',
-            image: '/public/images/suzhou_hanfu_girls.png',
+            image: './public/images/suzhou_hanfu_girls.png',
             description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
             highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
             bestTime: 'Spring (April-May) and Autumn (September-October)',
@@ -43,7 +43,7 @@ export const destinations = {
         {
             id: 'xiamen',
             name: 'Xiamen',
-            image: '/public/images/shanghai_skyline_1766986808147.png', // Placeholder
+            image: './public/images/shanghai_skyline_1766986808147.png', // Placeholder
             description: 'A coastal city known for Gulangyu Island and colonial architecture.',
             highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
             bestTime: 'Autumn and Winter',
@@ -53,7 +53,7 @@ export const destinations = {
         {
             id: 'yangshuo',
             name: 'Yangshuo',
-            image: '/public/images/yangshuo_karst_1766986835795.png',
+            image: './public/images/yangshuo_karst_1766986835795.png',
             description: 'Breathtaking karst mountains and serene rivers.',
             highlights: ['Li River Rafting', 'Moon Hill', 'West Street'],
             bestTime: 'April to October',
@@ -61,7 +61,7 @@ export const destinations = {
         {
             id: 'lijiang',
             name: 'Lijiang',
-            image: '/public/images/lijiang_ancient_town_1766986847247.png',
+            image: './public/images/lijiang_ancient_town_1766986847247.png',
             description: 'A UNESCO World Heritage ancient town with rich Naxi culture.',
             highlights: ['Lijiang Ancient Town', 'Jade Dragon Snow Mountain', 'Black Dragon Pool'],
             bestTime: 'Spring and Autumn',
@@ -69,7 +69,7 @@ export const destinations = {
         {
             id: 'fenghuang',
             name: 'Fenghuang',
-            image: '/public/images/lijiang_ancient_town_1766986847247.png', // Reusing Lijiang style for now
+            image: './public/images/lijiang_ancient_town_1766986847247.png', // Reusing Lijiang style for now
             description: 'An ancient town built on stilts along the Tuo River.',
             highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
             bestTime: 'Spring and Autumn',
