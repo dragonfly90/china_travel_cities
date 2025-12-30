@@ -1,5 +1,5 @@
 // import './style.css' // Removed for static server compatibility
-import { destinations, travelTips, costs } from './data/destinations.js'
+import { destinations, travelTips, costs, resources } from './data/destinations.js'
 
 // Router
 const routes = {
@@ -45,17 +45,33 @@ function Header() {
   `
 }
 
-function Footer() {
+function Footer(count = '...') {
   return `
     <footer>
       <div class="container">
-        <p>&copy; 2024 China Travel Guide. All rights reserved.</p>
+        <p>&copy; 2024 China Travel Guide. All rights reserved. | Total Visits: <span id="visit-count">${count}</span></p>
       </div>
     </footer>
   `
 }
 
+// Fetch visits
+async function updateVisitCount() {
+  try {
+    const response = await fetch('/api/visits');
+    const data = await response.json();
+    const countElement = document.getElementById('visit-count');
+    if (countElement) {
+      countElement.textContent = data.visits;
+    }
+  } catch (error) {
+    console.error('Failed to fetch visits:', error);
+  }
+}
+
 function Home() {
+  // Trigger fetch after render
+  setTimeout(updateVisitCount, 0);
   return `
     ${Header()}
     <section class="hero">
@@ -89,6 +105,17 @@ function Home() {
               <h3>${city.name}</h3>
               <p>${city.description}</p>
             </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <h2 class="fade-in" style="margin-top: 60px;">Trusted Resources</h2>
+      <div class="info-grid fade-in" style="margin-top: 30px;">
+        ${resources.map(resource => `
+          <div class="info-card glass">
+            <h3>${resource.name}</h3>
+            <p>${resource.description}</p>
+            <a href="${resource.url}" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold; margin-top: 10px; display: inline-block;">Visit Website &rarr;</a>
           </div>
         `).join('')}
       </div>
@@ -128,6 +155,7 @@ function CityDetail() {
     </section>
     ${Footer()}
   `
+  setTimeout(updateVisitCount, 0);
 }
 
 function TravelTips() {
@@ -175,6 +203,7 @@ function TravelTips() {
     </section>
     ${Footer()}
   `
+  setTimeout(updateVisitCount, 0);
 }
 
 function attachListeners() {

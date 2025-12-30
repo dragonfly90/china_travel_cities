@@ -80,7 +80,7 @@ export const destinations = {
 export const travelTips = {
     visa: {
         title: 'Visa Requirements',
-        content: 'US citizens need a visa. As of 2024, the process is simplified (no flight/hotel proof needed for L-visa). Cost is ~$140. 10-day visa-free transit available in some cities.',
+        content: 'US citizens need a visa. However, the **144-hour Visa-Free Transit** is available in major cities like Beijing, Shanghai, and Chengdu for transit passengers. As of 2024, the process for L-visa is simplified (no flight/hotel proof needed). Cost is ~$140.',
     },
     transport: {
         title: 'High-Speed Trains',
@@ -91,6 +91,24 @@ export const travelTips = {
         content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or eSIM for internet access.',
     },
 };
+
+export const resources = [
+    {
+        name: 'China Travel',
+        url: 'https://www.chinatravel.com/',
+        description: 'A leading travel agency offering tailor-made tours and comprehensive guides for all major destinations.',
+    },
+    {
+        name: 'Travel China Guide',
+        url: 'https://www.travelchinaguide.com/',
+        description: 'An extensive resource for cultural information, history, and practical travel tips, serving over 70,000 guests annually.',
+    },
+    {
+        name: 'Beshan (WildChina)',
+        url: 'https://www.beshan.com/',
+        description: 'Founded by Zhang Mei, offering high-end, authentic, and "life-changing" travel experiences off the beaten path.',
+    }
+];
 
 export const costs = {
     budget: {
