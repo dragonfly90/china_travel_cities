@@ -25,6 +25,9 @@ function render() {
   // Re-attach event listeners
   attachListeners()
   window.scrollTo(0, 0)
+
+  // Update visit count after render
+  updateVisitCount()
 }
 
 // Components
@@ -56,26 +59,24 @@ function Footer(count = '...') {
 
 // Fetch visits
 async function updateVisitCount() {
+  const countElement = document.getElementById('visit-count');
+  if (!countElement) return;
+
   try {
     const response = await fetch('/api/visits');
     if (!response.ok) throw new Error('API not available');
     const data = await response.json();
-    const countElement = document.getElementById('visit-count');
-    if (countElement) {
-      countElement.textContent = data.visits;
-    }
+    countElement.textContent = data.visits;
   } catch (error) {
-    // console.error('Failed to fetch visits:', error);
-    const countElement = document.getElementById('visit-count');
-    if (countElement) {
-      countElement.textContent = 'N/A (Static)';
-    }
+    // Fallback to localStorage for GitHub Pages or when backend is down
+    let localCount = parseInt(localStorage.getItem('visitCount') || '0');
+    localCount++;
+    localStorage.setItem('visitCount', localCount);
+    countElement.textContent = `${localCount} (Local)`;
   }
 }
 
 function Home() {
-  // Trigger fetch after render
-  setTimeout(updateVisitCount, 0);
   return `
     ${Header()}
     <section class="hero">
@@ -159,7 +160,6 @@ function CityDetail() {
     </section>
     ${Footer()}
   `
-  setTimeout(updateVisitCount, 0);
 }
 
 function TravelTips() {
@@ -207,7 +207,6 @@ function TravelTips() {
     </section>
     ${Footer()}
   `
-  setTimeout(updateVisitCount, 0);
 }
 
 function attachListeners() {
