@@ -33,4 +33,6 @@ This project is ready for GitHub Pages.
 3. Click **Save**.
 4. Your site will be live at `https://dragonfly90.github.io/china_travel_cities/`.
 
+reference(trip.com): https://www.trip.com/?Allianceid=7659513&SID=286708661&trip_sub1=&trip_sub3=D9560539
+
 > **Note**: The visit counter will show "N/A (Static)" on GitHub Pages because it requires a backend server.
