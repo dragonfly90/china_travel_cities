@@ -1,5 +1,5 @@
 // import './style.css' // Removed for static server compatibility
-import { destinations, travelTips, costs, resources } from './data/destinations.js'
+import { destinations, travelTips, costs, resources, bookingLink } from './data/destinations.js'
 
 // Router
 const routes = {
@@ -96,6 +96,7 @@ function Home() {
             <div class="city-info">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
+              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">Book Hotel</a>
             </div>
           </div>
         `).join('')}
@@ -109,6 +110,7 @@ function Home() {
             <div class="city-info">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
+              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">Book Hotel</a>
             </div>
           </div>
         `).join('')}
@@ -146,7 +148,10 @@ function CityDetail() {
 
     <section class="section container">
       <div class="glass" style="padding: 40px; margin-top: -100px; position: relative; z-index: 10;">
-        <h2>About ${city.name}</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>About ${city.name}</h2>
+          <a href="${bookingLink}" target="_blank" class="btn" style="text-decoration: none;">Book Your Stay</a>
+        </div>
         <p>${city.description}</p>
         
         <h3 style="margin-top: 30px;">Highlights</h3>
@@ -173,6 +178,16 @@ function TravelTips() {
           <div class="info-icon">🛂</div>
           <h3>${travelTips.visa.title}</h3>
           <p>${travelTips.visa.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">💳</div>
+          <h3>${travelTips.payment.title}</h3>
+          <p>${travelTips.payment.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">🌐</div>
+          <h3>${travelTips.internet.title}</h3>
+          <p>${travelTips.internet.content}</p>
         </div>
         <div class="info-card glass">
           <div class="info-icon">🚄</div>

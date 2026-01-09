@@ -47,6 +47,14 @@ export const destinations = {
             description: 'A coastal city known for Gulangyu Island and colonial architecture.',
             highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
             bestTime: 'Autumn and Winter',
+        },
+        {
+            id: 'guilin',
+            name: 'Guilin',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Li_River_Guilin_Yangshuo.jpg/1200px-Li_River_Guilin_Yangshuo.jpg',
+            description: 'Famous for its dramatic karst landscape and the Li River cruise.',
+            highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
+            bestTime: 'April to October',
         }
     ],
     small: [
@@ -77,6 +85,8 @@ export const destinations = {
     ]
 };
 
+export const bookingLink = 'https://www.trip.com/?Allianceid=7659513&SID=286708661&trip_sub1=&trip_sub3=D9560539';
+
 export const travelTips = {
     visa: {
         title: 'Visa Requirements',
@@ -90,6 +100,14 @@ export const travelTips = {
         title: 'Essential Apps',
         content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color); text-decoration: underline;">eSIM</a> for internet access.',
     },
+    payment: {
+        title: 'Payment Methods',
+        content: 'China is nearly cashless. **WeChat Pay** and **Alipay** are essential. Link your international credit card to these apps. Cash is rarely used but good for emergencies. International cards are accepted at high-end hotels and some chains.',
+    },
+    internet: {
+        title: 'Internet & VPN',
+        content: 'Google, Facebook, Instagram, etc., are blocked. You NEED a **VPN** (ExpressVPN, Astrill, LetsVPN) installed BEFORE arrival. Alternatively, use an **eSIM** (like Airalo) which bypasses the firewall automatically.',
+    }
 };
 
 export const resources = [
