@@ -88,7 +88,7 @@ export const travelTips = {
     },
     apps: {
         title: 'Essential Apps',
-        content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or eSIM for internet access.',
+        content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or <a href="https://airalo.pxf.io/nXq9WX" target="_blank">eSIM</a> for internet access.',
     },
 };
 
