@@ -125,6 +125,11 @@ export const resources = [
         name: 'Beshan (WildChina)',
         url: 'https://www.beshan.com/',
         description: 'Founded by Zhang Mei, offering high-end, authentic, and "life-changing" travel experiences off the beaten path.',
+    },
+    {
+        name: 'Airalo eSIM',
+        url: 'https://airalo.pxf.io/nXq9WX',
+        description: 'Stay connected with affordable eSIMs. Bypass the firewall automatically for seamless internet access.',
     }
 ];
 
