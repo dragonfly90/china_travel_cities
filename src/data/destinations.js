@@ -27,7 +27,7 @@ export const destinations = {
         {
             id: 'chengdu',
             name: 'Chengdu',
-            image: 'https://en.wikipedia.org/wiki/Chengdu#/media/File:%E9%9B%AA%E5%B1%B1%E4%B8%8B%E7%9A%84%E6%88%90%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF_Chengdu_skyline_with_snow_capped_mountains.jpg', // Updated image
+            image: './public/images/chengdu_pandas_hotpot.png',
             description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
             highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
             bestTime: 'Spring and Autumn',
@@ -43,7 +43,7 @@ export const destinations = {
         {
             id: 'xiamen',
             name: 'Xiamen',
-            image: 'https://en.wikipedia.org/wiki/Xiamen#/media/File:Haicang_Bridge_cropped.jpg', // Updated image
+            image: './public/images/xiamen_gulangyu_seaside.png',
             description: 'A coastal city known for Gulangyu Island and colonial architecture.',
             highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
             bestTime: 'Autumn and Winter',
@@ -51,7 +51,7 @@ export const destinations = {
         {
             id: 'guilin',
             name: 'Guilin',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Li_River_Guilin_Yangshuo.jpg/1200px-Li_River_Guilin_Yangshuo.jpg',
+            image: './public/images/guilin_li_river_karst.png',
             description: 'Famous for its dramatic karst landscape and the Li River cruise.',
             highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
             bestTime: 'April to October',
@@ -77,7 +77,7 @@ export const destinations = {
         {
             id: 'fenghuang',
             name: 'Fenghuang',
-            image: 'https://en.wikipedia.org/wiki/Fenghuang_County#/media/File:Fenghuang_hunan.jpg', // Updated image
+            image: './public/images/fenghuang_ancient_town_river.png',
             description: 'An ancient town built on stilts along the Tuo River.',
             highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
             bestTime: 'Spring and Autumn',
