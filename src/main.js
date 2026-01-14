@@ -1,11 +1,13 @@
 // import './style.css' // Removed for static server compatibility
 import { destinations, travelTips, costs, resources, bookingLink } from './data/destinations.js'
+import products from './data/products.json'
 
 // Router
 const routes = {
   '/': Home,
   '/city/:id': CityDetail,
-  '/tips': TravelTips
+  '/tips': TravelTips,
+  '/gear': Gear
 }
 
 const app = document.querySelector('#app')
@@ -40,6 +42,7 @@ function Header() {
           <div class="nav-links">
             <a href="#" data-link="/">Home</a>
             <a href="#" data-link="/tips">Travel Tips</a>
+            <a href="#" data-link="/gear">Gear</a>
           </div>
         </nav>
       </div>
@@ -218,6 +221,32 @@ function TravelTips() {
           <h2 style="color: var(--primary-color);">${costs.luxury.daily}</h2>
           <p>${costs.luxury.desc}</p>
         </div>
+      </div>
+    </section>
+    ${Footer()}
+  `
+}
+
+function Gear() {
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">Recommended Gear</h1>
+      <p class="fade-in" style="margin-bottom: 30px;">Essential items for your trip to China, curated from Amazon.</p>
+      
+      <div class="city-grid fade-in">
+        ${products.map(product => `
+          <div class="city-card">
+            <div style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white;">
+                <img src="${product.image}" alt="${product.title}" style="width: auto; height: 100%; object-fit: contain;">
+            </div>
+            <div class="city-info">
+              <h3>${product.title}</h3>
+              <p style="color: var(--primary-color); font-weight: bold; font-size: 1.2em;">${product.price}</p>
+              <a href="${product.link}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: #FF9900; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;">Buy on Amazon</a>
+            </div>
+          </div>
+        `).join('')}
       </div>
     </section>
     ${Footer()}
