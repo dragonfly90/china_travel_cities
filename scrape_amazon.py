@@ -14,6 +14,9 @@ def scrape_amazon():
 
     products = []
     
+    # YOUR AMAZON ASSOCIATE TAG HERE
+    AFFILIATE_TAG = "travelguide-20" 
+    
     try:
         print(f"Scraping {url}...")
         response = requests.get(url, headers=headers, timeout=10)
@@ -34,8 +37,14 @@ def scrape_amazon():
                     
                     # Link
                     link_tag = item.find('a', {'class': 'a-link-normal'})
-                    link = "https://www.amazon.com" + link_tag['href'] if link_tag else ''
+                    raw_link = "https://www.amazon.com" + link_tag['href'] if link_tag else ''
                     
+                    # Add Affiliate Tag
+                    link = raw_link
+                    if raw_link:
+                        separator = "&" if "?" in raw_link else "?"
+                        link = f"{raw_link}{separator}tag={AFFILIATE_TAG}"
+
                     # Price
                     price_whole = item.find('span', {'class': 'a-price-whole'})
                     price_fraction = item.find('span', {'class': 'a-price-fraction'})
@@ -101,6 +110,12 @@ def scrape_amazon():
                 "link": "https://www.amazon.com/s?k=travel+bottles"
             }
         ]
+
+    # Apply Affiliate Tag to ALL products (including fallback)
+    for p in products:
+        if "tag=" not in p['link']:
+            separator = "&" if "?" in p['link'] else "?"
+            p['link'] = f"{p['link']}{separator}tag={AFFILIATE_TAG}"
 
     # ensure data dir exists
     import os
