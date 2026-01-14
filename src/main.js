@@ -1,6 +1,5 @@
-// import './style.css' // Removed for static server compatibility
 import { destinations, travelTips, costs, resources, bookingLink } from './data/destinations.js'
-import products from './data/products.json'
+import products from './data/products.js'
 
 // Router
 const routes = {

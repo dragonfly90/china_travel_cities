@@ -106,10 +106,13 @@ def scrape_amazon():
     import os
     os.makedirs('src/data', exist_ok=True)
     
-    with open('src/data/products.json', 'w') as f:
+    with open('src/data/products.js', 'w') as f:
+        # Write as valid JavaScript export
+        f.write("export default ")
         json.dump(products, f, indent=2)
+        f.write(";")
         
-    print(f"Successfully saved {len(products)} products to src/data/products.json")
+    print(f"Successfully saved {len(products)} products to src/data/products.js")
 
 if __name__ == "__main__":
     scrape_amazon()
