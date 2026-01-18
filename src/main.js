@@ -1,6 +1,7 @@
 import { destinations, travelTips, costs, resources, bookingLink } from './data/destinations.js'
 import products from './data/products.js'
 import videos from './data/videos.js'
+import communityPosts from './data/community.js'
 
 // Router
 const routes = {
@@ -8,7 +9,8 @@ const routes = {
   '/city/:id': CityDetail,
   '/tips': TravelTips,
   '/gear': Gear,
-  '/videos': VideoGallery
+  '/videos': VideoGallery,
+  '/community': Community
 }
 
 const app = document.querySelector('#app')
@@ -44,6 +46,7 @@ function Header() {
             <a href="#" data-link="/">Home</a>
             <a href="#" data-link="/tips">Travel Tips</a>
             <a href="#" data-link="/videos">Videos</a>
+            <a href="#" data-link="/community">Community</a>
             <a href="#" data-link="/gear">Gear</a>
           </div>
         </nav>
@@ -117,11 +120,11 @@ async function shareContent(title, text, url = window.location.href) {
       alert('Could not copy link.');
     }
   }
+}
 
-
-  function Home() {
-    updateMeta("Discover China", "A journey through time, culture, and breathtaking landscapes.", destinations.main[0].image);
-    return `
+function Home() {
+  updateMeta("Discover China", "A journey through time, culture, and breathtaking landscapes.", destinations.main[0].image);
+  return `
     ${Header()}
     <section class="hero">
       <div class="hero-content fade-in">
@@ -173,18 +176,18 @@ async function shareContent(title, text, url = window.location.href) {
     </section>
     ${Footer()}
 `
-  }
+}
 
-  function CityDetail() {
-    const path = window.location.hash.slice(1)
-    const cityId = path.split('/city/')[1]
-    const city = [...destinations.main, ...destinations.small].find(c => c.id === cityId)
+function CityDetail() {
+  const path = window.location.hash.slice(1)
+  const cityId = path.split('/city/')[1]
+  const city = [...destinations.main, ...destinations.small].find(c => c.id === cityId)
 
-    if (!city) return Home()
+  if (!city) return Home()
 
-    updateMeta(city.name, city.description, city.image);
+  updateMeta(city.name, city.description, city.image);
 
-    return `
+  return `
     ${Header()}
     <section class="hero" style="background-image: url('${city.image}'); height: 60vh;">
       <div class="hero-content fade-in">
@@ -214,11 +217,11 @@ async function shareContent(title, text, url = window.location.href) {
     </section>
     ${Footer()}
 `
-  }
+}
 
-  function TravelTips() {
-    updateMeta("Travel Tips", "Essential visa, payment, and transport tips for China.");
-    return `
+function TravelTips() {
+  updateMeta("Travel Tips", "Essential visa, payment, and transport tips for China.");
+  return `
     ${Header()}
 <section class="section container" style="margin-top: 80px;">
   <h1 class="fade-in">Travel Tips & Costs</h1>
@@ -272,11 +275,11 @@ async function shareContent(title, text, url = window.location.href) {
 </section>
     ${Footer()}
 `
-  }
+}
 
-  function Gear() {
-    updateMeta("Recommended Gear", "Curated travel essentials for your China trip.");
-    return `
+function Gear() {
+  updateMeta("Recommended Gear", "Curated travel essentials for your China trip.");
+  return `
     ${Header()}
 <section class="section container" style="margin-top: 80px;">
   <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -302,11 +305,11 @@ async function shareContent(title, text, url = window.location.href) {
 </section>
     ${Footer()}
 `
-  }
+}
 
-  function VideoGallery() {
-    updateMeta("Video Gallery", "Watch curated videos about China's landscapes, food, and culture.");
-    return `
+function VideoGallery() {
+  updateMeta("Video Gallery", "Watch curated videos about China's landscapes, food, and culture.");
+  return `
       ${Header()}
       <section class="section container" style="margin-top: 80px;">
         <h1 class="fade-in">Video Gallery</h1>
@@ -333,35 +336,60 @@ async function shareContent(title, text, url = window.location.href) {
       </section>
       ${Footer()}
     `
-  }
+}
 
-  function attachListeners() {
-    document.querySelectorAll('a[data-link]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault()
-        navigate(e.target.getAttribute('data-link'))
-      })
+function Community() {
+  updateMeta("Community", "Latest discussions and travel tips from the China Travel community.");
+  return `
+      ${Header()}
+      <section class="section container" style="margin-top: 80px;">
+        <h1 class="fade-in">Community Discussions</h1>
+        <p class="fade-in" style="margin-bottom: 30px;">See what travelers are saying on Reddit.</p>
+        
+        <div class="info-grid fade-in">
+          ${communityPosts.map(post => `
+            <div class="info-card glass">
+              <span style="font-size: 0.8em; color: var(--primary-color);">${post.subreddit} • u/${post.author}</span>
+              <h3 style="margin: 10px 0;"><a href="${post.url}" target="_blank" style="text-decoration: none; color: inherit;">${post.title}</a></h3>
+              <div style="display: flex; gap: 15px; font-size: 0.9em; color: #666;">
+                 <span>⬆️ ${post.score}</span>
+                 <span>💬 ${post.num_comments} comments</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+      ${Footer()}
+    `
+}
+
+function attachListeners() {
+  document.querySelectorAll('a[data-link]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault()
+      navigate(e.target.getAttribute('data-link'))
     })
+  })
 
-    document.querySelectorAll('.city-card').forEach(card => {
-      card.addEventListener('click', () => {
-        navigate(`/ city / ${card.getAttribute('data-city')} `)
-      })
+  document.querySelectorAll('.city-card').forEach(card => {
+    card.addEventListener('click', () => {
+      navigate(`/ city / ${card.getAttribute('data-city')} `)
     })
+  })
 
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header')
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled')
-      } else {
-        header.classList.remove('scrolled')
-      }
-    })
-  }
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header')
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled')
+    } else {
+      header.classList.remove('scrolled')
+    }
+  })
+}
 
-  // Make shareContent globally available for inline onclick handlers
-  window.shareContent = shareContent;
+// Make shareContent globally available for inline onclick handlers
+window.shareContent = shareContent;
 
-  // Initial render
-  render()
+// Initial render
+render()
