@@ -1,12 +1,14 @@
 import { destinations, travelTips, costs, resources, bookingLink } from './data/destinations.js'
 import products from './data/products.js'
+import videos from './data/videos.js'
 
 // Router
 const routes = {
   '/': Home,
   '/city/:id': CityDetail,
   '/tips': TravelTips,
-  '/gear': Gear
+  '/gear': Gear,
+  '/videos': VideoGallery
 }
 
 const app = document.querySelector('#app')
@@ -41,6 +43,7 @@ function Header() {
           <div class="nav-links">
             <a href="#" data-link="/">Home</a>
             <a href="#" data-link="/tips">Travel Tips</a>
+            <a href="#" data-link="/videos">Videos</a>
             <a href="#" data-link="/gear">Gear</a>
           </div>
         </nav>
@@ -78,8 +81,47 @@ async function updateVisitCount() {
   }
 }
 
-function Home() {
-  return `
+// SEO Helper
+function updateMeta(title, description, image) {
+  document.title = `${title} | China Travel Guide`;
+
+  // Update OG tags
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', title);
+
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', description);
+
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  if (ogImage && image) {
+    // Ensure absolute URL for social sharing
+    const absoluteImage = image.startsWith('http') ? image : `https://dragonfly90.github.io/china_travel_cities/${image.replace('./', '')}`;
+    ogImage.setAttribute('content', absoluteImage);
+  }
+}
+
+// Share Helper
+async function shareContent(title, text, url = window.location.href) {
+  if (navigator.share) {
+    try {
+      await navigator.share({ title, text, url });
+    } catch (err) {
+      console.log('Error sharing:', err);
+    }
+  } else {
+    // Fallback: Copy to clipboard
+    try {
+      await navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      alert('Could not copy link.');
+    }
+  }
+
+
+  function Home() {
+    updateMeta("Discover China", "A journey through time, culture, and breathtaking landscapes.", destinations.main[0].image);
+    return `
     ${Header()}
     <section class="hero">
       <div class="hero-content fade-in">
@@ -130,17 +172,19 @@ function Home() {
       </div>
     </section>
     ${Footer()}
-  `
-}
+`
+  }
 
-function CityDetail() {
-  const path = window.location.pathname
-  const cityId = path.split('/city/')[1]
-  const city = [...destinations.main, ...destinations.small].find(c => c.id === cityId)
+  function CityDetail() {
+    const path = window.location.hash.slice(1)
+    const cityId = path.split('/city/')[1]
+    const city = [...destinations.main, ...destinations.small].find(c => c.id === cityId)
 
-  if (!city) return Home()
+    if (!city) return Home()
 
-  return `
+    updateMeta(city.name, city.description, city.image);
+
+    return `
     ${Header()}
     <section class="hero" style="background-image: url('${city.image}'); height: 60vh;">
       <div class="hero-content fade-in">
@@ -150,9 +194,12 @@ function CityDetail() {
 
     <section class="section container">
       <div class="glass" style="padding: 40px; margin-top: -100px; position: relative; z-index: 10;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
           <h2>About ${city.name}</h2>
-          <a href="${bookingLink}" target="_blank" class="btn" style="text-decoration: none;">Book Your Stay</a>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-small" style="background: var(--text-color); color: var(--bg-color);" onclick="shareContent('${city.name}', 'Check out this guide to ${city.name}!')">Share Guide</button>
+            <a href="${bookingLink}" target="_blank" class="btn" style="text-decoration: none;">Book Your Stay</a>
+          </div>
         </div>
         <p>${city.description}</p>
         
@@ -166,75 +213,80 @@ function CityDetail() {
       </div>
     </section>
     ${Footer()}
-  `
-}
+`
+  }
 
-function TravelTips() {
-  return `
+  function TravelTips() {
+    updateMeta("Travel Tips", "Essential visa, payment, and transport tips for China.");
+    return `
     ${Header()}
-    <section class="section container" style="margin-top: 80px;">
-      <h1 class="fade-in">Travel Tips & Costs</h1>
-      
-      <div class="info-grid fade-in" style="margin-top: 40px;">
-        <div class="info-card glass">
-          <div class="info-icon">🛂</div>
-          <h3>${travelTips.visa.title}</h3>
-          <p>${travelTips.visa.content}</p>
-        </div>
-        <div class="info-card glass">
-          <div class="info-icon">💳</div>
-          <h3>${travelTips.payment.title}</h3>
-          <p>${travelTips.payment.content}</p>
-        </div>
-        <div class="info-card glass">
-          <div class="info-icon">🌐</div>
-          <h3>${travelTips.internet.title}</h3>
-          <p>${travelTips.internet.content}</p>
-        </div>
-        <div class="info-card glass">
-          <div class="info-icon">🚄</div>
-          <h3>${travelTips.transport.title}</h3>
-          <p>${travelTips.transport.content}</p>
-        </div>
-        <div class="info-card glass">
-          <div class="info-icon">📱</div>
-          <h3>${travelTips.apps.title}</h3>
-          <p>${travelTips.apps.content}</p>
-        </div>
-      </div>
+<section class="section container" style="margin-top: 80px;">
+  <h1 class="fade-in">Travel Tips & Costs</h1>
 
-      <h2 style="margin-top: 60px;">Estimated Costs (Per Person/Day)</h2>
-      <div class="info-grid fade-in" style="margin-top: 30px;">
-        <div class="info-card glass">
-          <h3>${costs.budget.type}</h3>
-          <h2 style="color: var(--primary-color);">${costs.budget.daily}</h2>
-          <p>${costs.budget.desc}</p>
-        </div>
-        <div class="info-card glass">
-          <h3>${costs.midRange.type}</h3>
-          <h2 style="color: var(--primary-color);">${costs.midRange.daily}</h2>
-          <p>${costs.midRange.desc}</p>
-        </div>
-        <div class="info-card glass">
-          <h3>${costs.luxury.type}</h3>
-          <h2 style="color: var(--primary-color);">${costs.luxury.daily}</h2>
-          <p>${costs.luxury.desc}</p>
-        </div>
-      </div>
-    </section>
+  <div class="info-grid fade-in" style="margin-top: 40px;">
+    <div class="info-card glass">
+      <div class="info-icon">🛂</div>
+      <h3>${travelTips.visa.title}</h3>
+      <p>${travelTips.visa.content}</p>
+    </div>
+    <div class="info-card glass">
+      <div class="info-icon">💳</div>
+      <h3>${travelTips.payment.title}</h3>
+      <p>${travelTips.payment.content}</p>
+    </div>
+    <div class="info-card glass">
+      <div class="info-icon">🌐</div>
+      <h3>${travelTips.internet.title}</h3>
+      <p>${travelTips.internet.content}</p>
+    </div>
+    <div class="info-card glass">
+      <div class="info-icon">🚄</div>
+      <h3>${travelTips.transport.title}</h3>
+      <p>${travelTips.transport.content}</p>
+    </div>
+    <div class="info-card glass">
+      <div class="info-icon">📱</div>
+      <h3>${travelTips.apps.title}</h3>
+      <p>${travelTips.apps.content}</p>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 60px;">Estimated Costs (Per Person/Day)</h2>
+  <div class="info-grid fade-in" style="margin-top: 30px;">
+    <div class="info-card glass">
+      <h3>${costs.budget.type}</h3>
+      <h2 style="color: var(--primary-color);">${costs.budget.daily}</h2>
+      <p>${costs.budget.desc}</p>
+    </div>
+    <div class="info-card glass">
+      <h3>${costs.midRange.type}</h3>
+      <h2 style="color: var(--primary-color);">${costs.midRange.daily}</h2>
+      <p>${costs.midRange.desc}</p>
+    </div>
+    <div class="info-card glass">
+      <h3>${costs.luxury.type}</h3>
+      <h2 style="color: var(--primary-color);">${costs.luxury.daily}</h2>
+      <p>${costs.luxury.desc}</p>
+    </div>
+  </div>
+</section>
     ${Footer()}
-  `
-}
+`
+  }
 
-function Gear() {
-  return `
+  function Gear() {
+    updateMeta("Recommended Gear", "Curated travel essentials for your China trip.");
+    return `
     ${Header()}
-    <section class="section container" style="margin-top: 80px;">
-      <h1 class="fade-in">Recommended Gear</h1>
-      <p class="fade-in" style="margin-bottom: 30px;">Essential items for your trip to China, curated from Amazon.</p>
-      
-      <div class="city-grid fade-in">
-        ${products.map(product => `
+<section class="section container" style="margin-top: 80px;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 class="fade-in">Recommended Gear</h1>
+    <button class="btn-small fade-in" style="background: var(--text-color); color: var(--bg-color);" onclick="shareContent('China Travel Gear', 'Essential gear for your China trip!')">Share List</button>
+  </div>
+  <p class="fade-in" style="margin-bottom: 30px;">Essential items for your trip to China, curated from Amazon.</p>
+
+  <div class="city-grid fade-in">
+    ${products.map(product => `
           <div class="city-card">
             <div style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: white;">
                 <img src="${product.image}" alt="${product.title}" style="width: auto; height: 100%; object-fit: contain;">
@@ -246,36 +298,70 @@ function Gear() {
             </div>
           </div>
         `).join('')}
-      </div>
-    </section>
+  </div>
+</section>
     ${Footer()}
-  `
-}
+`
+  }
 
-function attachListeners() {
-  document.querySelectorAll('a[data-link]').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault()
-      navigate(e.target.getAttribute('data-link'))
+  function VideoGallery() {
+    updateMeta("Video Gallery", "Watch curated videos about China's landscapes, food, and culture.");
+    return `
+      ${Header()}
+      <section class="section container" style="margin-top: 80px;">
+        <h1 class="fade-in">Video Gallery</h1>
+        <p class="fade-in" style="margin-bottom: 30px;">Immerse yourself in China before you go.</p>
+        
+        <div class="city-grid fade-in">
+          ${videos.map(video => `
+            <div class="city-card">
+              <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe 
+                  src="https://www.youtube.com/embed/${video.youtubeId}" 
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                  allowfullscreen 
+                  title="${video.title}"
+                ></iframe>
+              </div>
+              <div class="city-info">
+                <h3>${video.title}</h3>
+                <p>${video.description}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+      ${Footer()}
+    `
+  }
+
+  function attachListeners() {
+    document.querySelectorAll('a[data-link]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault()
+        navigate(e.target.getAttribute('data-link'))
+      })
     })
-  })
 
-  document.querySelectorAll('.city-card').forEach(card => {
-    card.addEventListener('click', () => {
-      navigate(`/city/${card.getAttribute('data-city')}`)
+    document.querySelectorAll('.city-card').forEach(card => {
+      card.addEventListener('click', () => {
+        navigate(`/ city / ${card.getAttribute('data-city')} `)
+      })
     })
-  })
 
-  // Header scroll effect
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header')
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled')
-    } else {
-      header.classList.remove('scrolled')
-    }
-  })
-}
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header')
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled')
+      } else {
+        header.classList.remove('scrolled')
+      }
+    })
+  }
 
-// Initial render
-render()
+  // Make shareContent globally available for inline onclick handlers
+  window.shareContent = shareContent;
+
+  // Initial render
+  render()
