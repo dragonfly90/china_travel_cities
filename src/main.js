@@ -373,7 +373,7 @@ function attachListeners() {
 
   document.querySelectorAll('.city-card').forEach(card => {
     card.addEventListener('click', () => {
-      navigate(`/ city / ${card.getAttribute('data-city')} `)
+      navigate(`/city/${card.getAttribute('data-city')}`)
     })
   })
 
@@ -392,4 +392,11 @@ function attachListeners() {
 window.shareContent = shareContent;
 
 // Initial render
-render()
+try {
+  console.log("Starting app render...");
+  render();
+  console.log("App render successful");
+} catch (e) {
+  console.error("Critical Render Error:", e);
+  document.body.innerHTML += `<div style="color: red; padding: 20px;"><h1>App Error</h1><pre>${e.message}\n${e.stack}</pre></div>`;
+}
