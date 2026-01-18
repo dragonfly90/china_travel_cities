@@ -55,9 +55,33 @@ export const destinations = {
             description: 'Famous for its dramatic karst landscape and the Li River cruise.',
             highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
             bestTime: 'April to October',
+        },
+        {
+            id: 'kunming',
+            name: 'Kunming',
+            image: './public/images/kunming_stone_forest.png',
+            description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
+            highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
+            bestTime: 'All year round (Eternal Spring)',
+        },
+        {
+            id: 'zhangjiajie',
+            name: 'Zhangjiajie',
+            image: './public/images/zhangjiajie_avatar_mountains.png',
+            description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
+            highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
+            bestTime: 'April-May and September-October',
         }
     ],
     small: [
+        {
+            id: 'dali',
+            name: 'Dali',
+            image: './public/images/dali_three_pagodas.png',
+            description: 'A backpacker haven with the Three Pagodas, Erhai Lake, and Cangshan Mountain.',
+            highlights: ['Dali Ancient City', 'Erhai Lake', 'Three Pagodas', 'Cangshan'],
+            bestTime: 'Spring and Autumn',
+        },
         {
             id: 'yangshuo',
             name: 'Yangshuo',
