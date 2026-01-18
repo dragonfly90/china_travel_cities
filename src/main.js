@@ -10,7 +10,8 @@ const routes = {
   '/tips': TravelTips,
   '/gear': Gear,
   '/videos': VideoGallery,
-  '/community': Community
+  '/community': Community,
+  '/guide': Guide
 }
 
 const app = document.querySelector('#app')
@@ -44,6 +45,7 @@ function Header() {
           <div class="logo">ChinaTravel</div>
           <div class="nav-links">
             <a href="#" data-link="/">Home</a>
+            <a href="#" data-link="/guide">Start Here</a>
             <a href="#" data-link="/tips">Travel Tips</a>
             <a href="#" data-link="/videos">Videos</a>
             <a href="#" data-link="/community">Community</a>
@@ -361,6 +363,93 @@ function Community() {
       </section>
       ${Footer()}
     `
+}
+
+
+function Guide() {
+  updateMeta("Simple Guide to China 2026", "A simple, practical guide for first-time travelers to China.");
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">The Simple Guide to Traveling in China (2026 Edition)</h1>
+      
+      <div class="glass fade-in" style="padding: 40px; margin-top: 30px;">
+          <p style="font-size: 1.1em; line-height: 1.6;">I’ve been seeing a lot of questions lately about traveling to China ("Is it hard?", "Do I need a visa?", "What apps do I need?"), so I aggregated the latest advice from our community and research into a simple, practical guide.</p>
+          <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">If you’ve been hesitant because of the "complexity," trust me: it’s easier than ever.</p>
+      
+          <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">1. The "Big Three" Hurdles (Solved)</h2>
+          
+          <div style="margin-top: 20px;">
+              <h3>🛂 Visa: You Might Not Need One</h3>
+              <p>If you are from the US, UK, Canada, Aus, etc., check out the <strong>144-Hour Visa-Free Transit</strong>.</p>
+              <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+                  <li><strong>How it works</strong>: Fly A -> China -> B (A and B must be different countries).</li>
+                  <li><strong>Where</strong>: Works in Beijing, Shanghai, Chengdu, Kunming, and many more.</li>
+                  <li><strong>Tip</strong>: Great for a 6-day stopover to see the Great Wall or the Bund without the visa paperwork hassle.</li>
+              </ul>
+          </div>
+
+          <div style="margin-top: 30px;">
+              <h3>💳 Payment: Cash is Dead(ish)</h3>
+              <p>You cannot survive on cash alone.</p>
+              <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+                   <li><strong>The Fix</strong>: Download <strong>Alipay</strong> or <strong>WeChat</strong>.</li>
+                   <li><strong>Easy Mode</strong>: You can now link your <strong>foreign credit card</strong> (Visa/Mastercard) directly to Alipay. No Chinese bank account needed. It works for everything from subway rides to street food.</li>
+              </ul>
+          </div>
+
+          <div style="margin-top: 30px;">
+              <h3>🌐 Internet: The Firewall</h3>
+              <p>Google, Instagram, and Reddit are blocked.</p>
+              <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+                   <li><strong>The Old Way</strong>: Buying a VPN (Astrill is the reliable one, others are hit-or-miss).</li>
+                   <li><strong>The Better Way</strong>: Get an <strong>eSIM</strong> (like <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color);">Airalo</a> or Holafly) before you land. Roaming data bypasses the firewall automatically. You land, turn it on, and Instagram just works.</li>
+              </ul>
+          </div>
+
+          <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">2. Where to Go (Beyond Beijing)</h2>
+          <p>Based on recent videos and threads, here is a mix of the classics and the trending spots:</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+              <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                  <h3 style="margin-top: 0;">The "Classics"</h3>
+                  <p><strong>Beijing</strong>: Great Wall & Forbidden City. (History buff's dream).</p>
+                  <p><strong>Shanghai</strong>: The "Blade Runner" city. Insane skylines meets colonial architecture.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                  <h3 style="margin-top: 0;">The "Avatar" Mountains</h3>
+                  <p><strong>Zhangjiajie</strong>: The inspiration for Pandora. The sandstone pillars are surreal. The glass bridge is terrifying but worth it.</p>
+              </div>
+               <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                  <h3 style="margin-top: 0;">The "Chill" Vibe</h3>
+                  <p><strong>Kunming</strong>: The "City of Eternal Spring".</p>
+                  <p><strong>Dali</strong>: A backpacker haven with pagodas, massive lakes, and a relaxed pace.</p>
+              </div>
+          </div>
+
+          <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">3. Essential Apps Checklist</h2>
+          <p>Download these BEFORE you get on the plane:</p>
+          <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+              <li><strong>Alipay</strong>: For payments.</li>
+              <li><strong>Trip.com</strong>: For booking hotels and <strong>High-Speed Trains</strong> (easier than the official railway app).</li>
+              <li><strong>Apple Maps</strong>: Works great in China. (Google Maps is useless).</li>
+              <li><strong>Translate App</strong>: Google Translate (download offline Chinese) or DeepL.</li>
+          </ol>
+
+          <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">Final Tips</h2>
+          <ul style="list-style-type: none; margin-top: 10px;">
+              <li style="margin-bottom: 10px;">🛑 <strong>Crowds</strong>: Avoid "Golden Week" (first week of Oct) and CNY unless you love chaos.</li>
+              <li style="margin-bottom: 10px;">🚄 <strong>Trains</strong>: The high-speed rail is faster and more comfortable than flying for 3-5 hour distances.</li>
+              <li style="margin-bottom: 10px;">🗣️ <strong>Language</strong>: The language barrier is real, but translation apps + younger people speaking English make it manageable.</li>
+          </ul>
+          
+          <div style="text-align: center; margin-top: 40px;">
+              <button class="btn" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'}) || navigate('/')">Start Exploring Cities</button>
+          </div>
+      </div>
+    </section>
+    ${Footer()}
+  `
 }
 
 function attachListeners() {
