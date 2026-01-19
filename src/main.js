@@ -32,9 +32,9 @@ function render() {
   attachListeners()
 
   // Load comments for current page
-  const path = window.location.hash.slice(1) || '/'
-  if (path === '/guide') renderComments('guide');
-  if (path.startsWith('/city/')) renderComments(`city-${path.split('/city/')[1]}`);
+  const currentPath = window.location.hash.slice(1) || '/'
+  if (currentPath === '/guide') renderComments('guide');
+  if (currentPath.startsWith('/city/')) renderComments(`city-${currentPath.split('/city/')[1]}`);
 
   window.scrollTo(0, 0)
 
