@@ -30,6 +30,12 @@ function render() {
 
   // Re-attach event listeners
   attachListeners()
+
+  // Load comments for current page
+  const path = window.location.hash.slice(1) || '/'
+  if (path === '/guide') renderComments('guide');
+  if (path.startsWith('/city/')) renderComments(`city-${path.split('/city/')[1]}`);
+
   window.scrollTo(0, 0)
 
   // Update visit count after render
@@ -447,9 +453,72 @@ function Guide() {
               <button class="btn" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'}) || navigate('/')">Start Exploring Cities</button>
           </div>
       </div>
+      ${CommentSection('guide')}
     </section>
     ${Footer()}
   `
+}
+
+
+function CommentSection(pageId) {
+  return `
+      <section class="section container" style="margin-top: 40px;">
+        <h2 class="fade-in">Visitor Comments (Guestbook)</h2>
+        <div class="glass fade-in" style="padding: 20px; margin-top: 20px;">
+            <div id="comments-list-${pageId}" style="margin-bottom: 30px;">
+                <!-- Comments will be loaded here -->
+                <p style="color: #666; font-style: italic;">No comments yet. Be the first!</p>
+            </div>
+            
+            <h3 style="margin-bottom: 15px;">Leave a Comment</h3>
+            <form onsubmit="handleCommentSubmit(event, '${pageId}')" style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="text" name="name" placeholder="Your Name" required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; background: rgba(255,255,255,0.8);">
+                <textarea name="comment" placeholder="Share your thoughts or questions..." required style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; min-height: 80px; background: rgba(255,255,255,0.8);"></textarea>
+                <div style="font-size: 0.8em; color: #666;">Note: Comments are stored locally in your browser for this demo.</div>
+                <button type="submit" class="btn-small" style="background: var(--primary-color); color: white; align-self: flex-start;">Post Comment</button>
+            </form>
+        </div>
+      </section>
+    `;
+}
+
+// Comment Logic
+window.handleCommentSubmit = function (event, pageId) {
+  event.preventDefault();
+  const form = event.target;
+  const name = form.name.value;
+  const text = form.comment.value;
+  const date = new Date().toLocaleDateString();
+
+  const comment = { name, text, date };
+  const comments = JSON.parse(localStorage.getItem(`comments-${pageId}`) || '[]');
+  comments.push(comment);
+  localStorage.setItem(`comments-${pageId}`, JSON.stringify(comments));
+
+  renderComments(pageId);
+  form.reset();
+  alert("Comment posted! (Saved locally)");
+};
+
+function renderComments(pageId) {
+  const list = document.getElementById(`comments-list-${pageId}`);
+  if (!list) return;
+
+  const comments = JSON.parse(localStorage.getItem(`comments-${pageId}`) || '[]');
+  if (comments.length === 0) {
+    list.innerHTML = '<p style="color: #666; font-style: italic;">No comments yet. Be the first!</p>';
+    return;
+  }
+
+  list.innerHTML = comments.map(c => `
+        <div style="border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <strong style="color: var(--primary-color);">${c.name}</strong>
+                <span style="font-size: 0.8em; color: #666;">${c.date}</span>
+            </div>
+            <p style="margin: 0;">${c.text}</p>
+        </div>
+    `).join('').split('\n').reverse().join('\n'); // Show newest first (simple reverse hack)
 }
 
 function attachListeners() {
