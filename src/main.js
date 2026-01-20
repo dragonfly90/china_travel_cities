@@ -2,6 +2,7 @@ import { destinations, travelTips, costs, resources, bookingLink } from './data/
 import products from './data/products.js'
 import videos from './data/videos.js'
 import communityPosts from './data/community.js'
+import xhsPosts from './data/xhs.js'
 
 // Router
 const routes = {
@@ -350,10 +351,11 @@ function Community() {
   updateMeta("Community", "Latest discussions and travel tips from the China Travel community.");
   return `
       ${Header()}
-      <section class="section container" style="margin-top: 80px;">
-        <h1 class="fade-in">Community Discussions</h1>
-        <p class="fade-in" style="margin-bottom: 30px;">See what travelers are saying on Reddit.</p>
+    <section class="section container" style="margin-top: 80px;">
+        <h1 class="fade-in">Community & Social Buzz</h1>
+        <p class="fade-in" style="margin-bottom: 30px;">See what travelers are saying on Reddit and Xiaohongshu (Little Red Book).</p>
         
+        <h2 class="fade-in">Reddit Discussions</h2>
         <div class="info-grid fade-in">
           ${communityPosts.map(post => `
             <div class="info-card glass">
@@ -366,9 +368,28 @@ function Community() {
             </div>
           `).join('')}
         </div>
-      </section>
-      ${Footer()}
-    `
+
+        <h2 class="fade-in" style="margin-top: 60px;">XHS Buzz (Little Red Book)</h2>
+        <p style="margin-bottom: 20px;">Trending posts about "Westerners in China".</p>
+        <div class="city-grid fade-in">
+          ${xhsPosts.map(post => `
+            <div class="city-card">
+              <div style="height: 200px; overflow: hidden;">
+                <img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div class="city-info">
+                <span style="font-size: 0.8em; color: #ff2442;">📕 Xiaohongshu</span>
+                <h3><a href="${post.url}" target="_blank" style="text-decoration: none; color: inherit;">${post.title}</a></h3>
+                <p style="font-size: 0.9em; color: #666;">by ${post.author}</p>
+                <div style="margin-top: 10px; font-weight: bold; color: #ff2442;">❤️ ${post.likes}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+    </section>
+    ${Footer()}
+  `
 }
 
 
