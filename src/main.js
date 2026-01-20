@@ -3,6 +3,7 @@ import products from './data/products.js'
 import videos from './data/videos.js'
 import communityPosts from './data/community.js'
 import xhsPosts from './data/xhs.js'
+import flightDeals from './data/flights.js'
 
 // Router
 const routes = {
@@ -261,6 +262,30 @@ function TravelTips() {
       <h3>${travelTips.apps.title}</h3>
       <p>${travelTips.apps.content}</p>
     </div>
+  </div>
+  
+  <h2 style="margin-top: 60px;">✈️ Flight Watch (SFO -> China)</h2>
+  <p class="fade-in" style="margin-bottom: 20px;">Estimated deals for upcoming shoulder seasons. Click to check live prices.</p>
+  
+  <div class="city-grid fade-in">
+    ${flightDeals.map(deal => `
+      <div class="city-card">
+        <div style="height: 150px; overflow: hidden; position: relative;">
+          <img src="${deal.image}" alt="${deal.destination}" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold;">
+            Benchmark: $${deal.benchmarkPrice}
+          </div>
+        </div>
+        <div class="city-info">
+          <h3>${deal.origin} ➝ ${deal.code} (${deal.destination})</h3>
+          <p style="font-size: 0.9em; color: #666;">📅 ${deal.dates}</p>
+          <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <a href="${deal.links.google}" target="_blank" class="btn-small" style="flex: 1; text-align: center; text-decoration: none; background: #4285F4; color: white;">Google Flights</a>
+            <a href="${deal.links.skyscanner}" target="_blank" class="btn-small" style="flex: 1; text-align: center; text-decoration: none; background: #00ebd2; color: #003348;">Skyscanner</a>
+          </div>
+        </div>
+      </div>
+    `).join('')}
   </div>
 
   <h2 style="margin-top: 60px;">Estimated Costs (Per Person/Day)</h2>
