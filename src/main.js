@@ -541,6 +541,92 @@ function Guide() {
 }
 
 
+
+function MedicalGuide() {
+  updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+        <h1 class="fade-in">Medical Tourism: The "China Speed" Checkup</h1>
+        <p class="fade-in" style="font-size: 1.1em; margin-bottom: 30px;">
+            One of the best-kept secrets for travelers to China is the <strong>medical efficiency</strong>. 
+            You can get a comprehensive, high-tech full-body health screening (MRI, CT, Ultrasound, Blood panel) done in 
+            <strong>under 4 hours</strong> for a fraction of the cost in the West.
+        </p>
+
+        <h2 class="fade-in">Why do a Checkup here?</h2>
+        <div class="info-grid fade-in">
+            <div class="info-card glass">
+                <div class="info-icon">⚡️</div>
+                <h3>Incredible Speed</h3>
+                <p>No weeks of waiting. Walk in at 8 AM, done by 11 AM. Digital results often same-day.</p>
+            </div>
+            <div class="info-card glass">
+                <div class="info-icon">💰</div>
+                <h3>Affordable</h3>
+                <p>A "CEO-level" full body scan often costs $200-$400. No insurance bureaucracy.</p>
+            </div>
+            <div class="info-card glass">
+                <div class="info-icon">🔬</div>
+                <h3>Advanced Tech</h3>
+                <p>Top hospitals use the latest Siemens/GE CT and MRI scanners. Preventative screening is standard.</p>
+            </div>
+        </div>
+
+        <h2 class="fade-in" style="margin-top: 60px;">Top Hospitals (International Depts)</h2>
+        <p style="margin-bottom: 20px;">We recommend the <strong>International Departments</strong> (VIP Wings) of top public hospitals for English service and privacy.</p>
+        <div class="city-grid fade-in">
+            ${hospitals.map(h => `
+                <div class="city-card">
+                  <div style="height: 180px; overflow: hidden;">
+                    <img src="${h.image}" alt="${h.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="city-info">
+                    <span style="font-size: 0.8em; color: var(--primary-color); font-weight: bold;">${h.city}</span>
+                    <h3>${h.name}</h3>
+                    <p>${h.desc}</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">📍 ${h.location}</p>
+                    <div style="margin-top: 10px; font-size: 0.8em; background: rgba(0,0,0,0.05); padding: 5px; border-radius: 5px;">
+                        🏅 Best for: ${h.specialty}
+                    </div>
+                  </div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h2 class="fade-in" style="margin-top: 60px;">Typical Checkup Packages</h2>
+        <div class="info-grid fade-in">
+            ${packages.map(pkg => `
+                <div class="info-card glass" style="border-top: 4px solid var(--primary-color);">
+                    <h3>${pkg.name}</h3>
+                    <h2 style="color: var(--primary-color); margin: 10px 0;">${pkg.price}</h2>
+                    <p style="font-weight: bold; margin-bottom: 15px;">⏱️ ${pkg.time}</p>
+                    <ul style="text-align: left; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                        ${pkg.includes.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('')}
+        </div>
+
+        <h2 class="fade-in" style="margin-top: 60px;">How to Do It</h2>
+        <div class="glass fade-in" style="padding: 30px; margin-top: 20px;">
+            ${guideSteps.map(step => `
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--text-color);">${step.title}</h3>
+                    <p>${step.desc}</p>
+                </div>
+            `).join('')}
+            <div style="margin-top: 30px; padding: 15px; background: rgba(255,165,0,0.1); border-left: 4px solid orange; border-radius: 5px;">
+                <strong>💡 Pro Tip:</strong> Ask for the "International Medical Center" (IMC) or "VIP Wing". Regular departments are extremely crowded, but the VIP wings are quiet, cleaner, and comparable to 5-star hotels.
+            </div>
+        </div>
+
+    </section>
+    ${Footer()}
+  `
+}
+
+
 function CommentSection(pageId) {
   return `
       <section class="section container" style="margin-top: 40px;">
