@@ -7,16 +7,7 @@ import flightDeals from './data/flights.js'
 import { hospitals, packages, guideSteps } from './data/medical.js'
 
 // Router
-const routes = {
-  '/': Home,
-  '/city/:id': CityDetail,
-  '/tips': TravelTips,
-  '/gear': Gear,
-  '/videos': VideoGallery,
-  '/community': Community,
-  '/medical': MedicalGuide,
-  '/guide': Guide
-}
+// Router moved to bottom to ensure functions are defined
 
 const app = document.querySelector('#app')
 
@@ -715,6 +706,18 @@ function attachListeners() {
 
 // Make shareContent globally available for inline onclick handlers
 window.shareContent = shareContent;
+
+// Router (Moved here to avoid ReferenceError due to hoisting timing)
+const routes = {
+  '/': Home,
+  '/city/:id': CityDetail,
+  '/tips': TravelTips,
+  '/gear': Gear,
+  '/videos': VideoGallery,
+  '/community': Community,
+  '/medical': MedicalGuide,
+  '/guide': Guide
+}
 
 // Initial render
 try {
