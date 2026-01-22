@@ -220,6 +220,25 @@ function CityDetail() {
         <ul>
           ${city.highlights.map(h => `<li>• ${h}</li>`).join('')}
         </ul>
+        
+        ${city.itinerary ? `
+        <h3 style="margin-top: 30px;">Suggested Itinerary</h3>
+        <ul style="list-style: none; padding-left: 0;">
+            ${city.itinerary.map(item => `<li style="margin-bottom: 8px;">🗓️ ${item}</li>`).join('')}
+        </ul>
+        ` : ''}
+
+        ${city.food ? `
+        <h3 style="margin-top: 30px;">Must-Try Food</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            ${city.food.map(f => `<span style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 15px; font-size: 0.9em;">🥢 ${f}</span>`).join('')}
+        </div>
+        ` : ''}
+
+        ${city.stay ? `
+        <h3 style="margin-top: 30px;">Where to Stay</h3>
+        <p>${city.stay.join(', ')}</p>
+        ` : ''}
 
         <h3 style="margin-top: 30px;">Best Time to Visit</h3>
         <p>${city.bestTime}</p>
