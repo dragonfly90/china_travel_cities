@@ -13,7 +13,8 @@ export const destinations = {
                 'Day 3: Temple of Heaven morning Tai Chi, then explore Hutongs and Summer Palace.'
             ],
             food: ['Peking Duck', 'Zhajiangmian (Soybean Paste Noodles)', 'Jianbing (Chinese Crepe)'],
-            stay: ['Wangfujing (Central)', 'Sanlitun (Nightlife)', 'Gulou (Hutong Vibes)']
+            stay: ['Wangfujing (Central)', 'Sanlitun (Nightlife)', 'Gulou (Hutong Vibes)'],
+            mapUrl: 'https://maps.google.com/maps?q=Beijing,China&t=&z=10&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'shanghai',
@@ -28,7 +29,8 @@ export const destinations = {
                 'Day 3: Lujiazui Skyscrapers (Shanghai Tower) & Art Museums.'
             ],
             food: ['Xiaolongbao (Soup Dumplings)', 'Shengjianbao (Pan-fried Buns)', 'Sweet and Sour Ribs'],
-            stay: ['The Bund (Views)', 'French Concession (Charming)', 'Jing\'an (Central)']
+            stay: ['The Bund (Views)', 'French Concession (Charming)', 'Jing\'an (Central)'],
+            mapUrl: 'https://maps.google.com/maps?q=Shanghai,China&t=&z=10&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'xian',
@@ -43,7 +45,8 @@ export const destinations = {
                 'Day 3: Giant Wild Goose Pagoda & Shaanxi History Museum.'
             ],
             food: ['Roujiamo (Chinese Burger)', 'Biangbiang Noodles', 'Yangrou Paomo (Mutton Soup)'],
-            stay: ['Bell Tower Area (Central)', 'South Gate (Near Wall)', 'Big Wild Goose Pagoda (Modern)']
+            stay: ['Bell Tower Area (Central)', 'South Gate (Near Wall)', 'Big Wild Goose Pagoda (Modern)'],
+            mapUrl: 'https://maps.google.com/maps?q=Xian,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'chengdu',
@@ -58,7 +61,8 @@ export const destinations = {
                 'Day 3: Jinli Ancient Street or Chunxi Road. Hotpot dinner.'
             ],
             food: ['Sichuan Hotpot', 'Mapo Tofu', 'Dan Dan Noodles'],
-            stay: ['Chunxi Road (Shopping)', 'Wenshu Monastery (Traditional)', 'Jinli (Tourist)']
+            stay: ['Chunxi Road (Shopping)', 'Wenshu Monastery (Traditional)', 'Jinli (Tourist)'],
+            mapUrl: 'https://maps.google.com/maps?q=Chengdu,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'suzhou',
@@ -67,6 +71,14 @@ export const destinations = {
             description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
             highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
             bestTime: 'Spring (April-May) and Autumn (September-October)',
+            mapUrl: 'https://maps.google.com/maps?q=Suzhou,China&t=&z=11&ie=UTF8&iwloc=&output=embed',
+            itinerary: [
+                'Day 1: Humble Administrator\'s Garden & Suzhou Museum.',
+                'Day 2: Tiger Hill & Boat ride on the Grand Canal.',
+                'Day 3: Tongli Water Town day trip.'
+            ],
+            food: ['Squirrel-Shaped Mandarin Fish', 'Suzhou Noodles', 'Pan-Fried Buns'],
+            stay: ['Guanqian Street (Central)', 'Pingjiang Road (Historic)', 'SIP (Modern)']
         },
         {
             id: 'xiamen',
@@ -75,6 +87,14 @@ export const destinations = {
             description: 'A coastal city known for Gulangyu Island and colonial architecture.',
             highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
             bestTime: 'Autumn and Winter',
+            mapUrl: 'https://maps.google.com/maps?q=Xiamen,China&t=&z=12&ie=UTF8&iwloc=&output=embed',
+            itinerary: [
+                'Day 1: Gulangyu Island (Full day).',
+                'Day 2: Nanputuo Temple & Xiamen University. Cycle Island Ring Road.',
+                'Day 3: Zhongshan Road Pedestrian Street & Botanical Garden.'
+            ],
+            food: ['Sanducha (Satay Noodles)', 'Oyster Omelet', 'Peanut Soup'],
+            stay: ['Siming District (Central)', 'Gulangyu (Island stay)', 'Zhongshan Road']
         },
         {
             id: 'guilin',
@@ -83,6 +103,14 @@ export const destinations = {
             description: 'Famous for its dramatic karst landscape and the Li River cruise.',
             highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
             bestTime: 'April to October',
+            mapUrl: 'https://maps.google.com/maps?q=Guilin,China&t=&z=12&ie=UTF8&iwloc=&output=embed',
+            itinerary: [
+                'Day 1: Elephant Trunk Hill & Reed Flute Cave.',
+                'Day 2: Li River Cruise to Yangshuo.',
+                'Day 3: Longji Rice Terraces day trip.'
+            ],
+            food: ['Guilin Rice Noodles', 'Oil Tea', 'Lipu Taro'],
+            stay: ['City Center (Convenient)', 'Two Rivers and Four Lakes']
         },
         {
             id: 'kunming',
@@ -97,7 +125,8 @@ export const destinations = {
                 'Day 3: Dragon Gate at Western Hills & Dianchi Lake.'
             ],
             food: ['Crossing the Bridge Noodles', 'Steam Pot Chicken', 'Flower Cakes'],
-            stay: ['Green Lake Area', 'Nanping Street (City Center)']
+            stay: ['Green Lake Area', 'Nanping Street (City Center)'],
+            mapUrl: 'https://maps.google.com/maps?q=Kunming,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'zhangjiajie',
@@ -106,6 +135,14 @@ export const destinations = {
             description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
             highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
             bestTime: 'April-May and September-October',
+            mapUrl: 'https://maps.google.com/maps?q=Zhangjiajie,China&t=&z=10&ie=UTF8&iwloc=&output=embed',
+            itinerary: [
+                'Day 1: Zhangjiajie National Forest Park.',
+                'Day 2: Tianzi Mountain & Golden Whip Stream.',
+                'Day 3: Tianmen Mountain (Gateway to Heaven).'
+            ],
+            food: ['Sanxiaguo (Hotpot)', 'Smoked Tofu', 'Kudzu Root Powder'],
+            stay: ['Wulingyuan (Near Park)', 'Downtown Zhangjiajie']
         }
     ],
     small: [
@@ -122,7 +159,8 @@ export const destinations = {
                 'Day 3: Three Pagodas & Cangshan Mountain cable car.'
             ],
             food: ['Xizhou Baba', 'Erhai Fish Casserole', 'Dairy Fan (Rushan)'],
-            stay: ['Dali Ancient City', 'Shuanglang (Lakeside)', 'Caicun']
+            stay: ['Dali Ancient City', 'Shuanglang (Lakeside)', 'Caicun'],
+            mapUrl: 'https://maps.google.com/maps?q=Dali+Ancient+City,China&t=&z=12&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'yangshuo',
@@ -137,7 +175,8 @@ export const destinations = {
                 'Day 3: West Street nightlife & Impression Sanjie Liu Show.'
             ],
             food: ['Beer Fish', 'Guilin Rice Noodles', 'Stuffed Snails'],
-            stay: ['West Street (Lively)', 'Yulong River (Peaceful)']
+            stay: ['West Street (Lively)', 'Yulong River (Peaceful)'],
+            mapUrl: 'https://maps.google.com/maps?q=Yangshuo,China&t=&z=13&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'lijiang',
@@ -152,7 +191,8 @@ export const destinations = {
                 'Day 3: Shuhe Ancient Town or Baisha Village for calmer vibes.'
             ],
             food: ['Nixi Chicken Pot', 'Yak Meat Hotpot', 'Lijiang Baba'],
-            stay: ['Lijiang Ancient Town', 'Shuhe (Quieter)']
+            stay: ['Lijiang Ancient Town', 'Shuhe (Quieter)'],
+            mapUrl: 'https://maps.google.com/maps?q=Lijiang+Ancient+Town,China&t=&z=13&ie=UTF8&iwloc=&output=embed'
         },
         {
             id: 'fenghuang',
@@ -161,6 +201,14 @@ export const destinations = {
             description: 'An ancient town built on stilts along the Tuo River.',
             highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
             bestTime: 'Spring and Autumn',
+            mapUrl: 'https://maps.google.com/maps?q=Fenghuang+Ancient+Town,China&t=&z=14&ie=UTF8&iwloc=&output=embed',
+            itinerary: [
+                'Day 1: Wander the Ancient Town & Tuo River boating.',
+                'Day 2: Morning market & Shen Congwen Former Residence.',
+                'Day 3: Southern Great Wall side trip.'
+            ],
+            food: ['Blood Rice Duck', 'Sour Fish Soup', 'Ginger Candy'],
+            stay: ['Riverside Stilt Houses (Scenic)', 'Old Town Center']
         }
     ]
 };

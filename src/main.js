@@ -242,6 +242,19 @@ function CityDetail() {
 
         <h3 style="margin-top: 30px;">Best Time to Visit</h3>
         <p>${city.bestTime}</p>
+
+        <h3 style="margin-top: 30px;">City Map</h3>
+        <div style="width: 100%; height: 350px; border-radius: 10px; overflow: hidden; margin-top: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                scrolling="no" 
+                marginheight="0" 
+                marginwidth="0" 
+                src="${city.mapUrl}"
+            ></iframe>
+        </div>
       </div>
     </section>
     ${Footer()}
