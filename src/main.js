@@ -153,7 +153,7 @@ function Home() {
             <div class="city-info">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
-              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">Book Hotel</a>
+              <button class="btn-small" style="margin-top: 10px; background: var(--text-color); color: var(--bg-color); cursor: pointer;" onclick="navigate('/city/${city.id}'); event.stopPropagation();">View Details</button>
             </div>
           </div>
         `).join('')}
@@ -167,7 +167,7 @@ function Home() {
             <div class="city-info">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
-              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">Book Hotel</a>
+              <button class="btn-small" style="margin-top: 10px; background: var(--text-color); color: var(--bg-color); cursor: pointer;" onclick="navigate('/city/${city.id}'); event.stopPropagation();">View Details</button>
             </div>
           </div>
         `).join('')}
