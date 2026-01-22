@@ -4,6 +4,7 @@ import videos from './data/videos.js'
 import communityPosts from './data/community.js'
 import xhsPosts from './data/xhs.js'
 import flightDeals from './data/flights.js'
+import { hospitals, packages, guideSteps } from './data/medical.js'
 
 // Router
 const routes = {
@@ -13,6 +14,7 @@ const routes = {
   '/gear': Gear,
   '/videos': VideoGallery,
   '/community': Community,
+  '/medical': MedicalGuide,
   '/guide': Guide
 }
 
@@ -57,6 +59,7 @@ function Header() {
             <a href="#" data-link="/tips">Travel Tips</a>
             <a href="#" data-link="/videos">Videos</a>
             <a href="#" data-link="/community">Community</a>
+            <a href="#" data-link="/medical">Medical Tour</a>
             <a href="#" data-link="/gear">Gear</a>
           </div>
         </nav>
