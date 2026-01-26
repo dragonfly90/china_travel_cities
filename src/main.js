@@ -19,6 +19,7 @@ const routes = {
   '/community': Community,
   '/guide': Guide,
   '/medical': MedicalGuide,
+  '/planner': ItineraryBuilder
 }
 
 const app = document.querySelector('#app')
@@ -37,11 +38,6 @@ function render() {
 
   // Re-attach event listeners
   attachListeners()
-
-  // Load comments for current page - Removed as per new content structure
-  // const currentPath = window.location.hash.slice(1) || '/'
-  // if (currentPath === '/guide') renderComments('guide');
-  // if (currentPath.startsWith('/city/')) renderComments(`city-${currentPath.split('/city/')[1]}`);
 
   window.scrollTo(0, 0)
 
@@ -65,13 +61,14 @@ function Header() {
         <nav>
           <div class="logo">ChinaTravel</div>
           <div class="nav-links">
-            <a href="#" data-link="/">Home</a>
+            <a href="#" data-link="/">${t.nav.home}</a>
             <a href="#" data-link="/guide">Start Here</a>
-            <a href="#" data-link="/tips">Travel Tips</a>
+            <a href="#" data-link="/planner">${t.nav.planner}</a>
+            <a href="#" data-link="/tips">${t.nav.tips}</a>
             <a href="#" data-link="/videos">Videos</a>
             <a href="#" data-link="/community">Community</a>
             <a href="#" data-link="/medical">Medical Tour</a>
-            <a href="#" data-link="/gear">Gear</a>
+            <a href="#" data-link="/gear">${t.nav.gear}</a>
             <button onclick="toggleLanguage()" class="lang-btn" style="background: none; border: 1px solid var(--text-color); padding: 5px 10px; border-radius: 5px; cursor: pointer; color: var(--text-color); font-size: 0.9rem;">
                 ${currentLang === 'en' ? '中文' : 'EN'}
             </button>
@@ -86,11 +83,11 @@ function Footer(count = '...') {
   const t = content[currentLang].ui;
   return `
     <footer>
-      <div class="container">
-        <p>${t.footer} <span id="visit-count">${count}</span></p>
-      </div>
+    <div class="container">
+      <p>${t.footer} <span id="visit-count">${count}</span></p>
+    </div>
     </footer>
-  `
+    `
 }
 
 // Fetch visits
@@ -551,10 +548,133 @@ function Guide() {
 
 
 
-function MedicalGuide() {
-  console.log("MedicalGuide rendering...", { hospitals, packages, guideSteps });
-  updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
+// Itinerary State
+function getItinerary() {
+  return JSON.parse(localStorage.getItem('myItinerary') || '[]');
+}
+
+function saveItinerary(itinerary) {
+  localStorage.setItem('myItinerary', JSON.stringify(itinerary));
+  render(); // Re-render to update UI
+}
+
+function addToItinerary(cityId) {
+  const list = getItinerary();
+  // Prevent duplicates (optional, but good for MVP)
+  if (list.includes(cityId)) {
+    alert("City already in itinerary!");
+    return;
+  }
+  list.push(cityId);
+  saveItinerary(list);
+}
+
+function removeFromItinerary(index) {
+  const list = getItinerary();
+  list.splice(index, 1);
+  saveItinerary(list);
+}
+
+function moveItem(index, direction) {
+  const list = getItinerary();
+  if (direction === 'up' && index > 0) {
+    [list[index], list[index - 1]] = [list[index - 1], list[index]];
+  } else if (direction === 'down' && index < list.length - 1) {
+    [list[index], list[index + 1]] = [list[index + 1], list[index]];
+  }
+  saveItinerary(list);
+}
+
+function shareItinerary() {
+  const list = getItinerary();
+  if (list.length === 0) return;
+
+  // Create shareable text
+  const d = content[currentLang].destinations;
+  const allCities = [...d.main, ...d.small];
+  const cityNames = list.map(id => allCities.find(c => c.id === id)?.name || id).join(' -> ');
+  const text = `Check out my China trip plan: ${cityNames}`;
+
+  shareContent(content[currentLang].planner.title, text);
+}
+
+// Make globally available
+window.addToItinerary = addToItinerary;
+window.removeFromItinerary = removeFromItinerary;
+window.moveItem = moveItem;
+window.shareItinerary = shareItinerary;
+
+
+function ItineraryBuilder() {
+  const t = content[currentLang].planner;
+  const d = content[currentLang].destinations;
+  const allCities = [...d.main, ...d.small];
+  const myItineraryIds = getItinerary();
+  const myItinerary = myItineraryIds.map(id => allCities.find(c => c.id === id)).filter(Boolean); // Filter out any invalid IDs
+
+  updateMeta(t.title, t.subtitle);
+
   return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">${t.title}</h1>
+      <p class="fade-in">${t.subtitle}</p>
+
+      <div class="itinerary-container fade-in" style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 40px;">
+        
+        <!-- Available Cities -->
+        <div style="flex: 1; min-width: 300px;">
+            <h3>${t.availableCities}</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                ${allCities.map(city => `
+                    <div class="glass" style="padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                         <img src="${city.image}" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                         <h4>${city.name}</h4>
+                         <button class="btn-small" style="margin-top: 10px; font-size: 0.8rem; background: var(--secondary-color); color: #333;" onclick="addToItinerary('${city.id}')">
+                            + ${t.addCity}
+                         </button>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <!-- My Itinerary -->
+        <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.5); padding: 20px; border-radius: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3>${t.myTrip}</h3>
+                <button class="btn-small" onclick="shareItinerary()" style="background: var(--primary-color);">${t.share}</button>
+            </div>
+            
+            ${myItinerary.length === 0 ? `<p style="margin-top: 20px; color: #666; font-style: italic;">${t.empty}</p>` : ''}
+
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+                ${myItinerary.map((city, index) => `
+                    <div class="glass" style="padding: 15px; display: flex; align-items: center; gap: 15px;">
+                        <div style="font-weight: bold; background: var(--primary-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${index + 1}</div>
+                        <img src="${city.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                        <div style="flex: 1;">
+                            <h4>${city.name}</h4>
+                            <div style="font-size: 0.8rem; color: #666;">${city.bestTime}</div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <button onclick="moveItem(${index}, 'up')" style="border: none; background: none; cursor: pointer; opacity: 0.6;">⬆️</button>
+                            <button onclick="moveItem(${index}, 'down')" style="border: none; background: none; cursor: pointer; opacity: 0.6;">⬇️</button>
+                        </div>
+                        <button onclick="removeFromItinerary(${index})" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 10px;">❌</button>
+                    </div>
+                    ${index < myItinerary.length - 1 ? `<div style="text-align: center; color: var(--primary-color); font-size: 1.5rem;">⬇</div>` : ''}
+                `).join('')}
+            </div>
+        </div>
+
+      </div>
+    </section>
+    ${Footer()}
+  `
+}
+console.log("MedicalGuide rendering...", { hospitals, packages, guideSteps });
+updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
+return `
     ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Medical Tourism: The "China Speed" Checkup</h1>

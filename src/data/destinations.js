@@ -26,7 +26,19 @@ export const content = {
             nav: {
                 home: "Home",
                 tips: "Travel Tips",
-                gear: "Gear"
+                gear: "Gear",
+                planner: "Planner"
+            },
+            planner: {
+                title: "Trip Planner",
+                subtitle: "Build your dream itinerary. Select cities and arrange them.",
+                myTrip: "My Itinerary",
+                addCity: "Add to Trip",
+                remove: "Remove",
+                empty: "Your itinerary is empty. Add cities from the list!",
+                share: "Share Itinerary",
+                totalDays: "Total Days",
+                availableCities: "Available Destinations"
             }
         },
         destinations: {
@@ -226,7 +238,19 @@ export const content = {
             nav: {
                 home: "首页",
                 tips: "旅游贴士",
-                gear: "装备"
+                gear: "装备",
+                planner: "行程规划"
+            },
+            planner: {
+                title: "行程规划器",
+                subtitle: "打造您的梦想行程。选择城市并安排顺序。",
+                myTrip: "我的行程",
+                addCity: "添加到行程",
+                remove: "移除",
+                empty: "您的行程为空。请从列表中添加城市！",
+                share: "分享行程",
+                totalDays: "总天数",
+                availableCities: "可选目的地"
             }
         },
         destinations: {
