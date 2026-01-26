@@ -104,7 +104,7 @@ async function updateVisitCount() {
     const data = await response.json();
     countElement.textContent = data.visits;
   } catch (error) {
-    // Fallback to localStorage for GitHub Pages or when backend is down
+    // Silent fallback expected for static deployment
     let localCount = parseInt(localStorage.getItem('visitCount') || '0');
     localCount++;
     localStorage.setItem('visitCount', localCount);
@@ -723,7 +723,9 @@ function attachListeners() {
 }
 
 // Make shareContent globally available for inline onclick handlers
+// Make shareContent globally available for inline onclick handlers
 window.shareContent = shareContent;
+window.toggleLanguage = toggleLanguage;
 
 
 
