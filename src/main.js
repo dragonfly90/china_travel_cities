@@ -294,34 +294,71 @@ function CityDetail() {
 }
 
 function TravelTips() {
+  const t = content[currentLang].ui;
+  const tips = content[currentLang].travelTips;
+  const costs = content[currentLang].costs;
 
-  <h2 style="margin-top: 60px;">Estimated Costs (Per Person/Day)</h2>
-  <div class="info-grid fade-in" style="margin-top: 30px;">
-    <div class="info-card glass">
-      <h3>${costs.budget.type}</h3>
-      <h2 style="color: var(--primary-color);">${costs.budget.daily}</h2>
-      <p>${costs.budget.desc}</p>
-    </div>
-    <div class="info-card glass">
-      <h3>${costs.midRange.type}</h3>
-      <h2 style="color: var(--primary-color);">${costs.midRange.daily}</h2>
-      <p>${costs.midRange.desc}</p>
-    </div>
-    <div class="info-card glass">
-      <h3>${costs.luxury.type}</h3>
-      <h2 style="color: var(--primary-color);">${costs.luxury.daily}</h2>
-      <p>${costs.luxury.desc}</p>
-    </div>
-  </div>
-</section >
-    ${ Footer() }
+  updateMeta(t.tipsTitle, "Essential visa, payment, and transport tips for China.");
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">${t.tipsTitle}</h1>
+      
+      <div class="info-grid fade-in" style="margin-top: 40px;">
+        <div class="info-card glass">
+          <div class="info-icon">🛂</div>
+          <h3>${tips.visa.title}</h3>
+          <p>${tips.visa.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">💳</div>
+          <h3>${tips.payment.title}</h3>
+          <p>${tips.payment.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">🌐</div>
+          <h3>${tips.internet.title}</h3>
+          <p>${tips.internet.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">🚄</div>
+          <h3>${tips.transport.title}</h3>
+          <p>${tips.transport.content}</p>
+        </div>
+        <div class="info-card glass">
+          <div class="info-icon">📱</div>
+          <h3>${tips.apps.title}</h3>
+          <p>${tips.apps.content}</p>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 60px;">${t.costsTitle}</h2>
+      <div class="info-grid fade-in" style="margin-top: 30px;">
+        <div class="info-card glass">
+          <h3>${costs.budget.type}</h3>
+          <h2 style="color: var(--primary-color);">${costs.budget.daily}</h2>
+          <p>${costs.budget.desc}</p>
+        </div>
+        <div class="info-card glass">
+          <h3>${costs.midRange.type}</h3>
+          <h2 style="color: var(--primary-color);">${costs.midRange.daily}</h2>
+          <p>${costs.midRange.desc}</p>
+        </div>
+        <div class="info-card glass">
+          <h3>${costs.luxury.type}</h3>
+          <h2 style="color: var(--primary-color);">${costs.luxury.daily}</h2>
+          <p>${costs.luxury.desc}</p>
+        </div>
+      </div>
+    </section>
+    ${Footer()}
   `
 }
 
 function Gear() {
   updateMeta("Recommended Gear", "Curated travel essentials for your China trip.");
   return `
-    ${ Header() }
+    ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <h1 class="fade-in">Recommended Gear</h1>
@@ -344,14 +381,14 @@ function Gear() {
         `).join('')}
     </div>
   </section>
-    ${ Footer() }
+    ${Footer()}
   `
 }
 
 function VideoGallery() {
   updateMeta("Video Gallery", "Watch curated videos about China's landscapes, food, and culture.");
   return `
-      ${ Header() }
+      ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Video Gallery</h1>
     <p class="fade-in" style="margin-bottom: 30px;">Immerse yourself in China before you go.</p>
@@ -375,14 +412,14 @@ function VideoGallery() {
           `).join('')}
     </div>
   </section>
-      ${ Footer() }
+      ${Footer()}
   `
 }
 
 function Community() {
   updateMeta("Community", "Latest discussions and travel tips from the China Travel community.");
   return `
-      ${ Header() }
+      ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Community & Social Buzz</h1>
     <p class="fade-in" style="margin-bottom: 30px;">See what travelers are saying on Reddit and Xiaohongshu (Little Red Book).</p>
@@ -420,7 +457,7 @@ function Community() {
     </div>
 
   </section>
-    ${ Footer() }
+    ${Footer()}
   `
 }
 
@@ -428,7 +465,7 @@ function Community() {
 function Guide() {
   updateMeta("Simple Guide to China 2026", "A simple, practical guide for first-time travelers to China.");
   return `
-    ${ Header() }
+    ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">The Simple Guide to Traveling in China (2026 Edition)</h1>
 
@@ -508,7 +545,7 @@ function Guide() {
     </div>
     ${CommentSection('guide')}
   </section>
-    ${ Footer() }
+    ${Footer()}
   `
 }
 
@@ -517,7 +554,7 @@ function Guide() {
 function MedicalGuide() {
   updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
   return `
-    ${ Header() }
+    ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Medical Tourism: The "China Speed" Checkup</h1>
     <p class="fade-in" style="font-size: 1.1em; margin-bottom: 30px;">
@@ -594,14 +631,14 @@ function MedicalGuide() {
     </div>
 
   </section>
-    ${ Footer() }
+    ${Footer()}
   `
 }
 
 
 function CommentSection(pageId) {
   return `
-    < section class="section container" style = "margin-top: 40px;" >
+    <section class="section container" style="margin-top: 40px;">
         <h2 class="fade-in">Visitor Comments (Guestbook)</h2>
         <div class="glass fade-in" style="padding: 20px; margin-top: 20px;">
             <div id="comments-list-${pageId}" style="margin-bottom: 30px;">
@@ -617,7 +654,7 @@ function CommentSection(pageId) {
                 <button type="submit" class="btn-small" style="background: var(--primary-color); color: white; align-self: flex-start;">Post Comment</button>
             </form>
         </div>
-      </section >
+      </section>
     `;
 }
 
@@ -630,9 +667,9 @@ window.handleCommentSubmit = function (event, pageId) {
   const date = new Date().toLocaleDateString();
 
   const comment = { name, text, date };
-  const comments = JSON.parse(localStorage.getItem(`comments - ${ pageId } `) || '[]');
+  const comments = JSON.parse(localStorage.getItem(`comments - ${pageId} `) || '[]');
   comments.push(comment);
-  localStorage.setItem(`comments - ${ pageId } `, JSON.stringify(comments));
+  localStorage.setItem(`comments - ${pageId} `, JSON.stringify(comments));
 
   renderComments(pageId);
   form.reset();
@@ -640,23 +677,23 @@ window.handleCommentSubmit = function (event, pageId) {
 };
 
 function renderComments(pageId) {
-  const list = document.getElementById(`comments - list - ${ pageId } `);
+  const list = document.getElementById(`comments - list - ${pageId} `);
   if (!list) return;
 
-  const comments = JSON.parse(localStorage.getItem(`comments - ${ pageId } `) || '[]');
+  const comments = JSON.parse(localStorage.getItem(`comments - ${pageId} `) || '[]');
   if (comments.length === 0) {
     list.innerHTML = '<p style="color: #666; font-style: italic;">No comments yet. Be the first!</p>';
     return;
   }
 
   list.innerHTML = comments.map(c => `
-    < div style = "border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0;" >
+    <div style="border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <strong style="color: var(--primary-color);">${c.name}</strong>
                 <span style="font-size: 0.8em; color: #666;">${c.date}</span>
             </div>
             <p style="margin: 0;">${c.text}</p>
-        </div >
+        </div>
     `).join('').split('\n').reverse().join('\n'); // Show newest first (simple reverse hack)
 }
 
@@ -670,7 +707,7 @@ function attachListeners() {
 
   document.querySelectorAll('.city-card').forEach(card => {
     card.addEventListener('click', () => {
-      navigate(`/ city / ${ card.getAttribute('data-city') } `)
+      navigate(`/city/${card.getAttribute('data-city')}`)
     })
   })
 
@@ -688,17 +725,7 @@ function attachListeners() {
 // Make shareContent globally available for inline onclick handlers
 window.shareContent = shareContent;
 
-// Router (Moved here to avoid ReferenceError due to hoisting timing)
-const routes = {
-  '/': Home,
-  '/city/:id': CityDetail,
-  '/tips': TravelTips,
-  '/gear': Gear,
-  '/videos': VideoGallery,
-  '/community': Community,
-  '/medical': MedicalGuide,
-  '/guide': Guide
-}
+
 
 // Initial render
 try {
@@ -707,5 +734,5 @@ try {
   console.log("App render successful");
 } catch (e) {
   console.error("Critical Render Error:", e);
-  document.body.innerHTML += `< div style = "color: red; padding: 20px;" ><h1>App Error</h1><pre>${e.message}\n${e.stack}</pre></div > `;
+  document.body.innerHTML += `<div style="color: red; padding: 20px;"><h1>App Error</h1><pre>${e.message}\n${e.stack}</pre></div>`;
 }
