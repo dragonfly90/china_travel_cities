@@ -18,7 +18,7 @@ const routes = {
   '/videos': VideoGallery,
   '/community': Community,
   '/guide': Guide,
-  // '/medical': MedicalTour, // Removed as per new content structure
+  '/medical': MedicalGuide,
 }
 
 const app = document.querySelector('#app')
@@ -552,6 +552,7 @@ function Guide() {
 
 
 function MedicalGuide() {
+  console.log("MedicalGuide rendering...", { hospitals, packages, guideSteps });
   updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
   return `
     ${Header()}
