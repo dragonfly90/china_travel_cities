@@ -1,280 +1,404 @@
-export const destinations = {
-    main: [
-        {
-            id: 'beijing',
-            name: 'Beijing',
-            image: './public/images/beijing_great_wall_1766986793824.png',
-            description: 'The capital of China, blending ancient history with modern innovation.',
-            highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
-            bestTime: 'Spring (April-May) and Autumn (September-October)',
-            itinerary: [
-                'Day 1: Forbidden City & Tiananmen Square. Sunset at Jingshan Park.',
-                'Day 2: Great Wall (Mutianyu section) day trip.',
-                'Day 3: Temple of Heaven morning Tai Chi, then explore Hutongs and Summer Palace.'
-            ],
-            food: ['Peking Duck', 'Zhajiangmian (Soybean Paste Noodles)', 'Jianbing (Chinese Crepe)'],
-            stay: ['Wangfujing (Central)', 'Sanlitun (Nightlife)', 'Gulou (Hutong Vibes)'],
-            mapUrl: 'https://maps.google.com/maps?q=Beijing,China&t=&z=10&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'shanghai',
-            name: 'Shanghai',
-            image: './public/images/shanghai_skyline_1766986808147.png',
-            description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
-            highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
-            bestTime: 'Spring and Autumn',
-            itinerary: [
-                'Day 1: The Bund & Nanjing Road. Evening river cruise.',
-                'Day 2: Yu Garden & City God Temple. Afternoon in French Concession.',
-                'Day 3: Lujiazui Skyscrapers (Shanghai Tower) & Art Museums.'
-            ],
-            food: ['Xiaolongbao (Soup Dumplings)', 'Shengjianbao (Pan-fried Buns)', 'Sweet and Sour Ribs'],
-            stay: ['The Bund (Views)', 'French Concession (Charming)', 'Jing\'an (Central)'],
-            mapUrl: 'https://maps.google.com/maps?q=Shanghai,China&t=&z=10&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'xian',
-            name: "Xi'an",
-            image: './public/images/xian_terracotta_1766986821692.png',
-            description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
-            highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
-            bestTime: 'Spring and Autumn',
-            itinerary: [
-                'Day 1: Terracotta Warriors & Horses Museum.',
-                'Day 2: Cycle on the Ancient City Wall. Explore Muslim Quarter and Bell Tower.',
-                'Day 3: Giant Wild Goose Pagoda & Shaanxi History Museum.'
-            ],
-            food: ['Roujiamo (Chinese Burger)', 'Biangbiang Noodles', 'Yangrou Paomo (Mutton Soup)'],
-            stay: ['Bell Tower Area (Central)', 'South Gate (Near Wall)', 'Big Wild Goose Pagoda (Modern)'],
-            mapUrl: 'https://maps.google.com/maps?q=Xian,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'chengdu',
-            name: 'Chengdu',
-            image: './public/images/chengdu_pandas_hotpot.png',
-            description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
-            highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
-            bestTime: 'Spring and Autumn',
-            itinerary: [
-                'Day 1: Chengdu Research Base of Giant Panda Breeding (Go early!). Afternoon at People\'s Park.',
-                'Day 2: Day trip to Leshan Giant Buddha.',
-                'Day 3: Jinli Ancient Street or Chunxi Road. Hotpot dinner.'
-            ],
-            food: ['Sichuan Hotpot', 'Mapo Tofu', 'Dan Dan Noodles'],
-            stay: ['Chunxi Road (Shopping)', 'Wenshu Monastery (Traditional)', 'Jinli (Tourist)'],
-            mapUrl: 'https://maps.google.com/maps?q=Chengdu,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'suzhou',
-            name: 'Suzhou',
-            image: './public/images/suzhou_hanfu_girls.png',
-            description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
-            highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
-            bestTime: 'Spring (April-May) and Autumn (September-October)',
-            mapUrl: 'https://maps.google.com/maps?q=Suzhou,China&t=&z=11&ie=UTF8&iwloc=&output=embed',
-            itinerary: [
-                'Day 1: Humble Administrator\'s Garden & Suzhou Museum.',
-                'Day 2: Tiger Hill & Boat ride on the Grand Canal.',
-                'Day 3: Tongli Water Town day trip.'
-            ],
-            food: ['Squirrel-Shaped Mandarin Fish', 'Suzhou Noodles', 'Pan-Fried Buns'],
-            stay: ['Guanqian Street (Central)', 'Pingjiang Road (Historic)', 'SIP (Modern)']
-        },
-        {
-            id: 'xiamen',
-            name: 'Xiamen',
-            image: './public/images/xiamen_gulangyu_seaside.png',
-            description: 'A coastal city known for Gulangyu Island and colonial architecture.',
-            highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
-            bestTime: 'Autumn and Winter',
-            mapUrl: 'https://maps.google.com/maps?q=Xiamen,China&t=&z=12&ie=UTF8&iwloc=&output=embed',
-            itinerary: [
-                'Day 1: Gulangyu Island (Full day).',
-                'Day 2: Nanputuo Temple & Xiamen University. Cycle Island Ring Road.',
-                'Day 3: Zhongshan Road Pedestrian Street & Botanical Garden.'
-            ],
-            food: ['Sanducha (Satay Noodles)', 'Oyster Omelet', 'Peanut Soup'],
-            stay: ['Siming District (Central)', 'Gulangyu (Island stay)', 'Zhongshan Road']
-        },
-        {
-            id: 'guilin',
-            name: 'Guilin',
-            image: './public/images/guilin_li_river_karst.png',
-            description: 'Famous for its dramatic karst landscape and the Li River cruise.',
-            highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
-            bestTime: 'April to October',
-            mapUrl: 'https://maps.google.com/maps?q=Guilin,China&t=&z=12&ie=UTF8&iwloc=&output=embed',
-            itinerary: [
-                'Day 1: Elephant Trunk Hill & Reed Flute Cave.',
-                'Day 2: Li River Cruise to Yangshuo.',
-                'Day 3: Longji Rice Terraces day trip.'
-            ],
-            food: ['Guilin Rice Noodles', 'Oil Tea', 'Lipu Taro'],
-            stay: ['City Center (Convenient)', 'Two Rivers and Four Lakes']
-        },
-        {
-            id: 'kunming',
-            name: 'Kunming',
-            image: './public/images/kunming_stone_forest.png',
-            description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
-            highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
-            bestTime: 'All year round (Eternal Spring)',
-            itinerary: [
-                'Day 1: Green Lake Park & Yunnan Army Academy. Evening at Nanqiang Street.',
-                'Day 2: Stone Forest Geopark day trip.',
-                'Day 3: Dragon Gate at Western Hills & Dianchi Lake.'
-            ],
-            food: ['Crossing the Bridge Noodles', 'Steam Pot Chicken', 'Flower Cakes'],
-            stay: ['Green Lake Area', 'Nanping Street (City Center)'],
-            mapUrl: 'https://maps.google.com/maps?q=Kunming,China&t=&z=11&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'zhangjiajie',
-            name: 'Zhangjiajie',
-            image: './public/images/zhangjiajie_avatar_mountains.png',
-            description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
-            highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
-            bestTime: 'April-May and September-October',
-            mapUrl: 'https://maps.google.com/maps?q=Zhangjiajie,China&t=&z=10&ie=UTF8&iwloc=&output=embed',
-            itinerary: [
-                'Day 1: Zhangjiajie National Forest Park.',
-                'Day 2: Tianzi Mountain & Golden Whip Stream.',
-                'Day 3: Tianmen Mountain (Gateway to Heaven).'
-            ],
-            food: ['Sanxiaguo (Hotpot)', 'Smoked Tofu', 'Kudzu Root Powder'],
-            stay: ['Wulingyuan (Near Park)', 'Downtown Zhangjiajie']
-        }
-    ],
-    small: [
-        {
-            id: 'dali',
-            name: 'Dali',
-            image: './public/images/dali_three_pagodas.png',
-            description: 'A backpacker haven with the Three Pagodas, Erhai Lake, and Cangshan Mountain.',
-            highlights: ['Dali Ancient City', 'Erhai Lake', 'Three Pagodas', 'Cangshan'],
-            bestTime: 'Spring and Autumn',
-            itinerary: [
-                'Day 1: Explore Dali Ancient City. Visit Foreigner Street.',
-                'Day 2: Cycle or drive around Erhai Lake. Visit Xizhou Town.',
-                'Day 3: Three Pagodas & Cangshan Mountain cable car.'
-            ],
-            food: ['Xizhou Baba', 'Erhai Fish Casserole', 'Dairy Fan (Rushan)'],
-            stay: ['Dali Ancient City', 'Shuanglang (Lakeside)', 'Caicun'],
-            mapUrl: 'https://maps.google.com/maps?q=Dali+Ancient+City,China&t=&z=12&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'yangshuo',
-            name: 'Yangshuo',
-            image: './public/images/yangshuo_karst_1766986835795.png',
-            description: 'Breathtaking karst mountains and serene rivers.',
-            highlights: ['Li River Rafting', 'Moon Hill', 'West Street'],
-            bestTime: 'April to October',
-            itinerary: [
-                'Day 1: Bamboo Rafting on Yulong River. Rent a scooter to ride through countryside.',
-                'Day 2: Moon Hill & Silver Cave.',
-                'Day 3: West Street nightlife & Impression Sanjie Liu Show.'
-            ],
-            food: ['Beer Fish', 'Guilin Rice Noodles', 'Stuffed Snails'],
-            stay: ['West Street (Lively)', 'Yulong River (Peaceful)'],
-            mapUrl: 'https://maps.google.com/maps?q=Yangshuo,China&t=&z=13&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'lijiang',
-            name: 'Lijiang',
-            image: './public/images/lijiang_ancient_town_1766986847247.png',
-            description: 'A UNESCO World Heritage ancient town with rich Naxi culture.',
-            highlights: ['Lijiang Ancient Town', 'Jade Dragon Snow Mountain', 'Black Dragon Pool'],
-            bestTime: 'Spring and Autumn',
-            itinerary: [
-                'Day 1: Get lost in Lijiang Ancient Town. Climb Lion Hill for views.',
-                'Day 2: Jade Dragon Snow Mountain & Blue Moon Valley.',
-                'Day 3: Shuhe Ancient Town or Baisha Village for calmer vibes.'
-            ],
-            food: ['Nixi Chicken Pot', 'Yak Meat Hotpot', 'Lijiang Baba'],
-            stay: ['Lijiang Ancient Town', 'Shuhe (Quieter)'],
-            mapUrl: 'https://maps.google.com/maps?q=Lijiang+Ancient+Town,China&t=&z=13&ie=UTF8&iwloc=&output=embed'
-        },
-        {
-            id: 'fenghuang',
-            name: 'Fenghuang',
-            image: './public/images/fenghuang_ancient_town_river.png',
-            description: 'An ancient town built on stilts along the Tuo River.',
-            highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
-            bestTime: 'Spring and Autumn',
-            mapUrl: 'https://maps.google.com/maps?q=Fenghuang+Ancient+Town,China&t=&z=14&ie=UTF8&iwloc=&output=embed',
-            itinerary: [
-                'Day 1: Wander the Ancient Town & Tuo River boating.',
-                'Day 2: Morning market & Shen Congwen Former Residence.',
-                'Day 3: Southern Great Wall side trip.'
-            ],
-            food: ['Blood Rice Duck', 'Sour Fish Soup', 'Ginger Candy'],
-            stay: ['Riverside Stilt Houses (Scenic)', 'Old Town Center']
-        }
-    ]
-};
-
 export const bookingLink = 'https://www.trip.com/?Allianceid=7659513&SID=286708661&trip_sub1=&trip_sub3=D9560539';
 
-export const travelTips = {
-    visa: {
-        title: 'Visa Requirements',
-        content: 'US citizens need a visa. However, the **144-hour Visa-Free Transit** is available in major cities like Beijing, Shanghai, and Chengdu for transit passengers. As of 2024, the process for L-visa is simplified (no flight/hotel proof needed). Cost is ~$140.',
+export const content = {
+    en: {
+        ui: {
+            homeTitle: "Discover China",
+            homeSubtitle: "A journey through time, culture, and breathtaking landscapes.",
+            exploreBtn: "Explore Destinations",
+            mainCities: "Main Cities",
+            hiddenGems: "Hidden Gems",
+            bookHotel: "Book Hotel",
+            bookStay: "Book Your Stay",
+            trustedResources: "Trusted Resources",
+            visitWebsite: "Visit Website \u2192",
+            about: "About",
+            highlights: "Highlights",
+            bestTime: "Best Time to Visit",
+            tipsTitle: "Travel Tips & Costs",
+            costsTitle: "Estimated Costs (Per Person/Day)",
+            shareGuide: "Share Guide",
+            shareList: "Share List",
+            gearTitle: "Recommended Gear",
+            gearSubtitle: "Essential items for your trip to China, curated from Amazon.",
+            buyAmazon: "Buy on Amazon",
+            footer: "\u00A9 2024 China Travel Guide. All rights reserved. | Total Visits:",
+            nav: {
+                home: "Home",
+                tips: "Travel Tips",
+                gear: "Gear"
+            }
+        },
+        destinations: {
+            main: [
+                {
+                    id: 'beijing',
+                    name: 'Beijing',
+                    image: './public/images/beijing_great_wall_1766986793824.png',
+                    description: 'The capital of China, blending ancient history with modern innovation.',
+                    highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
+                    bestTime: 'Spring (April-May) and Autumn (September-October)',
+                },
+                {
+                    id: 'shanghai',
+                    name: 'Shanghai',
+                    image: './public/images/shanghai_skyline_1766986808147.png',
+                    description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
+                    highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
+                    bestTime: 'Spring and Autumn',
+                },
+                {
+                    id: 'xian',
+                    name: "Xi'an",
+                    image: './public/images/xian_terracotta_1766986821692.png',
+                    description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
+                    highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
+                    bestTime: 'Spring and Autumn',
+                },
+                {
+                    id: 'chengdu',
+                    name: 'Chengdu',
+                    image: './public/images/chengdu_pandas_hotpot.png',
+                    description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
+                    highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
+                    bestTime: 'Spring and Autumn',
+                },
+                {
+                    id: 'suzhou',
+                    name: 'Suzhou',
+                    image: './public/images/suzhou_hanfu_girls.png',
+                    description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
+                    highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
+                    bestTime: 'Spring (April-May) and Autumn (September-October)',
+                },
+                {
+                    id: 'xiamen',
+                    name: 'Xiamen',
+                    image: './public/images/xiamen_gulangyu_seaside.png',
+                    description: 'A coastal city known for Gulangyu Island and colonial architecture.',
+                    highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
+                    bestTime: 'Autumn and Winter',
+                },
+                {
+                    id: 'guilin',
+                    name: 'Guilin',
+                    image: './public/images/guilin_li_river_karst.png',
+                    description: 'Famous for its dramatic karst landscape and the Li River cruise.',
+                    highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
+                    bestTime: 'April to October',
+                },
+                {
+                    id: 'kunming',
+                    name: 'Kunming',
+                    image: './public/images/kunming_stone_forest.png',
+                    description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
+                    highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
+                    bestTime: 'All year round (Eternal Spring)',
+                },
+                {
+                    id: 'zhangjiajie',
+                    name: 'Zhangjiajie',
+                    image: './public/images/zhangjiajie_avatar_mountains.png',
+                    description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
+                    highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
+                    bestTime: 'April-May and September-October',
+                }
+            ],
+            small: [
+                {
+                    id: 'dali',
+                    name: 'Dali',
+                    image: './public/images/dali_three_pagodas.png',
+                    description: 'A backpacker haven with the Three Pagodas, Erhai Lake, and Cangshan Mountain.',
+                    highlights: ['Dali Ancient City', 'Erhai Lake', 'Three Pagodas', 'Cangshan'],
+                    bestTime: 'Spring and Autumn',
+                },
+                {
+                    id: 'yangshuo',
+                    name: 'Yangshuo',
+                    image: './public/images/yangshuo_karst_1766986835795.png',
+                    description: 'Breathtaking karst mountains and serene rivers.',
+                    highlights: ['Li River Rafting', 'Moon Hill', 'West Street'],
+                    bestTime: 'April to October',
+                },
+                {
+                    id: 'lijiang',
+                    name: 'Lijiang',
+                    image: './public/images/lijiang_ancient_town_1766986847247.png',
+                    description: 'A UNESCO World Heritage ancient town with rich Naxi culture.',
+                    highlights: ['Lijiang Ancient Town', 'Jade Dragon Snow Mountain', 'Black Dragon Pool'],
+                    bestTime: 'Spring and Autumn',
+                },
+                {
+                    id: 'fenghuang',
+                    name: 'Fenghuang',
+                    image: './public/images/fenghuang_ancient_town_river.png',
+                    description: 'An ancient town built on stilts along the Tuo River.',
+                    highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
+                    bestTime: 'Spring and Autumn',
+                }
+            ]
+        },
+        travelTips: {
+            visa: {
+                title: 'Visa Requirements',
+                content: 'US citizens need a visa. However, the **144-hour Visa-Free Transit** is available in major cities like Beijing, Shanghai, and Chengdu for transit passengers. As of 2024, the process for L-visa is simplified (no flight/hotel proof needed). Cost is ~$140.',
+            },
+            transport: {
+                title: 'High-Speed Trains',
+                content: 'China has an extensive high-speed rail network (G/D trains). Book via Trip.com or 12306 app. Passport required for booking and boarding. 2nd class is comfortable; Business class is luxury.',
+            },
+            apps: {
+                title: 'Essential Apps',
+                content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color); text-decoration: underline;">eSIM</a> for internet access.',
+            },
+            payment: {
+                title: 'Payment Methods',
+                content: 'China is nearly cashless. **WeChat Pay** and **Alipay** are essential. Link your international credit card to these apps. Cash is rarely used but good for emergencies. International cards are accepted at high-end hotels and some chains.',
+            },
+            internet: {
+                title: 'Internet & VPN',
+                content: 'Google, Facebook, Instagram, etc., are blocked. You NEED a **VPN** (ExpressVPN, Astrill, LetsVPN) installed BEFORE arrival. Alternatively, use an **eSIM** (like Airalo) which bypasses the firewall automatically.',
+            }
+        },
+        resources: [
+            {
+                name: 'China Travel',
+                url: 'https://www.chinatravel.com/',
+                description: 'A leading travel agency offering tailor-made tours and comprehensive guides for all major destinations.',
+            },
+            {
+                name: 'Travel China Guide',
+                url: 'https://www.travelchinaguide.com/',
+                description: 'An extensive resource for cultural information, history, and practical travel tips, serving over 70,000 guests annually.',
+            },
+            {
+                name: 'Beshan (WildChina)',
+                url: 'https://www.beshan.com/',
+                description: 'Founded by Zhang Mei, offering high-end, authentic, and "life-changing" travel experiences off the beaten path.',
+            },
+            {
+                name: 'Airalo eSIM',
+                url: 'https://airalo.pxf.io/nXq9WX',
+                description: 'Stay connected with affordable eSIMs. Bypass the firewall automatically for seamless internet access.',
+            }
+        ],
+        costs: {
+            budget: {
+                type: 'Budget',
+                daily: '$50 - $80',
+                desc: 'Hostels, street food, public transport.',
+            },
+            midRange: {
+                type: 'Mid-Range',
+                daily: '$150 - $200',
+                desc: '3-4 star hotels, nice meals, high-speed trains.',
+            },
+            luxury: {
+                type: 'Luxury',
+                daily: '$300+',
+                desc: '5-star hotels, private guides/drivers, fine dining.',
+            },
+        }
     },
-    transport: {
-        title: 'High-Speed Trains',
-        content: 'China has an extensive high-speed rail network (G/D trains). Book via Trip.com or 12306 app. Passport required for booking and boarding. 2nd class is comfortable; Business class is luxury.',
-    },
-    apps: {
-        title: 'Essential Apps',
-        content: 'Alipay/WeChat Pay (link US credit card), Trip.com (hotels/trains), Apple Maps (works well), VPN (Astrill/LetsVPN) or <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color); text-decoration: underline;">eSIM</a> for internet access.',
-    },
-    payment: {
-        title: 'Payment Methods',
-        content: 'China is nearly cashless. **WeChat Pay** and **Alipay** are essential. Link your international credit card to these apps. Cash is rarely used but good for emergencies. International cards are accepted at high-end hotels and some chains.',
-    },
-    internet: {
-        title: 'Internet & VPN',
-        content: 'Google, Facebook, Instagram, etc., are blocked. You NEED a **VPN** (ExpressVPN, Astrill, LetsVPN) installed BEFORE arrival. Alternatively, use an **eSIM** (like Airalo) which bypasses the firewall automatically.',
+    zh: {
+        ui: {
+            homeTitle: "探索中国",
+            homeSubtitle: "一场穿越时空、文化与壮丽风景的旅程。",
+            exploreBtn: "探索目的地",
+            mainCities: "主要城市",
+            hiddenGems: "隐秘瑰宝",
+            bookHotel: "预订酒店",
+            bookStay: "预订住宿",
+            trustedResources: "推荐资源",
+            visitWebsite: "访问网站 \u2192",
+            about: "关于",
+            highlights: "亮点",
+            bestTime: "最佳旅游时间",
+            tipsTitle: "旅游贴士 & 费用",
+            costsTitle: "预估费用 (每人/天)",
+            shareGuide: "分享指南",
+            shareList: "分享清单",
+            gearTitle: "推荐装备",
+            gearSubtitle: "中国旅行必备好物，精选自亚马逊。",
+            buyAmazon: "亚马逊购买",
+            footer: "\u00A9 2024 中国旅游指南。保留所有权利。| 总访问量：",
+            nav: {
+                home: "首页",
+                tips: "旅游贴士",
+                gear: "装备"
+            }
+        },
+        destinations: {
+            main: [
+                {
+                    id: 'beijing',
+                    name: '北京',
+                    image: './public/images/beijing_great_wall_1766986793824.png',
+                    description: '中国的首都，融合了古老的历史与现代的创新。',
+                    highlights: ['长城', '紫禁城', '天坛', '胡同'],
+                    bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
+                },
+                {
+                    id: 'shanghai',
+                    name: '上海',
+                    image: './public/images/shanghai_skyline_1766986808147.png',
+                    description: '全球金融中心，拥有未来感的天际线和殖民时代的建筑。',
+                    highlights: ['外滩', '豫园', '上海中心大厦', '法租界'],
+                    bestTime: '春季和秋季',
+                },
+                {
+                    id: 'xian',
+                    name: '西安',
+                    image: './public/images/xian_terracotta_1766986821692.png',
+                    description: '丝绸之路的起点，兵马俑的故乡。',
+                    highlights: ['兵马俑', '古城墙', '回民街', '大雁塔'],
+                    bestTime: '春季和秋季',
+                },
+                {
+                    id: 'chengdu',
+                    name: '成都',
+                    image: './public/images/chengdu_pandas_hotpot.png',
+                    description: '以大熊猫和辛辣的川菜闻名。',
+                    highlights: ['熊猫基地', '锦里古街', '乐山大佛'],
+                    bestTime: '春季和秋季',
+                },
+                {
+                    id: 'suzhou',
+                    name: '苏州',
+                    image: './public/images/suzhou_hanfu_girls.png',
+                    description: '被誉为“东方威尼斯”，以古典园林和运河闻名。',
+                    highlights: ['拙政园', '虎丘', '平江路', '苏州博物馆'],
+                    bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
+                },
+                {
+                    id: 'xiamen',
+                    name: '厦门',
+                    image: './public/images/xiamen_gulangyu_seaside.png',
+                    description: '以鼓浪屿和殖民建筑闻名的海滨城市。',
+                    highlights: ['鼓浪屿', '南普陀寺', '厦门大学', '中山路'],
+                    bestTime: '秋季和冬季',
+                },
+                {
+                    id: 'guilin',
+                    name: '桂林',
+                    image: './public/images/guilin_li_river_karst.png',
+                    description: '以其壮观的喀斯特地貌和漓江游船闻名。',
+                    highlights: ['漓江游船', '象鼻山', '芦笛岩', '龙脊梯田'],
+                    bestTime: '4月至10月',
+                },
+                {
+                    id: 'kunming',
+                    name: '昆明',
+                    image: './public/images/kunming_stone_forest.png',
+                    description: '“春城”，通往云南的门户，石林的所在地。',
+                    highlights: ['石林', '翠湖', '滇池', '花市'],
+                    bestTime: '全年 (四季如春)',
+                },
+                {
+                    id: 'zhangjiajie',
+                    name: '张家界',
+                    image: './public/images/zhangjiajie_avatar_mountains.png',
+                    description: '超现实的砂岩柱，阿凡达悬浮山的灵感来源。',
+                    highlights: ['国家森林公园', '天门山', '大峡谷玻璃桥'],
+                    bestTime: '4-5月 和 9-10月',
+                }
+            ],
+            small: [
+                {
+                    id: 'dali',
+                    name: '大理',
+                    image: './public/images/dali_three_pagodas.png',
+                    description: '背包客的天堂，拥有三塔、洱海和苍山。',
+                    highlights: ['大理古城', '洱海', '三塔', '苍山'],
+                    bestTime: '春季和秋季',
+                },
+                {
+                    id: 'yangshuo',
+                    name: '阳朔',
+                    image: './public/images/yangshuo_karst_1766986835795.png',
+                    description: '令人惊叹的喀斯特山脉和宁静的河流。',
+                    highlights: ['遇龙河漂流', '月亮山', '西街'],
+                    bestTime: '4月至10月',
+                },
+                {
+                    id: 'lijiang',
+                    name: '丽江',
+                    image: './public/images/lijiang_ancient_town_1766986847247.png',
+                    description: '拥有丰富纳西文化的联合国教科文组织世界遗产古镇。',
+                    highlights: ['丽江古城', '玉龙雪山', '黑龙潭'],
+                    bestTime: '春季和秋季',
+                },
+                {
+                    id: 'fenghuang',
+                    name: '凤凰',
+                    image: './public/images/fenghuang_ancient_town_river.png',
+                    description: '沱江边上的吊脚楼古镇。',
+                    highlights: ['凤凰古城', '沱江泛舟', '夜景'],
+                    bestTime: '春季和秋季',
+                }
+            ]
+        },
+        travelTips: {
+            visa: {
+                title: '签证要求',
+                content: '美国公民需要签证。但是，北京、上海和成都等主要城市为过境旅客提供**144小时过境免签**。2024年起，L签证流程已简化（无需机票/酒店证明）。费用约$140。',
+            },
+            transport: {
+                title: '高速铁路',
+                content: '中国拥有广泛的高铁网络（G/D字头列车）。可通过携程 (Trip.com) 或12306 App预订。预订和登车需要护照。二等座很舒适；商务座则非常奢华。',
+            },
+            apps: {
+                title: '必备App',
+                content: '支付宝/微信支付（绑定国际信用卡），携程（酒店/火车），苹果地图（不仅好用），VPN（Astrill/LetsVPN）或<a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color); text-decoration: underline;">eSIM</a>用于上网。',
+            },
+            payment: {
+                title: '支付方式',
+                content: '中国几乎是无现金社会。**微信支付**和**支付宝**至关重要。将您的国际信用卡绑定到这些应用程序。现金很少使用，但适合紧急情况。高端酒店和一些连锁店接受国际信用卡。',
+            },
+            internet: {
+                title: '互联网 & VPN',
+                content: '谷歌、Facebook、Instagram等被屏蔽。您需要在抵达前安装**VPN**（ExpressVPN, Astrill, LetsVPN）。或者，使用**eSIM**（如Airalo），它可以自动绕过防火墙。',
+            }
+        },
+        resources: [
+            {
+                name: 'China Travel',
+                url: 'https://www.chinatravel.com/',
+                description: '领先的旅行社，提供各大目的地的定制旅游和综合指南。',
+            },
+            {
+                name: 'Travel China Guide',
+                url: 'https://www.travelchinaguide.com/',
+                description: '拥有丰富文化信息、历史和实用旅游建议的广泛资源，每年服务超过7万名客人。',
+            },
+            {
+                name: 'Beshan (WildChina)',
+                url: 'https://www.beshan.com/',
+                description: '由张梅创立，提供高端、地道且“改变生活”的非主流旅游体验。',
+            },
+            {
+                name: 'Airalo eSIM',
+                url: 'https://airalo.pxf.io/nXq9WX',
+                description: '使用实惠的eSIM保持连接。自动绕过防火墙，实现无缝互联网接入。',
+            }
+        ],
+        costs: {
+            budget: {
+                type: '经济型',
+                daily: '$50 - $80',
+                desc: '青年旅舍，街头美食，公共交通。',
+            },
+            midRange: {
+                type: '中档',
+                daily: '$150 - $200',
+                desc: '3-4星级酒店，不错的餐馆，高铁。',
+            },
+            luxury: {
+                type: '奢华',
+                daily: '$300+',
+                desc: '5星级酒店，私人导游/司机，精致餐饮。',
+            },
+        }
     }
-};
-
-export const resources = [
-    {
-        name: 'China Travel',
-        url: 'https://www.chinatravel.com/',
-        description: 'A leading travel agency offering tailor-made tours and comprehensive guides for all major destinations.',
-    },
-    {
-        name: 'Travel China Guide',
-        url: 'https://www.travelchinaguide.com/',
-        description: 'An extensive resource for cultural information, history, and practical travel tips, serving over 70,000 guests annually.',
-    },
-    {
-        name: 'Beshan (WildChina)',
-        url: 'https://www.beshan.com/',
-        description: 'Founded by Zhang Mei, offering high-end, authentic, and "life-changing" travel experiences off the beaten path.',
-    },
-    {
-        name: 'Airalo eSIM',
-        url: 'https://airalo.pxf.io/nXq9WX',
-        description: 'Stay connected with affordable eSIMs. Bypass the firewall automatically for seamless internet access.',
-    }
-];
-
-export const costs = {
-    budget: {
-        type: 'Budget',
-        daily: '$50 - $80',
-        desc: 'Hostels, street food, public transport.',
-    },
-    midRange: {
-        type: 'Mid-Range',
-        daily: '$150 - $200',
-        desc: '3-4 star hotels, nice meals, high-speed trains.',
-    },
-    luxury: {
-        type: 'Luxury',
-        daily: '$300+',
-        desc: '5-star hotels, private guides/drivers, fine dining.',
-    },
 };
