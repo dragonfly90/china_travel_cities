@@ -4,7 +4,7 @@ import communityPosts from './data/community.js'
 import xhsPosts from './data/xhs.js'
 import flightDeals from './data/flights.js'
 import { content, bookingLink } from './data/destinations.js'
-// import { hospitals, packages, guideSteps } from './data/medical.js' // Removed as per new content structure
+import { hospitals, packages, guideSteps } from './data/medical.js'
 
 // State
 let currentLang = localStorage.getItem('lang') || 'en';

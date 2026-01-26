@@ -165,7 +165,7 @@ nav {
 /* Hero */
 .hero {
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/public/images/beijing_great_wall_1766986793824.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/public/images/beijing_great_wall_1766986793824.png');
   background-size: cover;
   background-position: center;
   display: flex;
