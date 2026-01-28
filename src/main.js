@@ -595,7 +595,7 @@ function shareItinerary() {
   const cityNames = list.map(id => allCities.find(c => c.id === id)?.name || id).join(' -> ');
   const text = `Check out my China trip plan: ${cityNames}`;
 
-  shareContent(content[currentLang].planner.title, text);
+  shareContent(content[currentLang].ui.planner.title, text);
 }
 
 // Make globally available
@@ -606,7 +606,7 @@ window.shareItinerary = shareItinerary;
 
 
 function ItineraryBuilder() {
-  const t = content[currentLang].planner;
+  const t = content[currentLang].ui.planner;
   const d = content[currentLang].destinations;
   const allCities = [...d.main, ...d.small];
   const myItineraryIds = getItinerary();
