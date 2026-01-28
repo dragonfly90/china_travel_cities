@@ -672,9 +672,10 @@ function ItineraryBuilder() {
     ${Footer()}
   `
 }
-console.log("MedicalGuide rendering...", { hospitals, packages, guideSteps });
-updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
-return `
+function MedicalGuide() {
+  console.log("MedicalGuide rendering...", { hospitals, packages, guideSteps });
+  updateMeta("Medical & Health Guide", "World-class health checkups in China: Fast, Affordable, Efficiency.");
+  return `
     ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Medical Tourism: The "China Speed" Checkup</h1>
