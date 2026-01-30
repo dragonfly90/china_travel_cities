@@ -114,6 +114,14 @@ export const content = {
                     description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
                     highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
                     bestTime: 'April-May and September-October',
+                },
+                {
+                    id: 'hainan',
+                    name: 'Hainan',
+                    image: './public/images/hainan_sanya_beach.png',
+                    description: "The 'Hawaii of China', a tropical paradise with pristine beaches and luxury resorts.",
+                    highlights: ['Sanya Bay', 'Yalong Bay', 'Nanshan Temple', 'Wuzhizhou Island'],
+                    bestTime: 'October to March',
                 }
             ],
             small: [
@@ -326,6 +334,14 @@ export const content = {
                     description: '超现实的砂岩柱，阿凡达悬浮山的灵感来源。',
                     highlights: ['国家森林公园', '天门山', '大峡谷玻璃桥'],
                     bestTime: '4-5月 和 9-10月',
+                },
+                {
+                    id: 'hainan',
+                    name: '海南',
+                    image: './public/images/hainan_sanya_beach.png',
+                    description: "中国的夏威夷，拥有原始海滩和豪华度假村的热带天堂。",
+                    highlights: ['三亚湾', '亚龙湾', '南山寺', '蜈支洲岛'],
+                    bestTime: '10月至3月',
                 }
             ],
             small: [
