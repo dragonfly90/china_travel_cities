@@ -250,3 +250,76 @@ footer {
   text-align: center;
   margin-top: 60px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+
+  /* Navigation */
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    gap: 20px;
+    padding-top: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.nav-active {
+    height: 100vh;
+    /* Full screen menu */
+    padding-top: 40px;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  /* Sections */
+  .section {
+    padding: 40px 0;
+  }
+
+  /* Grids */
+  .city-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Cards */
+  .city-card img {
+    height: 200px;
+  }
+}
+
+/* Hide Hamburger on Desktop */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+}

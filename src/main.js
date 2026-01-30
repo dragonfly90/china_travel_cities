@@ -52,7 +52,7 @@ function toggleLanguage() {
   render();
 }
 
-// Components
+// Header
 function Header() {
   const t = content[currentLang].ui;
   return `
@@ -60,16 +60,17 @@ function Header() {
       <div class="container">
         <nav>
           <div class="logo">ChinaTravel</div>
-          <div class="nav-links">
-            <a href="#" data-link="/">${t.nav.home}</a>
-            <a href="#" data-link="/guide">Start Here</a>
-            <a href="#" data-link="/planner">${t.nav.planner}</a>
-            <a href="#" data-link="/tips">${t.nav.tips}</a>
-            <a href="#" data-link="/videos">Videos</a>
-            <a href="#" data-link="/community">Community</a>
-            <a href="#" data-link="/medical">Medical Tour</a>
-            <a href="#" data-link="/gear">${t.nav.gear}</a>
-            <button onclick="toggleLanguage()" class="lang-btn" style="background: none; border: 1px solid var(--text-color); padding: 5px 10px; border-radius: 5px; cursor: pointer; color: var(--text-color); font-size: 0.9rem;">
+          <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+          <div class="nav-links" id="nav-links">
+            <a href="#" data-link="/" onclick="closeMenu()">${t.nav.home}</a>
+            <a href="#" data-link="/guide" onclick="closeMenu()">Start Here</a>
+            <a href="#" data-link="/planner" onclick="closeMenu()">${t.nav.planner}</a>
+            <a href="#" data-link="/tips" onclick="closeMenu()">${t.nav.tips}</a>
+            <a href="#" data-link="/videos" onclick="closeMenu()">Videos</a>
+            <a href="#" data-link="/community" onclick="closeMenu()">Community</a>
+            <a href="#" data-link="/medical" onclick="closeMenu()">Medical Tour</a>
+            <a href="#" data-link="/gear" onclick="closeMenu()">${t.nav.gear}</a>
+            <button onclick="toggleLanguage(); closeMenu()" class="lang-btn" style="background: none; border: 1px solid var(--text-color); padding: 5px 10px; border-radius: 5px; cursor: pointer; color: var(--text-color); font-size: 0.9rem;">
                 ${currentLang === 'en' ? '中文' : 'EN'}
             </button>
           </div>
@@ -77,6 +78,17 @@ function Header() {
       </div>
     </header>
   `
+}
+
+// Menu Toggle Logic
+window.toggleMenu = function () {
+  const nav = document.getElementById('nav-links');
+  nav.classList.toggle('nav-active');
+}
+
+window.closeMenu = function () {
+  const nav = document.getElementById('nav-links');
+  if (nav) nav.classList.remove('nav-active');
 }
 
 function Footer(count = '...') {
