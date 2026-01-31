@@ -221,9 +221,37 @@ function Home() {
           </div>
         `).join('')}
       </div>
+
+      <!-- Newsletter Section -->
+      <div class="glass fade-in" style="margin-top: 60px; padding: 40px; text-align: center; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(230,0,18,0.1));">
+        <h2 style="color: var(--primary-color);">🇨🇳 Join the China Travel Community</h2>
+        <p style="margin: 15px 0 25px;">Get the latest travel tips, visa updates, and hidden gems sent to your inbox. Perfect for ABCs and first-time travelers!</p>
+        <form onsubmit="handleSubscribe(event)" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <input type="email" name="email" placeholder="Enter your email address" required style="padding: 12px 20px; border-radius: 30px; border: 1px solid #ccc; width: 300px; max-width: 100%; outline: none;">
+            <button type="submit" class="btn">Subscribe with Email</button>
+        </form>
+        <p style="font-size: 0.8em; color: #666; margin-top: 15px;">We respect your privacy. No spam.</p>
+      </div>
     </section>
     ${Footer()}
   `
+}
+
+// Subscribe Handler
+window.handleSubscribe = function (event) {
+  event.preventDefault();
+  const email = event.target.email.value;
+
+  // Simulate API call
+  const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+  if (!subscribers.includes(email)) {
+    subscribers.push(email);
+    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+    alert("Thanks for subscribing! You're on the list.");
+  } else {
+    alert("You're already subscribed!");
+  }
+  event.target.reset();
 }
 
 function CityDetail() {
@@ -447,7 +475,12 @@ function Community() {
           `).join('')}
     </div>
 
-    <h2 class="fade-in" style="margin-top: 60px;">XHS Buzz (Little Red Book)</h2>
+    <h2 class="fade-in" style="margin-top: 60px;">
+        <a href="https://www.xiaohongshu.com/explore" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+            XHS Buzz (Little Red Book) 
+            <span style="font-size: 0.6em; color: #ff2442; border: 1px solid #ff2442; padding: 2px 8px; border-radius: 12px;">Visit Site ↗</span>
+        </a>
+    </h2>
     <p style="margin-bottom: 20px;">Trending posts about "Westerners in China".</p>
     <div class="city-grid fade-in">
       ${xhsPosts.map(post => `
@@ -456,7 +489,9 @@ function Community() {
                 <img src="${post.image}" alt="${post.title}" style="width: 100%; height: 100%; object-fit: cover;">
               </div>
               <div class="city-info">
-                <span style="font-size: 0.8em; color: #ff2442;">📕 Xiaohongshu</span>
+                <a href="https://www.xiaohongshu.com/explore" target="_blank" style="text-decoration: none;">
+                    <span style="font-size: 0.8em; color: #ff2442;">📕 Xiaohongshu</span>
+                </a>
                 <h3><a href="${post.url}" target="_blank" style="text-decoration: none; color: inherit;">${post.title}</a></h3>
                 <p style="font-size: 0.9em; color: #666;">by ${post.author}</p>
                 <div style="margin-top: 10px; font-weight: bold; color: #ff2442;">❤️ ${post.likes}</div>
