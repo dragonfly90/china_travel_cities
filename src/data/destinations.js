@@ -46,7 +46,7 @@ export const content = {
                 {
                     id: 'beijing',
                     name: 'Beijing',
-                    image: './public/images/beijing_great_wall_1766986793824.png',
+                    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80',
                     description: 'The capital of China, blending ancient history with modern innovation.',
                     highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
@@ -54,7 +54,7 @@ export const content = {
                 {
                     id: 'shanghai',
                     name: 'Shanghai',
-                    image: './public/images/shanghai_skyline_1766986808147.png',
+                    image: 'https://images.unsplash.com/photo-1548622150-f96677f547c6?auto=format&fit=crop&w=800&q=80',
                     description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
                     highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
                     bestTime: 'Spring and Autumn',
@@ -62,7 +62,7 @@ export const content = {
                 {
                     id: 'xian',
                     name: "Xi'an",
-                    image: './public/images/xian_terracotta_1766986821692.png',
+                    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=800&q=80',
                     description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
                     highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
                     bestTime: 'Spring and Autumn',
@@ -70,7 +70,7 @@ export const content = {
                 {
                     id: 'chengdu',
                     name: 'Chengdu',
-                    image: './public/images/chengdu_pandas_hotpot.png',
+                    image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=800&q=80',
                     description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
                     highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
                     bestTime: 'Spring and Autumn',
@@ -78,7 +78,7 @@ export const content = {
                 {
                     id: 'suzhou',
                     name: 'Suzhou',
-                    image: './public/images/suzhou_hanfu_girls.png',
+                    image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
                     description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
                     highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
@@ -86,7 +86,7 @@ export const content = {
                 {
                     id: 'xiamen',
                     name: 'Xiamen',
-                    image: './public/images/xiamen_gulangyu_seaside.png',
+                    image: 'https://images.unsplash.com/photo-1595055269754-0ebc4cb1859c?auto=format&fit=crop&w=800&q=80',
                     description: 'A coastal city known for Gulangyu Island and colonial architecture.',
                     highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
                     bestTime: 'Autumn and Winter',
@@ -94,7 +94,7 @@ export const content = {
                 {
                     id: 'guilin',
                     name: 'Guilin',
-                    image: './public/images/guilin_li_river_karst.png',
+                    image: 'https://images.unsplash.com/photo-1527684651001-eb4dc44b82d9?auto=format&fit=crop&w=800&q=80',
                     description: 'Famous for its dramatic karst landscape and the Li River cruise.',
                     highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
                     bestTime: 'April to October',
@@ -102,7 +102,7 @@ export const content = {
                 {
                     id: 'kunming',
                     name: 'Kunming',
-                    image: './public/images/kunming_stone_forest.png',
+                    image: 'https://images.unsplash.com/photo-1549557488-8422176472d4?auto=format&fit=crop&w=800&q=80',
                     description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
                     highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
                     bestTime: 'All year round (Eternal Spring)',
@@ -110,7 +110,7 @@ export const content = {
                 {
                     id: 'zhangjiajie',
                     name: 'Zhangjiajie',
-                    image: './public/images/zhangjiajie_avatar_mountains.png',
+                    image: 'https://images.unsplash.com/photo-1544376485-f55447a06af1?auto=format&fit=crop&w=800&q=80',
                     description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
                     highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
                     bestTime: 'April-May and September-October',
@@ -118,7 +118,7 @@ export const content = {
                 {
                     id: 'hainan',
                     name: 'Hainan',
-                    image: './public/images/hainan_sanya_beach.png',
+                    image: 'https://images.unsplash.com/photo-1592237060593-9c4c23577dce?auto=format&fit=crop&w=800&q=80',
                     description: "The 'Hawaii of China', a tropical paradise with pristine beaches and luxury resorts.",
                     highlights: ['Sanya Bay', 'Yalong Bay', 'Nanshan Temple', 'Wuzhizhou Island'],
                     bestTime: 'October to March',
@@ -128,7 +128,7 @@ export const content = {
                 {
                     id: 'dali',
                     name: 'Dali',
-                    image: './public/images/dali_three_pagodas.png',
+                    image: 'https://images.unsplash.com/photo-1517537385973-2e4a8b7c7a2f?auto=format&fit=crop&w=800&q=80',
                     description: 'A backpacker haven with the Three Pagodas, Erhai Lake, and Cangshan Mountain.',
                     highlights: ['Dali Ancient City', 'Erhai Lake', 'Three Pagodas', 'Cangshan'],
                     bestTime: 'Spring and Autumn',
@@ -136,7 +136,7 @@ export const content = {
                 {
                     id: 'yangshuo',
                     name: 'Yangshuo',
-                    image: './public/images/yangshuo_karst_1766986835795.png',
+                    image: 'https://images.unsplash.com/photo-1470181512702-8616fa127116?auto=format&fit=crop&w=800&q=80',
                     description: 'Breathtaking karst mountains and serene rivers.',
                     highlights: ['Li River Rafting', 'Moon Hill', 'West Street'],
                     bestTime: 'April to October',
@@ -144,7 +144,7 @@ export const content = {
                 {
                     id: 'lijiang',
                     name: 'Lijiang',
-                    image: './public/images/lijiang_ancient_town_1766986847247.png',
+                    image: 'https://images.unsplash.com/photo-1506509653846-9d3e5e54c728?auto=format&fit=crop&w=800&q=80',
                     description: 'A UNESCO World Heritage ancient town with rich Naxi culture.',
                     highlights: ['Lijiang Ancient Town', 'Jade Dragon Snow Mountain', 'Black Dragon Pool'],
                     bestTime: 'Spring and Autumn',
@@ -152,7 +152,7 @@ export const content = {
                 {
                     id: 'fenghuang',
                     name: 'Fenghuang',
-                    image: './public/images/fenghuang_ancient_town_river.png',
+                    image: 'https://images.unsplash.com/photo-1616216432657-3f3366059d0b?auto=format&fit=crop&w=800&q=80',
                     description: 'An ancient town built on stilts along the Tuo River.',
                     highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
                     bestTime: 'Spring and Autumn',
@@ -266,7 +266,7 @@ export const content = {
                 {
                     id: 'beijing',
                     name: '北京',
-                    image: './public/images/beijing_great_wall_1766986793824.png',
+                    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80',
                     description: '中国的首都，融合了古老的历史与现代的创新。',
                     highlights: ['长城', '紫禁城', '天坛', '胡同'],
                     bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
@@ -274,7 +274,7 @@ export const content = {
                 {
                     id: 'shanghai',
                     name: '上海',
-                    image: './public/images/shanghai_skyline_1766986808147.png',
+                    image: 'https://images.unsplash.com/photo-1548622150-f96677f547c6?auto=format&fit=crop&w=800&q=80',
                     description: '全球金融中心，拥有未来感的天际线和殖民时代的建筑。',
                     highlights: ['外滩', '豫园', '上海中心大厦', '法租界'],
                     bestTime: '春季和秋季',
@@ -282,7 +282,7 @@ export const content = {
                 {
                     id: 'xian',
                     name: '西安',
-                    image: './public/images/xian_terracotta_1766986821692.png',
+                    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=800&q=80',
                     description: '丝绸之路的起点，兵马俑的故乡。',
                     highlights: ['兵马俑', '古城墙', '回民街', '大雁塔'],
                     bestTime: '春季和秋季',
@@ -290,7 +290,7 @@ export const content = {
                 {
                     id: 'chengdu',
                     name: '成都',
-                    image: './public/images/chengdu_pandas_hotpot.png',
+                    image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=800&q=80',
                     description: '以大熊猫和辛辣的川菜闻名。',
                     highlights: ['熊猫基地', '锦里古街', '乐山大佛'],
                     bestTime: '春季和秋季',
@@ -298,7 +298,7 @@ export const content = {
                 {
                     id: 'suzhou',
                     name: '苏州',
-                    image: './public/images/suzhou_hanfu_girls.png',
+                    image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
                     description: '被誉为“东方威尼斯”，以古典园林和运河闻名。',
                     highlights: ['拙政园', '虎丘', '平江路', '苏州博物馆'],
                     bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
@@ -306,7 +306,7 @@ export const content = {
                 {
                     id: 'xiamen',
                     name: '厦门',
-                    image: './public/images/xiamen_gulangyu_seaside.png',
+                    image: 'https://images.unsplash.com/photo-1595055269754-0ebc4cb1859c?auto=format&fit=crop&w=800&q=80',
                     description: '以鼓浪屿和殖民建筑闻名的海滨城市。',
                     highlights: ['鼓浪屿', '南普陀寺', '厦门大学', '中山路'],
                     bestTime: '秋季和冬季',
@@ -314,7 +314,7 @@ export const content = {
                 {
                     id: 'guilin',
                     name: '桂林',
-                    image: './public/images/guilin_li_river_karst.png',
+                    image: 'https://images.unsplash.com/photo-1527684651001-eb4dc44b82d9?auto=format&fit=crop&w=800&q=80',
                     description: '以其壮观的喀斯特地貌和漓江游船闻名。',
                     highlights: ['漓江游船', '象鼻山', '芦笛岩', '龙脊梯田'],
                     bestTime: '4月至10月',
@@ -322,7 +322,7 @@ export const content = {
                 {
                     id: 'kunming',
                     name: '昆明',
-                    image: './public/images/kunming_stone_forest.png',
+                    image: 'https://images.unsplash.com/photo-1549557488-8422176472d4?auto=format&fit=crop&w=800&q=80',
                     description: '“春城”，通往云南的门户，石林的所在地。',
                     highlights: ['石林', '翠湖', '滇池', '花市'],
                     bestTime: '全年 (四季如春)',
@@ -330,7 +330,7 @@ export const content = {
                 {
                     id: 'zhangjiajie',
                     name: '张家界',
-                    image: './public/images/zhangjiajie_avatar_mountains.png',
+                    image: 'https://images.unsplash.com/photo-1544376485-f55447a06af1?auto=format&fit=crop&w=800&q=80',
                     description: '超现实的砂岩柱，阿凡达悬浮山的灵感来源。',
                     highlights: ['国家森林公园', '天门山', '大峡谷玻璃桥'],
                     bestTime: '4-5月 和 9-10月',
@@ -338,7 +338,7 @@ export const content = {
                 {
                     id: 'hainan',
                     name: '海南',
-                    image: './public/images/hainan_sanya_beach.png',
+                    image: 'https://images.unsplash.com/photo-1592237060593-9c4c23577dce?auto=format&fit=crop&w=800&q=80',
                     description: "中国的夏威夷，拥有原始海滩和豪华度假村的热带天堂。",
                     highlights: ['三亚湾', '亚龙湾', '南山寺', '蜈支洲岛'],
                     bestTime: '10月至3月',
@@ -348,7 +348,7 @@ export const content = {
                 {
                     id: 'dali',
                     name: '大理',
-                    image: './public/images/dali_three_pagodas.png',
+                    image: 'https://images.unsplash.com/photo-1517537385973-2e4a8b7c7a2f?auto=format&fit=crop&w=800&q=80',
                     description: '背包客的天堂，拥有三塔、洱海和苍山。',
                     highlights: ['大理古城', '洱海', '三塔', '苍山'],
                     bestTime: '春季和秋季',
@@ -356,7 +356,7 @@ export const content = {
                 {
                     id: 'yangshuo',
                     name: '阳朔',
-                    image: './public/images/yangshuo_karst_1766986835795.png',
+                    image: 'https://images.unsplash.com/photo-1470181512702-8616fa127116?auto=format&fit=crop&w=800&q=80',
                     description: '令人惊叹的喀斯特山脉和宁静的河流。',
                     highlights: ['遇龙河漂流', '月亮山', '西街'],
                     bestTime: '4月至10月',
@@ -364,7 +364,7 @@ export const content = {
                 {
                     id: 'lijiang',
                     name: '丽江',
-                    image: './public/images/lijiang_ancient_town_1766986847247.png',
+                    image: 'https://images.unsplash.com/photo-1506509653846-9d3e5e54c728?auto=format&fit=crop&w=800&q=80',
                     description: '拥有丰富纳西文化的联合国教科文组织世界遗产古镇。',
                     highlights: ['丽江古城', '玉龙雪山', '黑龙潭'],
                     bestTime: '春季和秋季',
@@ -372,7 +372,7 @@ export const content = {
                 {
                     id: 'fenghuang',
                     name: '凤凰',
-                    image: './public/images/fenghuang_ancient_town_river.png',
+                    image: 'https://images.unsplash.com/photo-1616216432657-3f3366059d0b?auto=format&fit=crop&w=800&q=80',
                     description: '沱江边上的吊脚楼古镇。',
                     highlights: ['凤凰古城', '沱江泛舟', '夜景'],
                     bestTime: '春季和秋季',
