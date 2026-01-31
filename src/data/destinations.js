@@ -70,7 +70,7 @@ export const content = {
                 {
                     id: 'chengdu',
                     name: 'Chengdu',
-                    image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1564359060235-ef4292131b4c?auto=format&fit=crop&w=800&q=80',
                     description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
                     highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
                     bestTime: 'Spring and Autumn',
@@ -78,7 +78,7 @@ export const content = {
                 {
                     id: 'chongqing',
                     name: 'Chongqing',
-                    image: 'https://images.unsplash.com/photo-1533230408806-3883713600f2?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1628588889981-d2f62799342c?auto=format&fit=crop&w=800&q=80',
                     description: 'The "Cyberpunk 8D City" famous for its hotpot, monorails through buildings, and mountainscapes.',
                     highlights: ['Hongya Cave', 'Liziba Station (Train through building)', 'Yangtze River Cableway', 'Hotpot'],
                     bestTime: 'Spring and Autumn (Avoid Summer heat)',
@@ -86,7 +86,7 @@ export const content = {
                 {
                     id: 'hangzhou',
                     name: 'Hangzhou',
-                    image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1629734346875-520f92265077?auto=format&fit=crop&w=800&q=80',
                     description: 'Famous for the West Lake and being the "Heaven on Earth".',
                     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Plantations', 'Leifeng Pagoda'],
                     bestTime: 'Spring (March-May) and Autumn',
@@ -314,7 +314,7 @@ export const content = {
                 {
                     id: 'chengdu',
                     name: '成都',
-                    image: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1564359060235-ef4292131b4c?auto=format&fit=crop&w=800&q=80',
                     description: '以大熊猫和辛辣的川菜闻名。',
                     highlights: ['熊猫基地', '锦里古街', '乐山大佛'],
                     bestTime: '春季和秋季',
@@ -322,7 +322,7 @@ export const content = {
                 {
                     id: 'chongqing',
                     name: '重庆',
-                    image: 'https://images.unsplash.com/photo-1533230408806-3883713600f2?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1628588889981-d2f62799342c?auto=format&fit=crop&w=800&q=80',
                     description: '“8D魔幻城市”，以火锅、轻轨穿楼和山景夜景闻名。',
                     highlights: ['洪崖洞', '李子坝轻轨', '长江索道', '火锅'],
                     bestTime: '春季和秋季 (避开夏季高温)',
@@ -330,7 +330,7 @@ export const content = {
                 {
                     id: 'hangzhou',
                     name: '杭州',
-                    image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
+                    image: 'https://images.unsplash.com/photo-1629734346875-520f92265077?auto=format&fit=crop&w=800&q=80',
                     description: '以美丽的西湖闻名，被誉为“人间天堂”。',
                     highlights: ['西湖', '灵隐寺', '龙井茶园', '雷峰塔'],
                     bestTime: '春季 (3-5月) 和 秋季',
