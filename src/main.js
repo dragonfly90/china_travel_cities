@@ -184,53 +184,81 @@ function Home() {
 
     <section id="destinations" class="section container">
       <h2 class="fade-in">${t.mainCities}</h2>
-      <div class="city-grid fade-in">
-        ${d.main.map(city => `
-          <div class="city-card" data-city="${city.id}">
-            <img src="${city.image}" alt="${city.name}">
-            <div class="city-info">
+      <div class="bento-grid fade-in">
+        ${d.main.map((city, index) => {
+    // Bento Logic: 
+    // Index 0 (Beijing): Big Square (2x2)
+    // Index 1 (Shanghai): Wide (2x1)
+    // Others: Standard (1x1)
+    let spanClass = '';
+    if (index === 0) spanClass = 'span-2-col span-2-row';
+    else if (index === 1) spanClass = 'span-2-col';
+
+    // For the big featured item (Index 0), we use an overlay style
+    if (index === 0) {
+      return `
+              <div class="bento-card ${spanClass}" data-city="${city.id}" onclick="navigate('/city/${city.id}')">
+                <div class="card-image">
+                    <img src="${city.image}" alt="${city.name}">
+                </div>
+                <div class="card-overlay">
+                  <h3>${city.name}</h3>
+                  <p>${city.description}</p>
+                </div>
+              </div>
+              `
+    }
+
+    return `
+          <div class="bento-card ${spanClass}" data-city="${city.id}" onclick="navigate('/city/${city.id}')">
+            <div class="card-image">
+                <img src="${city.image}" alt="${city.name}">
+            </div>
+            <div class="card-content">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
-              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">${t.bookHotel}</a>
+              <div style="margin-top: 15px;">
+                  <button class="btn-small">${t.bookHotel}</button>
+              </div>
             </div>
           </div>
-        `).join('')}
+        `}).join('')}
       </div>
 
-      <h2 class="fade-in" style="margin-top: 60px;">${t.hiddenGems}</h2>
-      <div class="city-grid fade-in">
+      <h2 class="fade-in" style="margin-top: 80px;">${t.hiddenGems}</h2>
+      <div class="bento-grid fade-in">
         ${d.small.map(city => `
-          <div class="city-card" data-city="${city.id}">
-            <img src="${city.image}" alt="${city.name}">
-            <div class="city-info">
+          <div class="bento-card" data-city="${city.id}" onclick="navigate('/city/${city.id}')">
+            <div class="card-image" style="height: 200px;">
+                <img src="${city.image}" alt="${city.name}">
+            </div>
+            <div class="card-content">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
-              <a href="${bookingLink}" target="_blank" class="btn-small" style="margin-top: 10px; display: inline-block; background: var(--primary-color); color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; font-size: 0.9em;" onclick="event.stopPropagation()">${t.bookHotel}</a>
             </div>
           </div>
         `).join('')}
       </div>
 
-      <h2 class="fade-in" style="margin-top: 60px;">${t.trustedResources}</h2>
+      <h2 class="fade-in" style="margin-top: 80px;">${t.trustedResources}</h2>
       <div class="info-grid fade-in" style="margin-top: 30px;">
         ${content[currentLang].resources.map(resource => `
-          <div class="info-card glass">
+          <div class="info-card">
             <h3>${resource.name}</h3>
-            <p>${resource.description}</p>
-            <a href="${resource.url}" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold; margin-top: 10px; display: inline-block;">${t.visitWebsite}</a>
+            <p style="color: var(--text-secondary); margin-top: 10px;">${resource.description}</p>
+            <a href="${resource.url}" target="_blank" class="btn-small" style="margin-top: 20px;">${t.visitWebsite}</a>
           </div>
         `).join('')}
       </div>
 
       <!-- Newsletter Section -->
-      <div class="glass fade-in" style="margin-top: 60px; padding: 40px; text-align: center; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(230,0,18,0.1));">
+      <div class="fade-in" style="margin-top: 80px; padding: 60px; text-align: center; background: white; border-radius: 24px;">
         <h2 style="color: var(--primary-color);">🇨🇳 Join the China Travel Community</h2>
-        <p style="margin: 15px 0 25px;">Get the latest travel tips, visa updates, and hidden gems sent to your inbox. Perfect for ABCs and first-time travelers!</p>
+        <p style="margin: 15px 0 25px; color: var(--text-secondary);">Get the latest travel tips, visa updates, and hidden gems sent to your inbox.</p>
         <form onsubmit="handleSubscribe(event)" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-            <input type="email" name="email" placeholder="Enter your email address" required style="padding: 12px 20px; border-radius: 30px; border: 1px solid #ccc; width: 300px; max-width: 100%; outline: none;">
-            <button type="submit" class="btn">Subscribe with Email</button>
+            <input type="email" name="email" placeholder="Enter your email address" required style="padding: 14px 24px; border-radius: 40px; border: 1px solid #eee; width: 300px; max-width: 100%; outline: none; background: var(--bg-color);">
+            <button type="submit" class="btn">Subscribe</button>
         </form>
-        <p style="font-size: 0.8em; color: #666; margin-top: 15px;">We respect your privacy. No spam.</p>
       </div>
     </section>
     ${Footer()}
