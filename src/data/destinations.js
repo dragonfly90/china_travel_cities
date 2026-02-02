@@ -46,15 +46,15 @@ export const content = {
                 {
                     id: 'beijing',
                     name: 'Beijing',
-                    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80',
-                    description: 'The capital of China, blending ancient history with modern innovation.',
+                    image: './public/images/beijing_great_wall_1766986793824.png',
+                    description: 'The political and cultural heart of China, featuring the Great Wall and Forbidden City.',
                     highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
                 },
                 {
                     id: 'shanghai',
                     name: 'Shanghai',
-                    image: 'https://images.unsplash.com/photo-1548622150-f96677f547c6?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/shanghai_skyline_1766986808147.png',
                     description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
                     highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
                     bestTime: 'Spring and Autumn',
@@ -62,7 +62,7 @@ export const content = {
                 {
                     id: 'xian',
                     name: "Xi'an",
-                    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/xian_terracotta_1766986821692.png',
                     description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
                     highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
                     bestTime: 'Spring and Autumn',
@@ -70,7 +70,7 @@ export const content = {
                 {
                     id: 'chengdu',
                     name: 'Chengdu',
-                    image: 'https://images.unsplash.com/photo-1564359060235-ef4292131b4c?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/chengdu_pandas_hotpot.png',
                     description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
                     highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
                     bestTime: 'Spring and Autumn',
@@ -102,7 +102,7 @@ export const content = {
                 {
                     id: 'suzhou',
                     name: 'Suzhou',
-                    image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/suzhou_hanfu_girls.png',
                     description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
                     highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
@@ -110,7 +110,7 @@ export const content = {
                 {
                     id: 'xiamen',
                     name: 'Xiamen',
-                    image: 'https://images.unsplash.com/photo-1595055269754-0ebc4cb1859c?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/xiamen_gulangyu_seaside.png',
                     description: 'A coastal city known for Gulangyu Island and colonial architecture.',
                     highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
                     bestTime: 'Autumn and Winter',
@@ -118,7 +118,7 @@ export const content = {
                 {
                     id: 'guilin',
                     name: 'Guilin',
-                    image: 'https://images.unsplash.com/photo-1527684651001-eb4dc44b82d9?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/guilin_li_river_karst.png',
                     description: 'Famous for its dramatic karst landscape and the Li River cruise.',
                     highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
                     bestTime: 'April to October',
@@ -126,7 +126,7 @@ export const content = {
                 {
                     id: 'kunming',
                     name: 'Kunming',
-                    image: 'https://images.unsplash.com/photo-1549557488-8422176472d4?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/kunming_stone_forest.png',
                     description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
                     highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
                     bestTime: 'All year round (Eternal Spring)',
@@ -134,7 +134,7 @@ export const content = {
                 {
                     id: 'zhangjiajie',
                     name: 'Zhangjiajie',
-                    image: 'https://images.unsplash.com/photo-1544376485-f55447a06af1?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/zhangjiajie_avatar_mountains.png',
                     description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
                     highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
                     bestTime: 'April-May and September-October',
@@ -142,7 +142,7 @@ export const content = {
                 {
                     id: 'hainan',
                     name: 'Hainan',
-                    image: 'https://images.unsplash.com/photo-1592237060593-9c4c23577dce?auto=format&fit=crop&w=800&q=80',
+                    image: './public/images/hainan_sanya_beach.png',
                     description: "The 'Hawaii of China', a tropical paradise with pristine beaches and luxury resorts.",
                     highlights: ['Sanya Bay', 'Yalong Bay', 'Nanshan Temple', 'Wuzhizhou Island'],
                     bestTime: 'October to March',
