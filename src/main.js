@@ -265,21 +265,66 @@ function Home() {
   `
 }
 
-// Subscribe Handler
-window.handleSubscribe = function (event) {
-  event.preventDefault();
-  const email = event.target.email.value;
+// Email Subscription (Formspree)
+// 1. Go to https://formspree.io
+// 2. Create a new form
+// 3. Paste your form ID here: e.g. 'mkgoyoaa'
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
 
-  // Simulate API call
-  const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-  if (!subscribers.includes(email)) {
-    subscribers.push(email);
-    localStorage.setItem('subscribers', JSON.stringify(subscribers));
-    alert("Thanks for subscribing! You're on the list.");
-  } else {
-    alert("You're already subscribed!");
+// Subscribe Handler
+window.handleSubscribe = async function (event) {
+  event.preventDefault();
+  const form = event.target;
+  const email = form.email.value;
+  const btn = form.querySelector('button');
+  const originalText = btn.textContent;
+
+  // Optimistic UI update
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
+
+  try {
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      alert("Developer Note: You need to create a free Formspree form to receive emails.\n\n1. Go to formspree.io\n2. Create form\n3. Update 'FORMSPREE_ID' in src/main.js");
+      throw new Error('Formspree ID not set');
+    }
+
+    const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      body: JSON.stringify({ email: email }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert(`Thanks! ${email} has been sent to your inbox.`);
+      form.reset();
+
+      // Save to local storage as backup/history
+      const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+      if (!subscribers.includes(email)) {
+        subscribers.push(email);
+        localStorage.setItem('subscribers', JSON.stringify(subscribers));
+      }
+    } else {
+      const data = await response.json();
+      if (Object.hasOwn(data, 'errors')) {
+        alert(data["errors"].map(error => error["message"]).join(", "));
+      } else {
+        alert("Oops! There was a problem submitting your form");
+      }
+    }
+  } catch (error) {
+    if (error.message !== 'Formspree ID not set') {
+      console.error('Subscription error:', error);
+      alert("There was an error subscribing. Please try again later.");
+    }
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
   }
-  event.target.reset();
 }
 
 function CityDetail() {
