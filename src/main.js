@@ -990,3 +990,4 @@ try {
   document.body.innerHTML += `<div style="color: red; padding: 20px;"><h1>App Error</h1><pre>${e.message}\n${e.stack}</pre></div>`;
 }
 // Force rebuild timestamp: Tue Feb  3 22:03:39 PST 2026
+
