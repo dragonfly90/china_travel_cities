@@ -78,7 +78,7 @@ export const content = {
                 {
                     id: 'chongqing',
                     name: 'Chongqing',
-                    image: './public/images/chongqing_city.jpg',
+                    image: 'https://images.unsplash.com/photo-1628588889981-d2f62799342c?auto=format&fit=crop&w=800&q=80',
                     description: 'The "Cyberpunk 8D City" famous for its hotpot, monorails through buildings, and mountainscapes.',
                     highlights: ['Hongya Cave', 'Liziba Station (Train through building)', 'Yangtze River Cableway', 'Hotpot'],
                     bestTime: 'Spring and Autumn (Avoid Summer heat)',
@@ -86,7 +86,7 @@ export const content = {
                 {
                     id: 'hangzhou',
                     name: 'Hangzhou',
-                    image: './public/images/hangzhou_west_lake.jpg',
+                    image: 'https://images.unsplash.com/photo-1629734346875-520f92265077?auto=format&fit=crop&w=800&q=80',
                     description: 'Famous for the West Lake and being the "Heaven on Earth".',
                     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Plantations', 'Leifeng Pagoda'],
                     bestTime: 'Spring (March-May) and Autumn',
@@ -94,7 +94,7 @@ export const content = {
                 {
                     id: 'harbin',
                     name: 'Harbin',
-                    image: './public/images/harbin_snow.jpg',
+                    image: 'https://plus.unsplash.com/premium_photo-1661908920197-03657754b238?auto=format&fit=crop&w=800&q=80',
                     description: 'The "Ice City" known for its massive Ice & Snow Festival and Russian architecture.',
                     highlights: ['Ice and Snow World', 'Saint Sophia Cathedral', 'Central Street', 'Sun Island'],
                     bestTime: 'Winter (Dec-Feb) for Ice Festival',
