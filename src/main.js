@@ -269,7 +269,7 @@ function Home() {
 // 1. Go to https://formspree.io
 // 2. Create a new form
 // 3. Paste your form ID here: e.g. 'mkgoyoaa'
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+const FORMSPREE_ID = 'xkozbayj';
 
 // Subscribe Handler
 window.handleSubscribe = async function (event) {
@@ -284,7 +284,7 @@ window.handleSubscribe = async function (event) {
   btn.disabled = true;
 
   try {
-    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+    if (FORMSPREE_ID === 'xkozbayj') {
       alert("Developer Note: You need to create a free Formspree form to receive emails.\n\n1. Go to formspree.io\n2. Create form\n3. Update 'FORMSPREE_ID' in src/main.js");
       throw new Error('Formspree ID not set');
     }
