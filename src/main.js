@@ -968,6 +968,9 @@ function attachListeners() {
 // Make shareContent globally available for inline onclick handlers
 window.shareContent = shareContent;
 window.toggleLanguage = toggleLanguage;
+window.navigate = navigate;
+window.toggleMenu = toggleMenu;
+window.closeMenu = closeMenu;
 
 
 
