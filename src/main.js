@@ -204,6 +204,9 @@ function Home() {
                 <div class="card-overlay">
                   <h3>${city.name}</h3>
                   <p>${city.description}</p>
+                  <div style="margin-top: 15px;">
+                      <button class="btn-small">${t.bookHotel}</button>
+                  </div>
                 </div>
               </div>
               `
@@ -235,6 +238,9 @@ function Home() {
             <div class="card-content">
               <h3>${city.name}</h3>
               <p>${city.description}</p>
+              <div style="margin-top: 15px;">
+                  <button class="btn-small">${t.bookHotel}</button>
+              </div>
             </div>
           </div>
         `).join('')}
