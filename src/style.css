@@ -244,6 +244,20 @@ nav {
   flex-shrink: 0;
 }
 
+/* Featured card (Beijing 2x2) - image fills entire card */
+.span-2-row .card-image {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* Wide card (Shanghai 2x1) - taller image */
+.span-2-col:not(.span-2-row) .card-image {
+  height: 160px;
+}
+
 .card-image img {
   width: 100%;
   height: 100%;
