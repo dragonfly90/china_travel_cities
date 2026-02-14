@@ -22,7 +22,7 @@ export const content = {
             gearTitle: "Recommended Gear",
             gearSubtitle: "Essential items for your trip to China, curated from Amazon.",
             buyAmazon: "Buy on Amazon",
-            footer: "\u00A9 2024 China Travel Guide. All rights reserved. | Total Visits:",
+            footer: "\u00A9 2026 China Travel Guide. All rights reserved. | Total Visits:",
             nav: {
                 home: "Home",
                 tips: "Travel Tips",
@@ -185,8 +185,8 @@ export const content = {
         },
         travelTips: {
             visa: {
-                title: 'Visa Requirements',
-                content: 'US citizens need a visa. However, the **144-hour Visa-Free Transit** is available in major cities like Beijing, Shanghai, and Chengdu for transit passengers. As of 2024, the process for L-visa is simplified (no flight/hotel proof needed). Cost is ~$140.',
+                title: 'Visa Requirements (2026)',
+                content: 'China now offers <strong>30-day visa-free entry</strong> for 46 countries (most of Europe, Japan, S. Korea, Australia, NZ, Brazil, Argentina, and more) — extended through Dec 2026. Citizens of 55 countries (including the US, UK, and Canada) qualify for <strong>240-hour visa-free transit</strong> (10 days!) through 65 ports. For longer US stays, an L-visa costs ~$185. <a href="#" data-link="/visa" style="color: var(--primary-color);">See full visa guide →</a>',
             },
             transport: {
                 title: 'High-Speed Trains',
@@ -266,7 +266,7 @@ export const content = {
             gearTitle: "推荐装备",
             gearSubtitle: "中国旅行必备好物，精选自亚马逊。",
             buyAmazon: "亚马逊购买",
-            footer: "\u00A9 2024 中国旅游指南。保留所有权利。| 总访问量：",
+            footer: "\u00A9 2026 中国旅游指南。保留所有权利。| 总访问量：",
             nav: {
                 home: "首页",
                 tips: "旅游贴士",
@@ -429,8 +429,8 @@ export const content = {
         },
         travelTips: {
             visa: {
-                title: '签证要求',
-                content: '美国公民需要签证。但是，北京、上海和成都等主要城市为过境旅客提供**144小时过境免签**。2024年起，L签证流程已简化（无需机票/酒店证明）。费用约$140。',
+                title: '签证要求 (2026)',
+                content: '中国现在对<strong>46个国家</strong>（大部分欧洲国家、日本、韩国、澳大利亚、新西兰、巴西、阿根廷等）提供<strong>30天免签入境</strong>，有效期延至2026年底。<strong>55个国家</strong>（包括美国、英国和加拿大）公民可享受<strong>240小时过境免签</strong>（10天！），覆盖65个口岸。美国公民长期停留需L签证，费用约$185。<a href="#" data-link="/visa" style="color: var(--primary-color);">查看完整签证指南 →</a>',
             },
             transport: {
                 title: '高速铁路',

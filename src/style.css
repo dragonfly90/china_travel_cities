@@ -391,10 +391,22 @@ footer {
 
   .nav-links {
     display: none;
-    /* simple hide for now, kept logic same as before but styled differently */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    gap: 16px;
+    box-shadow: var(--shadow-hover);
   }
 
-  /* Re-add active logic if needed from prev css but kept simple for Bento task focus */
+  .nav-links.nav-active {
+    display: flex;
+  }
+
   .menu-toggle {
     display: block;
   }

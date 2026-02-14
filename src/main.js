@@ -5,6 +5,7 @@ import xhsPosts from './data/xhs.js'
 import flightDeals from './data/flights.js'
 import { content, bookingLink } from './data/destinations.js'
 import { hospitals, packages, guideSteps } from './data/medical.js'
+import visaData from './data/visa.js'
 
 // State
 let currentLang = localStorage.getItem('lang') || 'en';
@@ -19,7 +20,8 @@ const routes = {
   '/community': Community,
   '/guide': Guide,
   '/medical': MedicalGuide,
-  '/planner': ItineraryBuilder
+  '/planner': ItineraryBuilder,
+  '/visa': VisaGuide
 }
 
 const app = document.querySelector('#app')
@@ -64,6 +66,7 @@ function Header() {
           <div class="nav-links" id="nav-links">
             <a href="#" data-link="/" onclick="closeMenu()">${t.nav.home}</a>
             <a href="#" data-link="/guide" onclick="closeMenu()">Start Here</a>
+            <a href="#" data-link="/visa" onclick="closeMenu()">Visa Guide</a>
             <a href="#" data-link="/planner" onclick="closeMenu()">${t.nav.planner}</a>
             <a href="#" data-link="/tips" onclick="closeMenu()">${t.nav.tips}</a>
             <a href="#" data-link="/videos" onclick="closeMenu()">Videos</a>
@@ -599,12 +602,13 @@ function Guide() {
       <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">1. The "Big Three" Hurdles (Solved)</h2>
 
       <div style="margin-top: 20px;">
-        <h3>🛂 Visa: You Might Not Need One</h3>
-        <p>If you are from the US, UK, Canada, Aus, etc., check out the <strong>144-Hour Visa-Free Transit</strong>.</p>
+        <h3>🛂 Visa: You Probably Don't Need One (2026 Update!)</h3>
+        <p>China has dramatically opened up. Here's the latest:</p>
         <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
-          <li><strong>How it works</strong>: Fly A -> China -> B (A and B must be different countries).</li>
-          <li><strong>Where</strong>: Works in Beijing, Shanghai, Chengdu, Kunming, and many more.</li>
-          <li><strong>Tip</strong>: Great for a 6-day stopover to see the Great Wall or the Bund without the visa paperwork hassle.</li>
+          <li><strong>30-Day Visa-Free</strong>: Citizens of <strong>46 countries</strong> (most of Europe, Japan, S. Korea, Australia, NZ, Brazil, Argentina, etc.) can enter China visa-free for up to 30 days. Extended through Dec 2026.</li>
+          <li><strong>240-Hour Transit</strong>: Citizens of <strong>55 countries</strong> (including the US, UK, and Canada) can stay up to <strong>10 days</strong> visa-free when transiting through China. Fly A → China → B. Now covers 65 ports across 24 provinces.</li>
+          <li><strong>Digital Entry</strong>: Since Nov 2025, you can fill in arrival info online via the "NIA 12367" App before landing — skip the paper forms!</li>
+          <li><strong>Tip</strong>: <a href="#" data-link="/visa" style="color: var(--primary-color);">See our full Visa Guide</a> to check exactly what applies to your passport.</li>
         </ul>
       </div>
 
@@ -883,6 +887,180 @@ function MedicalGuide() {
   `
 }
 
+
+function VisaGuide() {
+  updateMeta("China Visa Guide 2026", "Complete guide to China's visa-free policies, 240-hour transit, and entry requirements.");
+
+  const allTransitCountries = [
+    ...visaData.transit240Hour.regions.europe,
+    ...visaData.transit240Hour.regions.americas,
+    ...visaData.transit240Hour.regions.oceania,
+    ...visaData.transit240Hour.regions.asia,
+  ];
+
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">China Visa Guide (2026 Edition)</h1>
+      <p class="fade-in" style="font-size: 1.1em; margin-bottom: 10px;">Last updated: ${visaData.lastUpdated}</p>
+      <p class="fade-in" style="margin-bottom: 40px; color: var(--text-secondary);">China has dramatically relaxed its visa policies. Most Western travelers can now visit without a traditional visa application.</p>
+
+      <!-- Quick Check -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 40px; border-left: 5px solid var(--primary-color);">
+        <h2 style="margin-bottom: 15px;">Quick Check: Do I Need a Visa?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+          <div style="padding: 20px; background: rgba(0,200,0,0.05); border-radius: 12px;">
+            <h3 style="color: #2d8a2d;">No Visa Needed (30 days)</h3>
+            <p style="margin-top: 8px;">If you hold a passport from: France, Germany, Italy, Spain, Netherlands, Australia, New Zealand, Japan, South Korea, Switzerland, and 36 more countries.</p>
+            <p style="margin-top: 8px; font-weight: bold;">Valid through Dec 31, 2026</p>
+          </div>
+          <div style="padding: 20px; background: rgba(0,100,200,0.05); border-radius: 12px;">
+            <h3 style="color: #2563eb;">240-Hour Transit (10 days)</h3>
+            <p style="margin-top: 8px;">If you hold a US, UK, or Canadian passport (and 52 more countries). Must have onward ticket to a third country.</p>
+            <p style="margin-top: 8px; font-weight: bold;">Perfect for stopovers!</p>
+          </div>
+          <div style="padding: 20px; background: rgba(200,100,0,0.05); border-radius: 12px;">
+            <h3 style="color: #d97706;">Visa Required</h3>
+            <p style="margin-top: 8px;">For stays over 30 days, or if your country is not on the lists above. Apply for an L-visa (tourist) at the nearest Chinese embassy.</p>
+            <p style="margin-top: 8px; font-weight: bold;">US L-visa: ~$185</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 30-Day Visa-Free -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 30px;">
+        <h2>30-Day Visa-Free Entry (46 Countries)</h2>
+        <p style="margin: 10px 0 20px; color: var(--text-secondary);">
+          Holders of ordinary passports from these countries can enter China for up to 30 days without a visa for tourism, business, family visits, exchange, and transit. Valid through <strong>December 31, 2026</strong>.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          ${visaData.visaFree30Day.countries.map(c => `
+            <span style="background: rgba(0,200,0,0.1); color: #2d8a2d; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 500;">${c}</span>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- 240-Hour Transit -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 30px;">
+        <h2>240-Hour Visa-Free Transit (55 Countries)</h2>
+        <p style="margin: 10px 0 5px; color: var(--text-secondary);">
+          Transit passengers from 55 countries can stay up to <strong>240 hours (10 days)</strong> when traveling through China to a third destination. Available at <strong>${visaData.transit240Hour.totalPorts} ports</strong> across <strong>${visaData.transit240Hour.totalProvinces} provinces</strong>.
+        </p>
+
+        <div style="background: rgba(0,100,200,0.05); padding: 15px; border-radius: 10px; margin: 15px 0;">
+          <h4>How It Works</h4>
+          <p style="margin-top: 5px;">Fly from Country A → Land in China (stay up to 10 days) → Continue to Country B. Country A and B must be different countries/regions.</p>
+        </div>
+
+        <h3 style="margin-top: 20px;">Eligible Countries by Region</h3>
+
+        <h4 style="margin-top: 15px; color: var(--primary-color);">Europe (40)</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+          ${visaData.transit240Hour.regions.europe.map(c => `
+            <span style="background: rgba(0,100,200,0.08); padding: 4px 12px; border-radius: 15px; font-size: 0.83em;">${c}</span>
+          `).join('')}
+        </div>
+
+        <h4 style="margin-top: 15px; color: var(--primary-color);">Americas (6)</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+          ${visaData.transit240Hour.regions.americas.map(c => `
+            <span style="background: rgba(0,100,200,0.08); padding: 4px 12px; border-radius: 15px; font-size: 0.83em;">${c}</span>
+          `).join('')}
+        </div>
+
+        <h4 style="margin-top: 15px; color: var(--primary-color);">Oceania (2)</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+          ${visaData.transit240Hour.regions.oceania.map(c => `
+            <span style="background: rgba(0,100,200,0.08); padding: 4px 12px; border-radius: 15px; font-size: 0.83em;">${c}</span>
+          `).join('')}
+        </div>
+
+        <h4 style="margin-top: 15px; color: var(--primary-color);">Asia (7)</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+          ${visaData.transit240Hour.regions.asia.map(c => `
+            <span style="background: rgba(0,100,200,0.08); padding: 4px 12px; border-radius: 15px; font-size: 0.83em;">${c}</span>
+          `).join('')}
+        </div>
+
+        <h3 style="margin-top: 25px;">Key Entry Ports</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 10px;">
+          ${visaData.transit240Hour.keyPorts.map(p => `
+            <div style="background: rgba(255,255,255,0.5); padding: 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.05);">
+              <strong>${p.city}</strong>
+              <p style="font-size: 0.83em; color: var(--text-secondary); margin-top: 4px;">${p.ports.join(', ')}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Bilateral -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 30px;">
+        <h2>Bilateral Visa Exemptions (Mutual)</h2>
+        <p style="margin: 10px 0 15px; color: var(--text-secondary);">These countries have mutual visa-free agreements with China.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px;">
+          ${visaData.bilateral.map(b => `
+            <div style="background: rgba(255,255,255,0.5); padding: 14px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.05);">
+              <strong>${b.country}</strong> — up to ${b.maxStay}
+              <p style="font-size: 0.82em; color: var(--text-secondary); margin-top: 4px;">${b.note}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- US/UK/Canada -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 30px;">
+        <h2>For US, UK & Canadian Travelers</h2>
+        <div class="info-grid" style="margin-top: 15px;">
+          <div class="info-card" style="border-top: 4px solid #3b82f6;">
+            <h3>🇺🇸 United States</h3>
+            <p style="margin-top: 10px;">${visaData.specificCountries.us.note}</p>
+            <div style="margin-top: 10px;">
+              <span style="background: rgba(0,200,0,0.1); color: #2d8a2d; padding: 4px 10px; border-radius: 10px; font-size: 0.8em;">240-Hour Transit</span>
+            </div>
+          </div>
+          <div class="info-card" style="border-top: 4px solid #ef4444;">
+            <h3>🇬🇧 United Kingdom</h3>
+            <p style="margin-top: 10px;">${visaData.specificCountries.uk.note}</p>
+            <div style="margin-top: 10px;">
+              <span style="background: rgba(0,200,0,0.1); color: #2d8a2d; padding: 4px 10px; border-radius: 10px; font-size: 0.8em;">240-Hour Transit</span>
+            </div>
+          </div>
+          <div class="info-card" style="border-top: 4px solid #dc2626;">
+            <h3>🇨🇦 Canada</h3>
+            <p style="margin-top: 10px;">${visaData.specificCountries.canada.note}</p>
+            <div style="margin-top: 10px;">
+              <span style="background: rgba(0,200,0,0.1); color: #2d8a2d; padding: 4px 10px; border-radius: 10px; font-size: 0.8em;">240-Hour Transit</span>
+              <span style="background: rgba(255,165,0,0.15); color: #d97706; padding: 4px 10px; border-radius: 10px; font-size: 0.8em; margin-left: 5px;">30-Day Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Special Policies -->
+      <div class="glass fade-in" style="padding: 30px; margin-bottom: 30px;">
+        <h2>Special Policies & Tips</h2>
+        <div style="margin-top: 15px;">
+          ${visaData.special.map(s => `
+            <div style="margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 10px; border-left: 3px solid var(--primary-color);">
+              <strong>${s.name}</strong>
+              <p style="margin-top: 5px; color: var(--text-secondary); font-size: 0.9em;">${s.desc}</p>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="fade-in" style="padding: 20px; background: rgba(255,165,0,0.08); border-radius: 12px; border: 1px solid rgba(255,165,0,0.2);">
+        <p style="font-size: 0.85em; color: var(--text-secondary);">
+          <strong>Disclaimer:</strong> Visa policies change frequently. Always verify current requirements with the
+          <a href="https://www.visaforchina.cn" target="_blank" style="color: var(--primary-color);">Chinese Visa Application Service Center</a>
+          or your nearest Chinese embassy before traveling. Last verified: ${visaData.lastUpdated}.
+        </p>
+      </div>
+    </section>
+    ${Footer()}
+  `;
+}
 
 function CommentSection(pageId) {
   return `
