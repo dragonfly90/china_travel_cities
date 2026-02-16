@@ -6,6 +6,7 @@
  * - https://english.www.gov.cn/news/202511/04/content_WS69094ae0c6d00ca5f9a07472.html
  * - https://www.chinadiscovery.com/chinese-visa/240-hour-visa-free-transit.html
  * - https://newlandchase.com/visa-free-entry-to-china-extended-through-2026/
+ * - https://en.nia.gov.cn/n147418/n147463/index.html (Official NIA Policy)
  */
 
 const visaData = {

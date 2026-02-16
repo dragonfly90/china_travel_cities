@@ -537,13 +537,106 @@ function VideoGallery() {
 
 function Community() {
   updateMeta("Community", "Latest discussions and travel tips from the China Travel community.");
+
+  const redditChannels = [
+    {
+      name: 'r/travelchina',
+      members: '68K+',
+      url: 'https://www.reddit.com/r/travelchina/',
+      desc: 'The main hub for China travel. Ask questions, share trip reports, get real-time advice on visa, apps, transport, and itineraries.',
+      topics: ['Trip reports', 'Visa help', 'App guides', 'Itinerary feedback', 'Photography'],
+      color: '#FF4500',
+    },
+    {
+      name: 'r/chinavisa',
+      members: '15K+',
+      url: 'https://www.reddit.com/r/chinavisa/',
+      desc: 'Dedicated to visa applications, 240-hour transit questions, work permits, and immigration policy updates.',
+      topics: ['Visa applications', '240-hour transit', 'Policy changes', 'Document help'],
+      color: '#0079D3',
+    },
+    {
+      name: 'r/China',
+      members: '500K+',
+      url: 'https://www.reddit.com/r/China/',
+      desc: 'General China discussion including expat life, news, culture, and travel. Good for deeper cultural context.',
+      topics: ['Expat life', 'Culture', 'News', 'Food', 'Language'],
+      color: '#FF6314',
+    },
+    {
+      name: 'r/solotravel',
+      members: '1.8M+',
+      url: 'https://www.reddit.com/r/solotravel/',
+      desc: 'Huge solo travel community with frequent China trip reports. Search "China" for hundreds of detailed posts.',
+      topics: ['Solo itineraries', 'Safety', 'Budget tips', 'Hostel reviews'],
+      color: '#46D160',
+    },
+    {
+      name: 'r/backpacking',
+      members: '3.4M+',
+      url: 'https://www.reddit.com/r/backpacking/',
+      desc: 'Adventure travel community. Popular posts about backpacking through Yunnan, Sichuan, and off-the-beaten-path China.',
+      topics: ['Multi-week itineraries', 'Budget travel', 'Gear', 'Trail reports'],
+      color: '#7B68EE',
+    },
+    {
+      name: 'r/travel',
+      members: '13M+',
+      url: 'https://www.reddit.com/r/travel/',
+      desc: 'The largest travel subreddit. China posts frequently hit the front page with stunning photography and detailed guides.',
+      topics: ['Trip reports', 'Photography', 'General advice', 'Flight deals'],
+      color: '#1A1A1B',
+    },
+  ];
+
+  const topicsSummary = [
+    { icon: '🛂', title: 'Visa & Entry', summary: 'The 240-hour transit and 30-day visa-free policies are the hottest topics. Travelers share step-by-step experiences at immigration, which ports work best, and common mistakes to avoid.' },
+    { icon: '💳', title: 'Payments & Apps', summary: 'Alipay with foreign card linking is the #1 recommendation. Travelers confirm it works everywhere from street vendors to metro. WeChat Pay as backup. The "NIA 12367" app for digital entry is gaining traction.' },
+    { icon: '🌐', title: 'Internet & VPN', summary: 'eSIMs (Airalo, Holafly) are now preferred over VPNs for bypassing the firewall. Travelers report they "just work" without configuration. Astrill remains the top VPN choice for those who need one.' },
+    { icon: '🚄', title: 'High-Speed Rail', summary: 'Universally praised as the best way to travel between cities. Trip.com app recommended for easy booking. Passport registration on 12306 app now supports English. Book G-trains for speed, D-trains for savings.' },
+    { icon: '🍜', title: 'Food & Culture', summary: 'Foodies rave about regional cuisine diversity. Chengdu and Chongqing dominate hotpot discussions. Street food is cheap and safe. Dianping (Chinese Yelp) is recommended for finding local restaurants.' },
+    { icon: '🏨', title: 'Accommodation', summary: 'Budget travelers recommend hostels via Trip.com or Booking.com. Many hotels now accept foreign passports without issues. Airbnb alternatives like Tujia exist but require Chinese phone number.' },
+  ];
+
   return `
       ${Header()}
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">Community & Social Buzz</h1>
     <p class="fade-in" style="margin-bottom: 30px;">See what travelers are saying on Reddit and Xiaohongshu (Little Red Book).</p>
 
-    <h2 class="fade-in">Reddit Discussions</h2>
+    <!-- Reddit Channels Directory -->
+    <h2 class="fade-in">Popular Reddit Channels</h2>
+    <p class="fade-in" style="margin-bottom: 20px; color: var(--text-secondary);">The best subreddits for planning your China trip, sorted by relevance.</p>
+    <div class="info-grid fade-in" style="margin-bottom: 40px;">
+      ${redditChannels.map(ch => `
+        <div class="info-card glass" style="border-top: 4px solid ${ch.color};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3><a href="${ch.url}" target="_blank" style="color: inherit; text-decoration: none;">${ch.name}</a></h3>
+            <span style="font-size: 0.8em; background: rgba(0,0,0,0.05); padding: 4px 10px; border-radius: 12px;">${ch.members} members</span>
+          </div>
+          <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9em;">${ch.desc}</p>
+          <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
+            ${ch.topics.map(t => `<span style="font-size: 0.75em; background: rgba(0,0,0,0.04); padding: 3px 8px; border-radius: 10px;">${t}</span>`).join('')}
+          </div>
+          <a href="${ch.url}" target="_blank" class="btn-small" style="margin-top: 15px; display: inline-block;">Visit Subreddit</a>
+        </div>
+      `).join('')}
+    </div>
+
+    <!-- Key Topics Summary -->
+    <h2 class="fade-in">What Travelers Are Talking About</h2>
+    <p class="fade-in" style="margin-bottom: 20px; color: var(--text-secondary);">Common themes across China travel subreddits, summarized.</p>
+    <div class="info-grid fade-in" style="margin-bottom: 50px;">
+      ${topicsSummary.map(t => `
+        <div class="info-card glass">
+          <div class="info-icon">${t.icon}</div>
+          <h3>${t.title}</h3>
+          <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9em; line-height: 1.6;">${t.summary}</p>
+        </div>
+      `).join('')}
+    </div>
+
+    <h2 class="fade-in">Top Reddit Discussions</h2>
     <div class="info-grid fade-in">
       ${communityPosts.map(post => `
             <div class="info-card glass">
@@ -903,7 +996,10 @@ function VisaGuide() {
     <section class="section container" style="margin-top: 80px;">
       <h1 class="fade-in">China Visa Guide (2026 Edition)</h1>
       <p class="fade-in" style="font-size: 1.1em; margin-bottom: 10px;">Last updated: ${visaData.lastUpdated}</p>
-      <p class="fade-in" style="margin-bottom: 40px; color: var(--text-secondary);">China has dramatically relaxed its visa policies. Most Western travelers can now visit without a traditional visa application.</p>
+      <p class="fade-in" style="margin-bottom: 20px; color: var(--text-secondary);">China has dramatically relaxed its visa policies. Most Western travelers can now visit without a traditional visa application.</p>
+      <p class="fade-in" style="margin-bottom: 40px;">
+        <a href="https://en.nia.gov.cn/n147418/n147463/index.html" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: underline;">Official NIA Policy Page (en.nia.gov.cn) →</a>
+      </p>
 
       <!-- Quick Check -->
       <div class="glass fade-in" style="padding: 30px; margin-bottom: 40px; border-left: 5px solid var(--primary-color);">
@@ -1053,7 +1149,8 @@ function VisaGuide() {
       <div class="fade-in" style="padding: 20px; background: rgba(255,165,0,0.08); border-radius: 12px; border: 1px solid rgba(255,165,0,0.2);">
         <p style="font-size: 0.85em; color: var(--text-secondary);">
           <strong>Disclaimer:</strong> Visa policies change frequently. Always verify current requirements with the
-          <a href="https://www.visaforchina.cn" target="_blank" style="color: var(--primary-color);">Chinese Visa Application Service Center</a>
+          <a href="https://en.nia.gov.cn/n147418/n147463/index.html" target="_blank" style="color: var(--primary-color); font-weight: 600;">National Immigration Administration (NIA)</a>,
+          the <a href="https://www.visaforchina.cn" target="_blank" style="color: var(--primary-color);">Chinese Visa Application Service Center</a>,
           or your nearest Chinese embassy before traveling. Last verified: ${visaData.lastUpdated}.
         </p>
       </div>
