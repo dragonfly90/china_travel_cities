@@ -3,12 +3,15 @@ import videos from './data/videos.js'
 import communityPosts from './data/community.js'
 import xhsPosts from './data/xhs.js'
 import flightDeals from './data/flights.js'
-import { content, bookingLink } from './data/destinations.js'
+import { content, bookingLink, costRanges } from './data/destinations.js'
+import { getTravelTime } from './data/travelTimes.js'
 import { hospitals, packages, guideSteps } from './data/medical.js'
 import visaData from './data/visa.js'
 
 // State
 let currentLang = localStorage.getItem('lang') || 'en';
+let currentFilter = 'all';
+let currentBudget = localStorage.getItem('budgetTier') || 'midRange';
 
 // Router
 const routes = {
@@ -683,85 +686,366 @@ function Community() {
 
 function Guide() {
   updateMeta("Simple Guide to China 2026", "A simple, practical guide for first-time travelers to China.");
+
+  const packingState = JSON.parse(localStorage.getItem('packingChecklist') || '{}');
+  const isChecked = (id) => packingState[id] ? 'checked' : '';
+  const checkedClass = (id) => packingState[id] ? 'checked' : '';
+
   return `
     ${Header()}
+    <div class="reading-progress" id="reading-progress" style="width: 0%;"></div>
   <section class="section container" style="margin-top: 80px;">
     <h1 class="fade-in">The Simple Guide to Traveling in China (2026 Edition)</h1>
 
-    <div class="glass fade-in" style="padding: 40px; margin-top: 30px;">
-      <p style="font-size: 1.1em; line-height: 1.6;">I’ve been seeing a lot of questions lately about traveling to China ("Is it hard?", "Do I need a visa?", "What apps do I need?"), so I aggregated the latest advice from our community and research into a simple, practical guide.</p>
-      <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">If you’ve been hesitant because of the "complexity," trust me: it’s easier than ever.</p>
+    <!-- Table of Contents -->
+    <div class="guide-toc fade-in" style="margin-top: 30px;">
+      <h3>Table of Contents</h3>
+      <a href="#section-big-three">1. The "Big Three" Hurdles (Solved)</a>
+      <a href="#section-where-to-go">2. Where to Go (Beyond Beijing)</a>
+      <a href="#section-apps">3. Essential Apps Checklist</a>
+      <a href="#section-arrival">4. Step-by-Step Arrival Guide</a>
+      <a href="#section-safety">5. Safety & Scam Awareness</a>
+      <a href="#section-food">6. Food Guide</a>
+      <a href="#section-phrases">7. Useful Chinese Phrases</a>
+      <a href="#section-packing">8. Packing Checklist</a>
+      <a href="#section-final-tips">9. Final Tips</a>
+    </div>
 
-      <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">1. The "Big Three" Hurdles (Solved)</h2>
+    <div class="glass fade-in" style="padding: 40px; margin-top: 20px;">
+      <p style="font-size: 1.1em; line-height: 1.6;">I've been seeing a lot of questions lately about traveling to China ("Is it hard?", "Do I need a visa?", "What apps do I need?"), so I aggregated the latest advice from our community and research into a simple, practical guide.</p>
+      <p style="font-size: 1.1em; line-height: 1.6; margin-top: 20px;">If you've been hesitant because of the "complexity," trust me: it's easier than ever.</p>
 
-      <div style="margin-top: 20px;">
-        <h3>🛂 Visa: You Probably Don't Need One (2026 Update!)</h3>
-        <p>China has dramatically opened up. Here's the latest:</p>
-        <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
-          <li><strong>30-Day Visa-Free</strong>: Citizens of <strong>46 countries</strong> (most of Europe, Japan, S. Korea, Australia, NZ, Brazil, Argentina, etc.) can enter China visa-free for up to 30 days. Extended through Dec 2026.</li>
-          <li><strong>240-Hour Transit</strong>: Citizens of <strong>55 countries</strong> (including the US, UK, and Canada) can stay up to <strong>10 days</strong> visa-free when transiting through China. Fly A → China → B. Now covers 65 ports across 24 provinces.</li>
-          <li><strong>Digital Entry</strong>: Since Nov 2025, you can fill in arrival info online via the "NIA 12367" App before landing — skip the paper forms!</li>
-          <li><strong>Tip</strong>: <a href="#" data-link="/visa" style="color: var(--primary-color);">See our full Visa Guide</a> to check exactly what applies to your passport.</li>
-        </ul>
-      </div>
+      <!-- Section 1: Big Three -->
+      <details class="guide-section" id="section-big-three" open>
+        <summary>1. The "Big Three" Hurdles (Solved)</summary>
+        <div class="section-content">
+          <div style="margin-top: 10px;">
+            <h3>🛂 Visa: You Probably Don't Need One (2026 Update!)</h3>
+            <p>China has dramatically opened up. Here's the latest:</p>
+            <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+              <li><strong>30-Day Visa-Free</strong>: Citizens of <strong>46 countries</strong> (most of Europe, Japan, S. Korea, Australia, NZ, Brazil, Argentina, etc.) can enter China visa-free for up to 30 days. Extended through Dec 2026.</li>
+              <li><strong>240-Hour Transit</strong>: Citizens of <strong>55 countries</strong> (including the US, UK, and Canada) can stay up to <strong>10 days</strong> visa-free when transiting through China. Fly A &rarr; China &rarr; B. Now covers 65 ports across 24 provinces.</li>
+              <li><strong>Digital Entry</strong>: Since Nov 2025, you can fill in arrival info online via the "NIA 12367" App before landing &mdash; skip the paper forms!</li>
+              <li><strong>Tip</strong>: <a href="#" data-link="/visa" style="color: var(--primary-color);">See our full Visa Guide</a> to check exactly what applies to your passport.</li>
+            </ul>
+          </div>
 
-      <div style="margin-top: 30px;">
-        <h3>💳 Payment: Cash is Dead(ish)</h3>
-        <p>You cannot survive on cash alone.</p>
-        <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
-          <li><strong>The Fix</strong>: Download <strong>Alipay</strong> or <strong>WeChat</strong>.</li>
-          <li><strong>Easy Mode</strong>: You can now link your <strong>foreign credit card</strong> (Visa/Mastercard) directly to Alipay. No Chinese bank account needed. It works for everything from subway rides to street food.</li>
-        </ul>
-      </div>
+          <div style="margin-top: 30px;">
+            <h3>💳 Payment: Cash is Dead(ish)</h3>
+            <p>You cannot survive on cash alone.</p>
+            <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+              <li><strong>The Fix</strong>: Download <strong>Alipay</strong> or <strong>WeChat</strong>.</li>
+              <li><strong>Easy Mode</strong>: You can now link your <strong>foreign credit card</strong> (Visa/Mastercard) directly to Alipay. No Chinese bank account needed. It works for everything from subway rides to street food.</li>
+            </ul>
+          </div>
 
-      <div style="margin-top: 30px;">
-        <h3>🌐 Internet: The Firewall</h3>
-        <p>Google, Instagram, and Reddit are blocked.</p>
-        <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
-          <li><strong>The Old Way</strong>: Buying a VPN (Astrill is the reliable one, others are hit-or-miss).</li>
-          <li><strong>The Better Way</strong>: Get an <strong>eSIM</strong> (like <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color);">Airalo</a> or Holafly) before you land. Roaming data bypasses the firewall automatically. You land, turn it on, and Instagram just works.</li>
-        </ul>
-      </div>
-
-      <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">2. Where to Go (Beyond Beijing)</h2>
-      <p>Based on recent videos and threads, here is a mix of the classics and the trending spots:</p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-          <h3 style="margin-top: 0;">The "Classics"</h3>
-          <p><strong>Beijing</strong>: Great Wall & Forbidden City. (History buff's dream).</p>
-          <p><strong>Shanghai</strong>: The "Blade Runner" city. Insane skylines meets colonial architecture.</p>
+          <div style="margin-top: 30px;">
+            <h3>🌐 Internet: The Firewall</h3>
+            <p>Google, Instagram, and Reddit are blocked.</p>
+            <ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px;">
+              <li><strong>The Old Way</strong>: Buying a VPN (Astrill is the reliable one, others are hit-or-miss).</li>
+              <li><strong>The Better Way</strong>: Get an <strong>eSIM</strong> (like <a href="https://airalo.pxf.io/nXq9WX" target="_blank" style="color: var(--primary-color);">Airalo</a> or Holafly) before you land. Roaming data bypasses the firewall automatically. You land, turn it on, and Instagram just works.</li>
+            </ul>
+          </div>
         </div>
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-          <h3 style="margin-top: 0;">The "Avatar" Mountains</h3>
-          <p><strong>Zhangjiajie</strong>: The inspiration for Pandora. The sandstone pillars are surreal. The glass bridge is terrifying but worth it.</p>
+      </details>
+
+      <!-- Section 2: Where to Go -->
+      <details class="guide-section" id="section-where-to-go" open>
+        <summary>2. Where to Go (Beyond Beijing)</summary>
+        <div class="section-content">
+          <p>Based on recent videos and threads, here is a mix of the classics and the trending spots:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div style="background: rgba(0,0,0,0.03); padding: 20px; border-radius: 10px;">
+              <h3 style="margin-top: 0;">The "Classics"</h3>
+              <p><strong>Beijing</strong>: Great Wall & Forbidden City. (History buff's dream).</p>
+              <p><strong>Shanghai</strong>: The "Blade Runner" city. Insane skylines meets colonial architecture.</p>
+            </div>
+            <div style="background: rgba(0,0,0,0.03); padding: 20px; border-radius: 10px;">
+              <h3 style="margin-top: 0;">The "Avatar" Mountains</h3>
+              <p><strong>Zhangjiajie</strong>: The inspiration for Pandora. The sandstone pillars are surreal. The glass bridge is terrifying but worth it.</p>
+            </div>
+            <div style="background: rgba(0,0,0,0.03); padding: 20px; border-radius: 10px;">
+              <h3 style="margin-top: 0;">The "Chill" Vibe</h3>
+              <p><strong>Kunming</strong>: The "City of Eternal Spring".</p>
+              <p><strong>Dali</strong>: A backpacker haven with pagodas, massive lakes, and a relaxed pace.</p>
+            </div>
+          </div>
         </div>
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-          <h3 style="margin-top: 0;">The "Chill" Vibe</h3>
-          <p><strong>Kunming</strong>: The "City of Eternal Spring".</p>
-          <p><strong>Dali</strong>: A backpacker haven with pagodas, massive lakes, and a relaxed pace.</p>
+      </details>
+
+      <!-- Section 3: Apps -->
+      <details class="guide-section" id="section-apps" open>
+        <summary>3. Essential Apps Checklist</summary>
+        <div class="section-content">
+          <p>Download these BEFORE you get on the plane:</p>
+          <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+            <li><strong>Alipay</strong>: For payments.</li>
+            <li><strong>Trip.com</strong>: For booking hotels and <strong>High-Speed Trains</strong> (easier than the official railway app).</li>
+            <li><strong>Apple Maps</strong>: Works great in China. (Google Maps is useless).</li>
+            <li><strong>Translate App</strong>: Google Translate (download offline Chinese) or DeepL.</li>
+          </ol>
         </div>
-      </div>
+      </details>
 
-      <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">3. Essential Apps Checklist</h2>
-      <p>Download these BEFORE you get on the plane:</p>
-      <ol style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
-        <li><strong>Alipay</strong>: For payments.</li>
-        <li><strong>Trip.com</strong>: For booking hotels and <strong>High-Speed Trains</strong> (easier than the official railway app).</li>
-        <li><strong>Apple Maps</strong>: Works great in China. (Google Maps is useless).</li>
-        <li><strong>Translate App</strong>: Google Translate (download offline Chinese) or DeepL.</li>
-      </ol>
+      <!-- Section 4: Arrival Guide (NEW) -->
+      <details class="guide-section" id="section-arrival">
+        <summary>4. Step-by-Step Arrival Guide</summary>
+        <div class="section-content">
+          <p>Here's exactly what to do when you land in China:</p>
+          <div style="margin-top: 16px;">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-body">
+                <h4>Immigration & Customs</h4>
+                <p>Have your passport, departure ticket (for 240-hour transit), and hotel address ready. Fill arrival card on NIA 12367 app beforehand. Lines can take 30-60 min at peak times.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-body">
+                <h4>Get a SIM / eSIM</h4>
+                <p>Best to set up an eSIM (Airalo, Holafly) before you fly. Otherwise buy a SIM at airport China Mobile counters. You need internet for Alipay and maps.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-body">
+                <h4>Set Up Alipay</h4>
+                <p>Open Alipay, link your Visa/Mastercard, verify your identity. This takes 5-10 minutes. You can do this while waiting for luggage. Test with a small purchase at the airport.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div class="step-body">
+                <h4>Get to the City</h4>
+                <p>Most major airports have direct metro/train links. Beijing: Airport Express. Shanghai: Maglev + Metro. Use Apple Maps for navigation. Taxi via Didi app is another option.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-number">5</div>
+              <div class="step-body">
+                <h4>Hotel Check-in</h4>
+                <p>Hotels will register your passport with local police (standard procedure, not alarming). Some budget hotels may not accept foreigners &mdash; book via Trip.com to be safe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
 
-      <h2 style="margin-top: 40px; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px;">Final Tips</h2>
-      <ul style="list-style-type: none; margin-top: 10px;">
-        <li style="margin-bottom: 10px;">🛑 <strong>Crowds</strong>: Avoid "Golden Week" (first week of Oct) and CNY unless you love chaos.</li>
-        <li style="margin-bottom: 10px;">🚄 <strong>Trains</strong>: The high-speed rail is faster and more comfortable than flying for 3-5 hour distances.</li>
-        <li style="margin-bottom: 10px;">🗣️ <strong>Language</strong>: The language barrier is real, but translation apps + younger people speaking English make it manageable.</li>
-      </ul>
+      <!-- Section 5: Safety (NEW) -->
+      <details class="guide-section" id="section-safety">
+        <summary>5. Safety & Scam Awareness</summary>
+        <div class="section-content">
+          <p>China is generally very safe for tourists, but be aware of these common scams:</p>
+          <div class="info-grid" style="margin-top: 16px;">
+            <div class="info-card" style="border-left: 4px solid #ff6b6b;">
+              <h4>Tea House Scam</h4>
+              <p>Friendly strangers invite you for "tea" at a nearby shop, then you get a bill for $100+. Decline invitations from strangers near tourist spots.</p>
+            </div>
+            <div class="info-card" style="border-left: 4px solid #ff6b6b;">
+              <h4>Art Student Scam</h4>
+              <p>"Art students" approach you to visit their "gallery" and pressure you into buying overpriced paintings. Common near The Bund and Tiananmen.</p>
+            </div>
+            <div class="info-card" style="border-left: 4px solid #ff6b6b;">
+              <h4>Fake Monks</h4>
+              <p>People dressed as monks ask for "donations" and give you a bracelet you didn't ask for. Real monks do not solicit money on the street.</p>
+            </div>
+            <div class="info-card" style="border-left: 4px solid #ff6b6b;">
+              <h4>Taxi Meter Tricks</h4>
+              <p>Some taxi drivers won't use the meter or take long routes. Always insist on the meter. Better yet, use Didi (China's Uber) for transparent pricing.</p>
+            </div>
+          </div>
+          <div style="margin-top: 20px; padding: 16px; background: rgba(230,0,18,0.05); border-radius: 10px;">
+            <h4>Emergency Numbers</h4>
+            <p style="margin-top: 8px;"><strong>110</strong> &mdash; Police &nbsp; | &nbsp; <strong>120</strong> &mdash; Ambulance &nbsp; | &nbsp; <strong>119</strong> &mdash; Fire &nbsp; | &nbsp; <strong>12301</strong> &mdash; Tourism Complaints Hotline</p>
+            <p style="margin-top: 8px; color: var(--text-secondary); font-size: 0.9rem;">China is one of the safest countries for solo travelers. Violent crime against tourists is extremely rare. Petty theft exists in crowded areas &mdash; keep valuables secure.</p>
+          </div>
+        </div>
+      </details>
 
-      <div style="text-align: center; margin-top: 40px;">
-        <button class="btn" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'}) || navigate('/')">Start Exploring Cities</button>
-      </div>
+      <!-- Section 6: Food Guide (NEW) -->
+      <details class="guide-section" id="section-food">
+        <summary>6. Food Guide</summary>
+        <div class="section-content">
+          <h4>How to Order Food</h4>
+          <ul style="list-style-type: disc; margin-left: 20px; margin-top: 8px; line-height: 1.8;">
+            <li><strong>QR Code Menus</strong>: Most restaurants have QR codes on tables. Scan with WeChat/Alipay to see menu with pictures and order directly.</li>
+            <li><strong>Picture Menus</strong>: Point at pictures! Many places have photo menus, especially in tourist areas.</li>
+            <li><strong>Dianping</strong>: China's Yelp. Search nearby restaurants, see ratings and photos. Most entries have pictures of every dish.</li>
+          </ul>
+
+          <h4 style="margin-top: 20px;">Regional Must-Try Dishes</h4>
+          <div class="food-grid">
+            <div class="food-card">
+              <div class="food-emoji">🥟</div>
+              <h4>Beijing Duck</h4>
+              <p>Crispy roast duck wrapped in thin pancakes</p>
+            </div>
+            <div class="food-card">
+              <div class="food-emoji">🍜</div>
+              <h4>Lanzhou Noodles</h4>
+              <p>Hand-pulled noodles in beef broth &mdash; found everywhere</p>
+            </div>
+            <div class="food-card">
+              <div class="food-emoji">🌶️</div>
+              <h4>Sichuan Hotpot</h4>
+              <p>Numbing spicy broth &mdash; a Chengdu/Chongqing essential</p>
+            </div>
+            <div class="food-card">
+              <div class="food-emoji">🫕</div>
+              <h4>Xiaolongbao</h4>
+              <p>Shanghai soup dumplings &mdash; careful, they're hot!</p>
+            </div>
+            <div class="food-card">
+              <div class="food-emoji">🍚</div>
+              <h4>Guilin Rice Noodles</h4>
+              <p>Silky noodles in savory broth with pickled beans</p>
+            </div>
+            <div class="food-card">
+              <div class="food-emoji">🥮</div>
+              <h4>Jianbing</h4>
+              <p>Street crepe with egg, sauce, crispy cracker &mdash; breakfast staple</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top: 20px;">Food Allergy Tips</h4>
+          <p style="margin-top: 8px;">Show these phrases to your server:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 8px; margin-top: 8px;">
+            <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center;"><strong>No peanuts</strong><br>&#x4E0D;&#x8981;&#x82B1;&#x751F; (b&ugrave; y&agrave;o hu&#x101;sh&#x113;ng)</div>
+            <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center;"><strong>No shellfish</strong><br>&#x4E0D;&#x8981;&#x8D1D;&#x7C7B; (b&ugrave; y&agrave;o b&egrave;il&egrave;i)</div>
+            <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center;"><strong>No gluten</strong><br>&#x4E0D;&#x8981;&#x9762;&#x7B4B; (b&ugrave; y&agrave;o mi&agrave;nj&#x12B;n)</div>
+            <div style="background: #fff; padding: 10px; border-radius: 8px; text-align: center;"><strong>Vegetarian</strong><br>&#x7D20;&#x98DF; (s&ugrave;sh&iacute;)</div>
+          </div>
+
+          <div style="margin-top: 16px; padding: 12px; background: rgba(0,200,0,0.05); border-radius: 8px;">
+            <strong>Street Food Safety</strong>: Chinese street food is generally safe. Look for stalls with high turnover (long queues = fresh food). Avoid pre-cut fruit from street carts in summer. Drink bottled or boiled water.
+          </div>
+        </div>
+      </details>
+
+      <!-- Section 7: Useful Phrases (NEW) -->
+      <details class="guide-section" id="section-phrases">
+        <summary>7. Useful Chinese Phrases</summary>
+        <div class="section-content">
+          <p>You don't need to speak Chinese, but these phrases help a lot:</p>
+          <div class="phrase-grid">
+            <div class="phrase-card">
+              <div class="english">Hello</div>
+              <div class="chinese">&#x4F60;&#x597D;</div>
+              <div class="pinyin">n&#x01D0; h&#x01CE;o</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Thank you</div>
+              <div class="chinese">&#x8C22;&#x8C22;</div>
+              <div class="pinyin">xi&egrave;xie</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">How much?</div>
+              <div class="chinese">&#x591A;&#x5C11;&#x94B1;&#xFF1F;</div>
+              <div class="pinyin">du&#x14D;shao qi&aacute;n?</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">I don't understand</div>
+              <div class="chinese">&#x6211;&#x542C;&#x4E0D;&#x61C2;</div>
+              <div class="pinyin">w&#x01D2; t&#x12B;ng b&ugrave; d&#x01D2;ng</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Where is...?</div>
+              <div class="chinese">...&#x5728;&#x54EA;&#x91CC;&#xFF1F;</div>
+              <div class="pinyin">...z&agrave;i n&#x01CE;l&#x01D0;?</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Bathroom</div>
+              <div class="chinese">&#x6D17;&#x624B;&#x95F4;</div>
+              <div class="pinyin">x&#x01D0;sh&#x01D2;uji&#x101;n</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Too expensive</div>
+              <div class="chinese">&#x592A;&#x8D35;&#x4E86;</div>
+              <div class="pinyin">t&agrave;i gu&igrave; le</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Delicious!</div>
+              <div class="chinese">&#x597D;&#x5403;&#xFF01;</div>
+              <div class="pinyin">h&#x01CE;och&#x12B;!</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">I'm allergic to...</div>
+              <div class="chinese">&#x6211;&#x5BF9;...&#x8FC7;&#x654F;</div>
+              <div class="pinyin">w&#x01D2; du&igrave;...gu&ograve;m&#x01D0;n</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Help!</div>
+              <div class="chinese">&#x6551;&#x547D;&#xFF01;</div>
+              <div class="pinyin">ji&ugrave;m&igrave;ng!</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">Check please</div>
+              <div class="chinese">&#x4E70;&#x5355;</div>
+              <div class="pinyin">m&#x01CE;id&#x101;n</div>
+            </div>
+            <div class="phrase-card">
+              <div class="english">I want this one</div>
+              <div class="chinese">&#x6211;&#x8981;&#x8FD9;&#x4E2A;</div>
+              <div class="pinyin">w&#x01D2; y&agrave;o zh&egrave;ge</div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Section 8: Packing Checklist (NEW) -->
+      <details class="guide-section" id="section-packing">
+        <summary>8. Packing Checklist</summary>
+        <div class="section-content">
+          <p>Interactive checklist &mdash; your selections are saved automatically.</p>
+          <div class="packing-grid">
+            <div class="packing-category">
+              <h4>Documents</h4>
+              <div class="packing-item ${checkedClass('pack-passport')}"><input type="checkbox" id="pack-passport" ${isChecked('pack-passport')}><label for="pack-passport">Passport (valid 6+ months)</label></div>
+              <div class="packing-item ${checkedClass('pack-visa')}"><input type="checkbox" id="pack-visa" ${isChecked('pack-visa')}><label for="pack-visa">Visa / Transit docs (if needed)</label></div>
+              <div class="packing-item ${checkedClass('pack-copies')}"><input type="checkbox" id="pack-copies" ${isChecked('pack-copies')}><label for="pack-copies">Photo copies of passport</label></div>
+              <div class="packing-item ${checkedClass('pack-insurance')}"><input type="checkbox" id="pack-insurance" ${isChecked('pack-insurance')}><label for="pack-insurance">Travel insurance printout</label></div>
+              <div class="packing-item ${checkedClass('pack-hotel')}"><input type="checkbox" id="pack-hotel" ${isChecked('pack-hotel')}><label for="pack-hotel">Hotel confirmations</label></div>
+              <div class="packing-item ${checkedClass('pack-flight')}"><input type="checkbox" id="pack-flight" ${isChecked('pack-flight')}><label for="pack-flight">Flight / train tickets</label></div>
+            </div>
+            <div class="packing-category">
+              <h4>Tech & Connectivity</h4>
+              <div class="packing-item ${checkedClass('pack-esim')}"><input type="checkbox" id="pack-esim" ${isChecked('pack-esim')}><label for="pack-esim">eSIM / SIM card (pre-purchased)</label></div>
+              <div class="packing-item ${checkedClass('pack-vpn')}"><input type="checkbox" id="pack-vpn" ${isChecked('pack-vpn')}><label for="pack-vpn">VPN installed (if not using eSIM)</label></div>
+              <div class="packing-item ${checkedClass('pack-alipay')}"><input type="checkbox" id="pack-alipay" ${isChecked('pack-alipay')}><label for="pack-alipay">Alipay downloaded & card linked</label></div>
+              <div class="packing-item ${checkedClass('pack-powerbank')}"><input type="checkbox" id="pack-powerbank" ${isChecked('pack-powerbank')}><label for="pack-powerbank">Power bank</label></div>
+              <div class="packing-item ${checkedClass('pack-adapter')}"><input type="checkbox" id="pack-adapter" ${isChecked('pack-adapter')}><label for="pack-adapter">Universal power adapter</label></div>
+              <div class="packing-item ${checkedClass('pack-translate')}"><input type="checkbox" id="pack-translate" ${isChecked('pack-translate')}><label for="pack-translate">Offline translation downloaded</label></div>
+            </div>
+            <div class="packing-category">
+              <h4>Essentials</h4>
+              <div class="packing-item ${checkedClass('pack-cash')}"><input type="checkbox" id="pack-cash" ${isChecked('pack-cash')}><label for="pack-cash">Some cash (CNY or USD to exchange)</label></div>
+              <div class="packing-item ${checkedClass('pack-meds')}"><input type="checkbox" id="pack-meds" ${isChecked('pack-meds')}><label for="pack-meds">Personal medications</label></div>
+              <div class="packing-item ${checkedClass('pack-tissue')}"><input type="checkbox" id="pack-tissue" ${isChecked('pack-tissue')}><label for="pack-tissue">Tissue packs (not all restrooms have TP)</label></div>
+              <div class="packing-item ${checkedClass('pack-daypack')}"><input type="checkbox" id="pack-daypack" ${isChecked('pack-daypack')}><label for="pack-daypack">Day backpack</label></div>
+              <div class="packing-item ${checkedClass('pack-shoes')}"><input type="checkbox" id="pack-shoes" ${isChecked('pack-shoes')}><label for="pack-shoes">Comfortable walking shoes</label></div>
+              <div class="packing-item ${checkedClass('pack-rain')}"><input type="checkbox" id="pack-rain" ${isChecked('pack-rain')}><label for="pack-rain">Rain jacket / umbrella</label></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Section 9: Final Tips -->
+      <details class="guide-section" id="section-final-tips" open>
+        <summary>9. Final Tips</summary>
+        <div class="section-content">
+          <ul style="list-style-type: none; margin-top: 10px;">
+            <li style="margin-bottom: 10px;">🛑 <strong>Crowds</strong>: Avoid "Golden Week" (first week of Oct) and CNY unless you love chaos.</li>
+            <li style="margin-bottom: 10px;">🚄 <strong>Trains</strong>: The high-speed rail is faster and more comfortable than flying for 3-5 hour distances.</li>
+            <li style="margin-bottom: 10px;">🗣️ <strong>Language</strong>: The language barrier is real, but translation apps + younger people speaking English make it manageable.</li>
+          </ul>
+
+          <div style="text-align: center; margin-top: 40px;">
+            <button class="btn" onclick="navigate('/')">Start Exploring Cities</button>
+          </div>
+        </div>
+      </details>
     </div>
     ${CommentSection('guide')}
   </section>
@@ -771,24 +1055,30 @@ function Guide() {
 
 
 
-// Itinerary State
+// Itinerary State — objects: [{id, days}, ...]
 function getItinerary() {
-  return JSON.parse(localStorage.getItem('myItinerary') || '[]');
+  const raw = JSON.parse(localStorage.getItem('myItinerary') || '[]');
+  // Migrate old string[] format to object[] format
+  if (raw.length > 0 && typeof raw[0] === 'string') {
+    const migrated = raw.map(id => ({ id, days: 2 }));
+    localStorage.setItem('myItinerary', JSON.stringify(migrated));
+    return migrated;
+  }
+  return raw;
 }
 
 function saveItinerary(itinerary) {
   localStorage.setItem('myItinerary', JSON.stringify(itinerary));
-  render(); // Re-render to update UI
+  render();
 }
 
 function addToItinerary(cityId) {
   const list = getItinerary();
-  // Prevent duplicates (optional, but good for MVP)
-  if (list.includes(cityId)) {
+  if (list.some(item => item.id === cityId)) {
     alert("City already in itinerary!");
     return;
   }
-  list.push(cityId);
+  list.push({ id: cityId, days: 2 });
   saveItinerary(list);
 }
 
@@ -808,17 +1098,99 @@ function moveItem(index, direction) {
   saveItinerary(list);
 }
 
+function updateDays(index, days) {
+  const list = getItinerary();
+  list[index].days = Math.max(1, Math.min(5, days));
+  saveItinerary(list);
+}
+
+function setBudgetTier(tier) {
+  currentBudget = tier;
+  localStorage.setItem('budgetTier', tier);
+  render();
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+  render();
+}
+
 function shareItinerary() {
   const list = getItinerary();
   if (list.length === 0) return;
 
-  // Create shareable text
   const d = content[currentLang].destinations;
   const allCities = [...d.main, ...d.small];
-  const cityNames = list.map(id => allCities.find(c => c.id === id)?.name || id).join(' -> ');
+  const t = content[currentLang].ui.planner;
+  const cityNames = list.map(item => {
+    const city = allCities.find(c => c.id === item.id);
+    return city ? `${city.name} (${item.days}${t.day})` : item.id;
+  }).join(' -> ');
   const text = `Check out my China trip plan: ${cityNames}`;
 
   shareContent(content[currentLang].ui.planner.title, text);
+}
+
+function loadTemplate(templateId) {
+  const t = content[currentLang].ui.planner;
+  if (getItinerary().length > 0 && !confirm(t.confirmTemplate)) return;
+
+  const templates = {
+    classic: [
+      { id: 'beijing', days: 3 },
+      { id: 'xian', days: 2 },
+      { id: 'chengdu', days: 2 },
+      { id: 'shanghai', days: 3 },
+    ],
+    foodie: [
+      { id: 'chengdu', days: 3 },
+      { id: 'chongqing', days: 2 },
+      { id: 'xian', days: 2 },
+      { id: 'guilin', days: 2 },
+    ],
+    explorer: [
+      { id: 'zhangjiajie', days: 2 },
+      { id: 'guilin', days: 2 },
+      { id: 'yangshuo', days: 2 },
+      { id: 'kunming', days: 2 },
+      { id: 'dali', days: 2 },
+    ],
+  };
+
+  saveItinerary(templates[templateId] || []);
+}
+
+function printItinerary() {
+  const d = content[currentLang].destinations;
+  const allCities = [...d.main, ...d.small];
+  const list = getItinerary();
+  const t = content[currentLang].ui.planner;
+  const totalDays = list.reduce((sum, item) => sum + item.days, 0);
+  const range = costRanges[currentBudget];
+  const costMin = totalDays * range.min;
+  const costMax = totalDays * range.max;
+
+  const html = `<!DOCTYPE html><html><head><title>${t.title}</title>
+    <style>body{font-family:system-ui,sans-serif;max-width:700px;margin:40px auto;padding:0 20px;color:#1d1d1f}
+    h1{color:#E60012;border-bottom:2px solid #E60012;padding-bottom:10px}
+    .stats{display:flex;gap:24px;margin:16px 0;font-size:0.9rem;color:#666}
+    .city{margin:20px 0;padding:16px;border-left:3px solid #E60012;background:#f8f8fa}
+    .city h3{margin:0 0 4px}.city p{margin:0;color:#666;font-size:0.9rem}
+    </style></head><body>
+    <h1>${t.title}</h1>
+    <div class="stats"><span>${list.length} ${t.cities}</span><span>${totalDays} ${t.totalDays}</span><span>${t.totalCost}: $${costMin}-$${costMax}</span></div>
+    ${list.map((item, i) => {
+      const city = allCities.find(c => c.id === item.id);
+      if (!city) return '';
+      return `<div class="city"><h3>${i + 1}. ${city.name} — ${item.days} ${item.days === 1 ? t.day : t.days}</h3><p>${city.description}</p></div>`;
+    }).join('')}
+    <p style="margin-top:30px;font-size:0.8rem;color:#999;">Generated by ChinaTravel Planner</p>
+    </body></html>`;
+
+  const w = window.open('', '_blank');
+  w.document.write(html);
+  w.document.close();
+  w.print();
 }
 
 // Make globally available
@@ -826,14 +1198,34 @@ window.addToItinerary = addToItinerary;
 window.removeFromItinerary = removeFromItinerary;
 window.moveItem = moveItem;
 window.shareItinerary = shareItinerary;
+window.updateDays = updateDays;
+window.setBudgetTier = setBudgetTier;
+window.setFilter = setFilter;
+window.loadTemplate = loadTemplate;
+window.printItinerary = printItinerary;
 
 
 function ItineraryBuilder() {
   const t = content[currentLang].ui.planner;
   const d = content[currentLang].destinations;
   const allCities = [...d.main, ...d.small];
-  const myItineraryIds = getItinerary();
-  const myItinerary = myItineraryIds.map(id => allCities.find(c => c.id === id)).filter(Boolean); // Filter out any invalid IDs
+  const myItinerary = getItinerary();
+  const resolvedItinerary = myItinerary.map(item => ({
+    ...item,
+    city: allCities.find(c => c.id === item.id)
+  })).filter(item => item.city);
+
+  const totalDays = myItinerary.reduce((sum, item) => sum + item.days, 0);
+  const range = costRanges[currentBudget];
+  const costMin = totalDays * range.min;
+  const costMax = totalDays * range.max;
+
+  // Filter cities
+  const filteredCities = currentFilter === 'all'
+    ? allCities
+    : allCities.filter(c => c.categories && c.categories.includes(currentFilter));
+
+  const categories = ['all', 'history', 'nature', 'food', 'culture', 'modern'];
 
   updateMeta(t.title, t.subtitle);
 
@@ -843,13 +1235,41 @@ function ItineraryBuilder() {
       <h1 class="fade-in">${t.title}</h1>
       <p class="fade-in">${t.subtitle}</p>
 
+      <!-- Quick Start Templates -->
+      <div class="fade-in" style="margin-top: 30px;">
+        <h3>${t.quickStart}</h3>
+        <div class="template-grid">
+          <div class="template-card" onclick="loadTemplate('classic')">
+            <h4>${t.classic}</h4>
+            <p>${t.classicDesc}</p>
+            <span class="btn-small" style="background: var(--primary-color); color: white;">${t.loadTemplate}</span>
+          </div>
+          <div class="template-card" onclick="loadTemplate('foodie')">
+            <h4>${t.foodie}</h4>
+            <p>${t.foodieDesc}</p>
+            <span class="btn-small" style="background: var(--primary-color); color: white;">${t.loadTemplate}</span>
+          </div>
+          <div class="template-card" onclick="loadTemplate('explorer')">
+            <h4>${t.explorer}</h4>
+            <p>${t.explorerDesc}</p>
+            <span class="btn-small" style="background: var(--primary-color); color: white;">${t.loadTemplate}</span>
+          </div>
+        </div>
+      </div>
+
       <div class="itinerary-container fade-in" style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 40px;">
-        
+
         <!-- Available Cities -->
         <div style="flex: 1; min-width: 300px;">
             <h3>${t.availableCities}</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
-                ${allCities.map(city => `
+            <!-- Category Filter -->
+            <div class="filter-bar">
+              ${categories.map(cat => `
+                <span class="btn-small ${currentFilter === cat ? 'active' : ''}" onclick="setFilter('${cat}')">${cat === 'all' ? t.allCategories : t[cat]}</span>
+              `).join('')}
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 10px;">
+                ${filteredCities.map(city => `
                     <div class="glass" style="padding: 15px; display: flex; flex-direction: column; align-items: center; text-align: center;">
                          <img src="${city.image}" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
                          <h4>${city.name}</h4>
@@ -863,30 +1283,80 @@ function ItineraryBuilder() {
 
         <!-- My Itinerary -->
         <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.5); padding: 20px; border-radius: 16px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <h3>${t.myTrip}</h3>
-                <button class="btn-small" onclick="shareItinerary()" style="background: var(--primary-color);">${t.share}</button>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn-small" onclick="printItinerary()" style="background: var(--text-main); color: white;">${t.printItinerary}</button>
+                  <button class="btn-small" onclick="shareItinerary()" style="background: var(--primary-color); color: white;">${t.share}</button>
+                </div>
             </div>
-            
-            ${myItinerary.length === 0 ? `<p style="margin-top: 20px; color: #666; font-style: italic;">${t.empty}</p>` : ''}
 
-            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
-                ${myItinerary.map((city, index) => `
-                    <div class="glass" style="padding: 15px; display: flex; align-items: center; gap: 15px;">
-                        <div style="font-weight: bold; background: var(--primary-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">${index + 1}</div>
-                        <img src="${city.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
-                        <div style="flex: 1;">
-                            <h4>${city.name}</h4>
-                            <div style="font-size: 0.8rem; color: #666;">${city.bestTime}</div>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <button onclick="moveItem(${index}, 'up')" style="border: none; background: none; cursor: pointer; opacity: 0.6;">⬆️</button>
-                            <button onclick="moveItem(${index}, 'down')" style="border: none; background: none; cursor: pointer; opacity: 0.6;">⬇️</button>
-                        </div>
-                        <button onclick="removeFromItinerary(${index})" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 10px;">❌</button>
-                    </div>
-                    ${index < myItinerary.length - 1 ? `<div style="text-align: center; color: var(--primary-color); font-size: 1.5rem;">⬇</div>` : ''}
-                `).join('')}
+            <!-- Stats Bar -->
+            ${resolvedItinerary.length > 0 ? `
+            <div class="planner-stats" style="margin-top: 16px;">
+              <div class="stat">
+                <span class="stat-value">${resolvedItinerary.length}</span>
+                <span class="stat-label">${t.cities}</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">${totalDays}</span>
+                <span class="stat-label">${t.totalDays}</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">$${costMin}-$${costMax}</span>
+                <span class="stat-label">${t.totalCost}</span>
+              </div>
+              <div style="margin-left: auto;">
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px;">${t.budgetTier}</div>
+                <div class="budget-selector">
+                  <span class="btn-small ${currentBudget === 'budget' ? 'active' : ''}" onclick="setBudgetTier('budget')">${t.budget}</span>
+                  <span class="btn-small ${currentBudget === 'midRange' ? 'active' : ''}" onclick="setBudgetTier('midRange')">${t.midRange}</span>
+                  <span class="btn-small ${currentBudget === 'luxury' ? 'active' : ''}" onclick="setBudgetTier('luxury')">${t.luxury}</span>
+                </div>
+              </div>
+            </div>
+            ` : ''}
+
+            ${resolvedItinerary.length === 0 ? `<p style="margin-top: 20px; color: #666; font-style: italic;">${t.empty}</p>` : ''}
+
+            <!-- Timeline -->
+            <div class="timeline" style="margin-top: 20px;">
+                ${resolvedItinerary.map((item, index) => {
+                  const city = item.city;
+                  // Travel time to next city
+                  let travelTimeHtml = '';
+                  if (index < resolvedItinerary.length - 1) {
+                    const nextCity = resolvedItinerary[index + 1].city;
+                    const hours = getTravelTime(city.id, nextCity.id);
+                    if (hours !== null) {
+                      travelTimeHtml = `
+                        <div class="timeline-connector">
+                          <span>${hours}h HSR</span> ${t.travelTime}
+                        </div>`;
+                    }
+                  }
+                  return `
+                    <div class="timeline-item">
+                      <div class="timeline-dot"></div>
+                      <div class="glass" style="padding: 15px; display: flex; align-items: center; gap: 15px;">
+                          <img src="${city.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                          <div style="flex: 1;">
+                              <h4>${city.name}</h4>
+                              <div class="day-stepper">
+                                <button onclick="updateDays(${index}, ${item.days - 1})">-</button>
+                                <span>${item.days} ${item.days === 1 ? t.day : t.days}</span>
+                                <button onclick="updateDays(${index}, ${item.days + 1})">+</button>
+                              </div>
+                          </div>
+                          <div style="display: flex; flex-direction: column; gap: 5px;">
+                              <button onclick="moveItem(${index}, 'up')" style="border: none; background: none; cursor: pointer; opacity: 0.6; font-size: 0.9rem;">&#9650;</button>
+                              <button onclick="moveItem(${index}, 'down')" style="border: none; background: none; cursor: pointer; opacity: 0.6; font-size: 0.9rem;">&#9660;</button>
+                          </div>
+                          <button onclick="removeFromItinerary(${index})" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-left: 5px; color: #999;">&times;</button>
+                      </div>
+                      ${travelTimeHtml}
+                    </div>`;
+                }).join('')}
             </div>
         </div>
 
@@ -1181,7 +1651,23 @@ function CommentSection(pageId) {
     `;
 }
 
-// Comment Logic
+// Comment Logic — migrate old localStorage keys with spaces
+function migrateCommentKeys() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('comments - ')) {
+      const pageId = key.replace('comments - ', '').trim();
+      const existing = JSON.parse(localStorage.getItem(`comments-${pageId}`) || '[]');
+      const old = JSON.parse(localStorage.getItem(key) || '[]');
+      if (old.length > 0) {
+        localStorage.setItem(`comments-${pageId}`, JSON.stringify([...existing, ...old]));
+        localStorage.removeItem(key);
+      }
+    }
+  }
+}
+migrateCommentKeys();
+
 window.handleCommentSubmit = function (event, pageId) {
   event.preventDefault();
   const form = event.target;
@@ -1190,9 +1676,9 @@ window.handleCommentSubmit = function (event, pageId) {
   const date = new Date().toLocaleDateString();
 
   const comment = { name, text, date };
-  const comments = JSON.parse(localStorage.getItem(`comments - ${pageId} `) || '[]');
+  const comments = JSON.parse(localStorage.getItem(`comments-${pageId}`) || '[]');
   comments.push(comment);
-  localStorage.setItem(`comments - ${pageId} `, JSON.stringify(comments));
+  localStorage.setItem(`comments-${pageId}`, JSON.stringify(comments));
 
   renderComments(pageId);
   form.reset();
@@ -1200,16 +1686,16 @@ window.handleCommentSubmit = function (event, pageId) {
 };
 
 function renderComments(pageId) {
-  const list = document.getElementById(`comments - list - ${pageId} `);
+  const list = document.getElementById(`comments-list-${pageId}`);
   if (!list) return;
 
-  const comments = JSON.parse(localStorage.getItem(`comments - ${pageId} `) || '[]');
+  const comments = JSON.parse(localStorage.getItem(`comments-${pageId}`) || '[]');
   if (comments.length === 0) {
     list.innerHTML = '<p style="color: #666; font-style: italic;">No comments yet. Be the first!</p>';
     return;
   }
 
-  list.innerHTML = comments.map(c => `
+  list.innerHTML = [...comments].reverse().map(c => `
     <div style="border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <strong style="color: var(--primary-color);">${c.name}</strong>
@@ -1217,7 +1703,7 @@ function renderComments(pageId) {
             </div>
             <p style="margin: 0;">${c.text}</p>
         </div>
-    `).join('').split('\n').reverse().join('\n'); // Show newest first (simple reverse hack)
+    `).join('');
 }
 
 function attachListeners() {
@@ -1233,6 +1719,35 @@ function attachListeners() {
       navigate(`/city/${card.getAttribute('data-city')}`)
     })
   })
+
+  // Load comments for any comment section on the page
+  document.querySelectorAll('[id^="comments-list-"]').forEach(el => {
+    const pageId = el.id.replace('comments-list-', '');
+    renderComments(pageId);
+  });
+
+  // Reading progress bar (Guide page only)
+  const progressBar = document.getElementById('reading-progress');
+  if (progressBar) {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    };
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+  }
+
+  // Packing checklist persistence
+  document.querySelectorAll('.packing-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const packingState = JSON.parse(localStorage.getItem('packingChecklist') || '{}');
+      packingState[cb.id] = cb.checked;
+      localStorage.setItem('packingChecklist', JSON.stringify(packingState));
+      cb.closest('.packing-item').classList.toggle('checked', cb.checked);
+    });
+  });
 
   // Header scroll effect
   window.addEventListener('scroll', () => {

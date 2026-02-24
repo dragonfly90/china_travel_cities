@@ -1,5 +1,11 @@
 export const bookingLink = 'https://www.trip.com/?Allianceid=7659513&SID=286708661&trip_sub1=&trip_sub3=D9560539';
 
+export const costRanges = {
+    budget: { min: 50, max: 80 },
+    midRange: { min: 150, max: 200 },
+    luxury: { min: 300, max: 500 },
+};
+
 export const content = {
     en: {
         ui: {
@@ -38,7 +44,32 @@ export const content = {
                 empty: "Your itinerary is empty. Add cities from the list!",
                 share: "Share Itinerary",
                 totalDays: "Total Days",
-                availableCities: "Available Destinations"
+                availableCities: "Available Destinations",
+                days: "days",
+                day: "day",
+                cities: "Cities",
+                totalCost: "Est. Cost",
+                budget: "Budget",
+                midRange: "Mid-Range",
+                luxury: "Luxury",
+                quickStart: "Quick Start Templates",
+                printItinerary: "Print",
+                travelTime: "Travel Time",
+                budgetTier: "Budget Tier",
+                allCategories: "All",
+                history: "History",
+                nature: "Nature",
+                food: "Food",
+                culture: "Culture",
+                modern: "Modern",
+                loadTemplate: "Use This Template",
+                classic: "Classic 10-Day",
+                classicDesc: "Beijing, Xi'an, Chengdu, Shanghai — the essential China experience.",
+                foodie: "Foodie Route",
+                foodieDesc: "Chengdu, Chongqing, Xi'an, Guilin — eat your way through China.",
+                explorer: "Nature Explorer",
+                explorerDesc: "Zhangjiajie, Guilin, Yangshuo, Kunming, Dali — mountains and rivers.",
+                confirmTemplate: "This will replace your current itinerary. Continue?"
             }
         },
         destinations: {
@@ -50,6 +81,7 @@ export const content = {
                     description: 'The political and cultural heart of China, featuring the Great Wall and Forbidden City.',
                     highlights: ['Great Wall', 'Forbidden City', 'Temple of Heaven', 'Hutongs'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
+                    categories: ['history', 'culture'],
                 },
                 {
                     id: 'shanghai',
@@ -58,6 +90,7 @@ export const content = {
                     description: 'A global financial hub with a futuristic skyline and colonial-era architecture.',
                     highlights: ['The Bund', 'Yu Garden', 'Shanghai Tower', 'French Concession'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['modern', 'culture'],
                 },
                 {
                     id: 'xian',
@@ -66,6 +99,7 @@ export const content = {
                     description: 'The starting point of the Silk Road and home to the Terracotta Warriors.',
                     highlights: ['Terracotta Warriors', 'Ancient City Wall', 'Muslim Quarter', 'Giant Wild Goose Pagoda'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['history', 'culture', 'food'],
                 },
                 {
                     id: 'chengdu',
@@ -74,6 +108,7 @@ export const content = {
                     description: 'Famous for Giant Pandas and spicy Sichuan cuisine.',
                     highlights: ['Panda Base', 'Jinli Ancient Street', 'Leshan Giant Buddha'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['food', 'culture', 'nature'],
                 },
                 {
                     id: 'chongqing',
@@ -82,6 +117,7 @@ export const content = {
                     description: 'The "Cyberpunk 8D City" famous for its hotpot, monorails through buildings, and mountainscapes.',
                     highlights: ['Hongya Cave', 'Liziba Station (Train through building)', 'Yangtze River Cableway', 'Hotpot'],
                     bestTime: 'Spring and Autumn (Avoid Summer heat)',
+                    categories: ['food', 'modern', 'culture'],
                 },
                 {
                     id: 'hangzhou',
@@ -90,6 +126,7 @@ export const content = {
                     description: 'Famous for the West Lake and being the "Heaven on Earth".',
                     highlights: ['West Lake', 'Lingyin Temple', 'Longjing Tea Plantations', 'Leifeng Pagoda'],
                     bestTime: 'Spring (March-May) and Autumn',
+                    categories: ['nature', 'culture', 'history'],
                 },
                 {
                     id: 'harbin',
@@ -98,6 +135,7 @@ export const content = {
                     description: 'The "Ice City" known for its massive Ice & Snow Festival and Russian architecture.',
                     highlights: ['Ice and Snow World', 'Saint Sophia Cathedral', 'Central Street', 'Sun Island'],
                     bestTime: 'Winter (Dec-Feb) for Ice Festival',
+                    categories: ['culture', 'nature'],
                 },
                 {
                     id: 'suzhou',
@@ -106,6 +144,7 @@ export const content = {
                     description: 'Known as the "Venice of the East", famous for its classical gardens and canals.',
                     highlights: ['Humble Administrator\'s Garden', 'Tiger Hill', 'Pingjiang Road', 'Suzhou Museum'],
                     bestTime: 'Spring (April-May) and Autumn (September-October)',
+                    categories: ['history', 'culture', 'nature'],
                 },
                 {
                     id: 'xiamen',
@@ -114,6 +153,7 @@ export const content = {
                     description: 'A coastal city known for Gulangyu Island and colonial architecture.',
                     highlights: ['Gulangyu Island', 'Nanputuo Temple', 'Xiamen University', 'Zhongshan Road'],
                     bestTime: 'Autumn and Winter',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'guilin',
@@ -122,6 +162,7 @@ export const content = {
                     description: 'Famous for its dramatic karst landscape and the Li River cruise.',
                     highlights: ['Li River Cruise', 'Elephant Trunk Hill', 'Reed Flute Cave', 'Longji Rice Terraces'],
                     bestTime: 'April to October',
+                    categories: ['nature'],
                 },
                 {
                     id: 'kunming',
@@ -130,6 +171,7 @@ export const content = {
                     description: 'The "City of Eternal Spring", gateway to Yunnan and home to the Stone Forest.',
                     highlights: ['Stone Forest', 'Green Lake', 'Dianchi Lake', 'Flower Market'],
                     bestTime: 'All year round (Eternal Spring)',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'zhangjiajie',
@@ -138,6 +180,7 @@ export const content = {
                     description: 'Surreal sandstone pillars that inspired the floating mountains in Avatar.',
                     highlights: ['National Forest Park', 'Tianmen Mountain', 'Grand Canyon Glass Bridge'],
                     bestTime: 'April-May and September-October',
+                    categories: ['nature'],
                 },
                 {
                     id: 'hainan',
@@ -146,6 +189,7 @@ export const content = {
                     description: "The 'Hawaii of China', a tropical paradise with pristine beaches and luxury resorts.",
                     highlights: ['Sanya Bay', 'Yalong Bay', 'Nanshan Temple', 'Wuzhizhou Island'],
                     bestTime: 'October to March',
+                    categories: ['nature'],
                 }
             ],
             small: [
@@ -156,6 +200,7 @@ export const content = {
                     description: 'A backpacker haven with the Three Pagodas, Erhai Lake, and Cangshan Mountain.',
                     highlights: ['Dali Ancient City', 'Erhai Lake', 'Three Pagodas', 'Cangshan'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'yangshuo',
@@ -164,6 +209,7 @@ export const content = {
                     description: 'Breathtaking karst mountains and serene rivers.',
                     highlights: ['Li River Rafting', 'Moon Hill', 'West Street'],
                     bestTime: 'April to October',
+                    categories: ['nature'],
                 },
                 {
                     id: 'lijiang',
@@ -172,6 +218,7 @@ export const content = {
                     description: 'A UNESCO World Heritage ancient town with rich Naxi culture.',
                     highlights: ['Lijiang Ancient Town', 'Jade Dragon Snow Mountain', 'Black Dragon Pool'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['culture', 'history', 'nature'],
                 },
                 {
                     id: 'fenghuang',
@@ -180,6 +227,7 @@ export const content = {
                     description: 'An ancient town built on stilts along the Tuo River.',
                     highlights: ['Ancient Town', 'Boating on Tuo River', 'Night View'],
                     bestTime: 'Spring and Autumn',
+                    categories: ['history', 'culture'],
                 }
             ]
         },
@@ -282,7 +330,32 @@ export const content = {
                 empty: "您的行程为空。请从列表中添加城市！",
                 share: "分享行程",
                 totalDays: "总天数",
-                availableCities: "可选目的地"
+                availableCities: "可选目的地",
+                days: "天",
+                day: "天",
+                cities: "城市",
+                totalCost: "预估费用",
+                budget: "经济",
+                midRange: "中档",
+                luxury: "豪华",
+                quickStart: "快速模板",
+                printItinerary: "打印",
+                travelTime: "路程时间",
+                budgetTier: "预算级别",
+                allCategories: "全部",
+                history: "历史",
+                nature: "自然",
+                food: "美食",
+                culture: "文化",
+                modern: "现代",
+                loadTemplate: "使用此模板",
+                classic: "经典10日游",
+                classicDesc: "北京、西安、成都、上海 — 必游中国经典路线。",
+                foodie: "美食之旅",
+                foodieDesc: "成都、重庆、西安、桂林 — 吃遍中国。",
+                explorer: "自然探险",
+                explorerDesc: "张家界、桂林、阳朔、昆明、大理 — 山水之旅。",
+                confirmTemplate: "这将替换您当前的行程。是否继续？"
             }
         },
         destinations: {
@@ -294,6 +367,7 @@ export const content = {
                     description: '中国的首都，融合了古老的历史与现代的创新。',
                     highlights: ['长城', '紫禁城', '天坛', '胡同'],
                     bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
+                    categories: ['history', 'culture'],
                 },
                 {
                     id: 'shanghai',
@@ -302,6 +376,7 @@ export const content = {
                     description: '全球金融中心，拥有未来感的天际线和殖民时代的建筑。',
                     highlights: ['外滩', '豫园', '上海中心大厦', '法租界'],
                     bestTime: '春季和秋季',
+                    categories: ['modern', 'culture'],
                 },
                 {
                     id: 'xian',
@@ -310,6 +385,7 @@ export const content = {
                     description: '丝绸之路的起点，兵马俑的故乡。',
                     highlights: ['兵马俑', '古城墙', '回民街', '大雁塔'],
                     bestTime: '春季和秋季',
+                    categories: ['history', 'culture', 'food'],
                 },
                 {
                     id: 'chengdu',
@@ -318,38 +394,43 @@ export const content = {
                     description: '以大熊猫和辛辣的川菜闻名。',
                     highlights: ['熊猫基地', '锦里古街', '乐山大佛'],
                     bestTime: '春季和秋季',
+                    categories: ['food', 'culture', 'nature'],
                 },
                 {
                     id: 'chongqing',
                     name: '重庆',
                     image: 'https://images.unsplash.com/photo-1628588889981-d2f62799342c?auto=format&fit=crop&w=800&q=80',
-                    description: '“8D魔幻城市”，以火锅、轻轨穿楼和山景夜景闻名。',
+                    description: '"8D魔幻城市"，以火锅、轻轨穿楼和山景夜景闻名。',
                     highlights: ['洪崖洞', '李子坝轻轨', '长江索道', '火锅'],
                     bestTime: '春季和秋季 (避开夏季高温)',
+                    categories: ['food', 'modern', 'culture'],
                 },
                 {
                     id: 'hangzhou',
                     name: '杭州',
                     image: 'https://images.unsplash.com/photo-1629734346875-520f92265077?auto=format&fit=crop&w=800&q=80',
-                    description: '以美丽的西湖闻名，被誉为“人间天堂”。',
+                    description: '以美丽的西湖闻名，被誉为"人间天堂"。',
                     highlights: ['西湖', '灵隐寺', '龙井茶园', '雷峰塔'],
                     bestTime: '春季 (3-5月) 和 秋季',
+                    categories: ['nature', 'culture', 'history'],
                 },
                 {
                     id: 'harbin',
                     name: '哈尔滨',
                     image: 'https://plus.unsplash.com/premium_photo-1661908920197-03657754b238?auto=format&fit=crop&w=800&q=80',
-                    description: '“冰城”，以盛大的冰雪节和俄罗斯风情建筑闻名。',
+                    description: '"冰城"，以盛大的冰雪节和俄罗斯风情建筑闻名。',
                     highlights: ['冰雪大世界', '圣索菲亚教堂', '中央大街', '太阳岛'],
                     bestTime: '冬季 (12-2月) 体验冰雪节',
+                    categories: ['culture', 'nature'],
                 },
                 {
                     id: 'suzhou',
                     name: '苏州',
                     image: 'https://images.unsplash.com/photo-1582650803869-c3aa274d4b36?auto=format&fit=crop&w=800&q=80',
-                    description: '被誉为“东方威尼斯”，以古典园林和运河闻名。',
+                    description: '被誉为"东方威尼斯"，以古典园林和运河闻名。',
                     highlights: ['拙政园', '虎丘', '平江路', '苏州博物馆'],
                     bestTime: '春季 (4-5月) 和 秋季 (9-10月)',
+                    categories: ['history', 'culture', 'nature'],
                 },
                 {
                     id: 'xiamen',
@@ -358,6 +439,7 @@ export const content = {
                     description: '以鼓浪屿和殖民建筑闻名的海滨城市。',
                     highlights: ['鼓浪屿', '南普陀寺', '厦门大学', '中山路'],
                     bestTime: '秋季和冬季',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'guilin',
@@ -366,14 +448,16 @@ export const content = {
                     description: '以其壮观的喀斯特地貌和漓江游船闻名。',
                     highlights: ['漓江游船', '象鼻山', '芦笛岩', '龙脊梯田'],
                     bestTime: '4月至10月',
+                    categories: ['nature'],
                 },
                 {
                     id: 'kunming',
                     name: '昆明',
                     image: 'https://images.unsplash.com/photo-1549557488-8422176472d4?auto=format&fit=crop&w=800&q=80',
-                    description: '“春城”，通往云南的门户，石林的所在地。',
+                    description: '"春城"，通往云南的门户，石林的所在地。',
                     highlights: ['石林', '翠湖', '滇池', '花市'],
                     bestTime: '全年 (四季如春)',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'zhangjiajie',
@@ -382,6 +466,7 @@ export const content = {
                     description: '超现实的砂岩柱，阿凡达悬浮山的灵感来源。',
                     highlights: ['国家森林公园', '天门山', '大峡谷玻璃桥'],
                     bestTime: '4-5月 和 9-10月',
+                    categories: ['nature'],
                 },
                 {
                     id: 'hainan',
@@ -390,6 +475,7 @@ export const content = {
                     description: "中国的夏威夷，拥有原始海滩和豪华度假村的热带天堂。",
                     highlights: ['三亚湾', '亚龙湾', '南山寺', '蜈支洲岛'],
                     bestTime: '10月至3月',
+                    categories: ['nature'],
                 }
             ],
             small: [
@@ -400,6 +486,7 @@ export const content = {
                     description: '背包客的天堂，拥有三塔、洱海和苍山。',
                     highlights: ['大理古城', '洱海', '三塔', '苍山'],
                     bestTime: '春季和秋季',
+                    categories: ['nature', 'culture'],
                 },
                 {
                     id: 'yangshuo',
@@ -408,6 +495,7 @@ export const content = {
                     description: '令人惊叹的喀斯特山脉和宁静的河流。',
                     highlights: ['遇龙河漂流', '月亮山', '西街'],
                     bestTime: '4月至10月',
+                    categories: ['nature'],
                 },
                 {
                     id: 'lijiang',
@@ -416,6 +504,7 @@ export const content = {
                     description: '拥有丰富纳西文化的联合国教科文组织世界遗产古镇。',
                     highlights: ['丽江古城', '玉龙雪山', '黑龙潭'],
                     bestTime: '春季和秋季',
+                    categories: ['culture', 'history', 'nature'],
                 },
                 {
                     id: 'fenghuang',
@@ -423,6 +512,7 @@ export const content = {
                     image: 'https://images.unsplash.com/photo-1616216432657-3f3366059d0b?auto=format&fit=crop&w=800&q=80',
                     description: '沱江边上的吊脚楼古镇。',
                     highlights: ['凤凰古城', '沱江泛舟', '夜景'],
+                    categories: ['history', 'culture'],
                     bestTime: '春季和秋季',
                 }
             ]
