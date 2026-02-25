@@ -878,6 +878,36 @@ footer {
   color: var(--text-secondary);
 }
 
+/* ===== Food Page: Cuisine Cards & Dish Tags ===== */
+.cuisine-card {
+  transition: var(--transition);
+}
+
+.cuisine-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.spice-level {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dish-tag {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  cursor: default;
+}
+
+.dish-tag:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
 /* ===== Active btn-small variant ===== */
 .btn-small.active {
   background: var(--text-main);

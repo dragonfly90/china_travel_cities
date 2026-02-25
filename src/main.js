@@ -7,6 +7,7 @@ import { content, bookingLink, costRanges } from './data/destinations.js'
 import { getTravelTime } from './data/travelTimes.js'
 import { hospitals, packages, guideSteps } from './data/medical.js'
 import visaData from './data/visa.js'
+import { regionalCuisines, streetFood, restaurantTypes, foodTips } from './data/food.js'
 
 // State
 let currentLang = localStorage.getItem('lang') || 'en';
@@ -24,7 +25,8 @@ const routes = {
   '/guide': Guide,
   '/medical': MedicalGuide,
   '/planner': ItineraryBuilder,
-  '/visa': VisaGuide
+  '/visa': VisaGuide,
+  '/food': ChineseFood
 }
 
 const app = document.querySelector('#app')
@@ -69,6 +71,7 @@ function Header() {
           <div class="nav-links" id="nav-links">
             <a href="#" data-link="/" onclick="closeMenu()">${t.nav.home}</a>
             <a href="#" data-link="/guide" onclick="closeMenu()">Start Here</a>
+            <a href="#" data-link="/food" onclick="closeMenu()">Food Guide</a>
             <a href="#" data-link="/visa" onclick="closeMenu()">Visa Guide</a>
             <a href="#" data-link="/planner" onclick="closeMenu()">${t.nav.planner}</a>
             <a href="#" data-link="/tips" onclick="closeMenu()">${t.nav.tips}</a>
@@ -1627,6 +1630,95 @@ function VisaGuide() {
     </section>
     ${Footer()}
   `;
+}
+
+function ChineseFood() {
+  updateMeta("Chinese Food Guide", "Explore China's 8 great cuisines, street food, restaurant types, and dining etiquette.");
+
+  const spiceIndicator = (level) => {
+    return '🌶️'.repeat(level) + '<span style="opacity:0.2">' + '🌶️'.repeat(5 - level) + '</span>';
+  };
+
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">The Ultimate Chinese Food Guide</h1>
+      <p class="fade-in" style="font-size: 1.1em; margin-bottom: 10px;">
+        China has one of the world's richest and most diverse food cultures. Every province has its own flavors, techniques, and iconic dishes.
+        This guide covers the <strong>8 Great Cuisines</strong>, must-try <strong>street food</strong>, restaurant types, and essential dining etiquette.
+      </p>
+      <p class="fade-in" style="color: var(--text-secondary); margin-bottom: 40px;">Pro tip: The best food in China is almost never in tourist areas. Follow the locals.</p>
+
+      <!-- 8 Great Cuisines -->
+      <h2 class="fade-in" style="margin-top: 40px;">🍜 The 8 Great Cuisines of China</h2>
+      <p class="fade-in" style="margin-bottom: 20px;">China's culinary traditions are formally classified into eight regional schools, each with distinct flavors, techniques, and signature dishes.</p>
+      <div class="info-grid fade-in">
+        ${regionalCuisines.map(c => `
+          <div class="info-card glass cuisine-card" style="border-left: 4px solid ${c.color};">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+              <div>
+                <span style="font-size: 2rem;">${c.emoji}</span>
+                <h3 style="margin-top: 8px;">${c.name}</h3>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">${c.region} · Best in <strong>${c.city}</strong></span>
+              </div>
+              <div class="spice-level" title="Spice Level ${c.spiceLevel}/5">${spiceIndicator(c.spiceLevel)}</div>
+            </div>
+            <p style="margin: 12px 0;">${c.description}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;">
+              ${c.famousDishes.map(d => `<span class="dish-tag" title="${d.description}">${d.name}</span>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Street Food -->
+      <h2 class="fade-in" style="margin-top: 60px;">🍢 Street Food & Fast Food</h2>
+      <p class="fade-in" style="margin-bottom: 20px;">These are the flavors you'll remember long after you leave. Cheap, fast, and impossibly good.</p>
+      <div class="food-grid fade-in">
+        ${streetFood.map(f => `
+          <div class="food-card">
+            <div class="food-emoji">${f.emoji}</div>
+            <h4>${f.name}</h4>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 4px;">${f.chinese} · ¥${f.price}</div>
+            <p>${f.description}</p>
+            <div style="font-size: 0.78rem; color: var(--primary-color); margin-top: 6px;">📍 ${f.where}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Restaurant Types -->
+      <h2 class="fade-in" style="margin-top: 60px;">🏪 Where to Eat: Restaurant Types</h2>
+      <p class="fade-in" style="margin-bottom: 20px;">From ¥5 street stalls to ¥500 banquets — here's what to expect at each level.</p>
+      <div class="info-grid fade-in">
+        ${restaurantTypes.map(r => `
+          <div class="info-card glass">
+            <h3>${r.name}</h3>
+            <div style="display: inline-block; background: var(--primary-color); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 8px 0;">${r.priceRange}</div>
+            <p style="margin: 8px 0;">${r.description}</p>
+            <p style="font-size: 0.88rem; background: rgba(0,0,0,0.03); padding: 10px; border-radius: 8px; margin-top: 8px;"><strong>Tip:</strong> ${r.tips}</p>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Dining Etiquette -->
+      <h2 class="fade-in" style="margin-top: 60px;">🥢 Dining Etiquette</h2>
+      <p class="fade-in" style="margin-bottom: 20px;">A few simple rules will make dining smoother and impress your Chinese hosts.</p>
+      <div class="info-grid fade-in">
+        ${foodTips.map(t => `
+          <div class="info-card glass">
+            <div style="font-size: 2rem; margin-bottom: 8px;">${t.emoji}</div>
+            <h3>${t.title}</h3>
+            <ul style="list-style-type: disc; margin-left: 18px; margin-top: 10px;">
+              ${t.tips.map(tip => `<li style="margin-bottom: 6px; font-size: 0.92rem;">${tip}</li>`).join('')}
+            </ul>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    ${CommentSection('food')}
+    ${Footer()}
+  `
 }
 
 function CommentSection(pageId) {
