@@ -8,6 +8,7 @@ import { getTravelTime } from './data/travelTimes.js'
 import { hospitals, packages, guideSteps } from './data/medical.js'
 import visaData from './data/visa.js'
 import { regionalCuisines, streetFood, restaurantTypes, foodTips } from './data/food.js'
+import poetry from './data/poetry.js'
 
 // State
 let currentLang = localStorage.getItem('lang') || 'en';
@@ -26,7 +27,8 @@ const routes = {
   '/medical': MedicalGuide,
   '/planner': ItineraryBuilder,
   '/visa': VisaGuide,
-  '/food': ChineseFood
+  '/food': ChineseFood,
+  '/poetry': PoetryGallery
 }
 
 const app = document.querySelector('#app')
@@ -72,6 +74,7 @@ function Header() {
             <a href="#" data-link="/" onclick="closeMenu()">${t.nav.home}</a>
             <a href="#" data-link="/guide" onclick="closeMenu()">Start Here</a>
             <a href="#" data-link="/food" onclick="closeMenu()">Food Guide</a>
+            <a href="#" data-link="/poetry" onclick="closeMenu()">Poetry</a>
             <a href="#" data-link="/visa" onclick="closeMenu()">Visa Guide</a>
             <a href="#" data-link="/planner" onclick="closeMenu()">${t.nav.planner}</a>
             <a href="#" data-link="/tips" onclick="closeMenu()">${t.nav.tips}</a>
@@ -342,6 +345,135 @@ window.handleSubscribe = async function (event) {
   }
 }
 
+// ── Poetry helpers ────────────────────────────────────────────────────────────
+
+function renderPoem(poem, lang) {
+  const isZh = lang === 'zh';
+  const lines = isZh ? poem.lines : poem.linesEn;
+  const context = isZh ? poem.contextZh : poem.context;
+  return `
+    <div style="
+      background: linear-gradient(135deg, rgba(139,90,43,0.07), rgba(180,130,70,0.12));
+      border-left: 4px solid #c8a96e;
+      border-radius: 8px;
+      padding: 22px 26px;
+      margin-bottom: 18px;
+      font-family: 'Georgia', 'STSong', '宋体', serif;
+    ">
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+        <div>
+          <span style="font-size:1.15em; font-weight:700; color:#5a3e1b;">${poem.title}</span>
+          ${poem.title !== poem.titleEn ? `<span style="font-size:0.85em; color:#8a6a3a; margin-left:8px;">${poem.titleEn}</span>` : ''}
+        </div>
+        <div style="text-align:right; font-size:0.85em; color:#8a6a3a;">
+          <span style="font-weight:600;">${isZh ? poem.author : poem.authorEn}</span>
+          &nbsp;·&nbsp;${isZh ? poem.dynasty : poem.dynastyEn}
+        </div>
+      </div>
+      <div style="margin-bottom:14px; line-height:2; font-size:${isZh ? '1.05em' : '0.95em'}; color:#3a2a10;">
+        ${lines.map(l => `<div>${l}</div>`).join('')}
+      </div>
+      ${context ? `<div style="font-size:0.83em; color:#6b5533; border-top:1px solid rgba(139,90,43,0.2); padding-top:10px; line-height:1.65;">${context}</div>` : ''}
+    </div>
+  `;
+}
+
+function renderCityPoetry(cityId, lang) {
+  const poems = poetry[cityId];
+  if (!poems || poems.length === 0) return '';
+  const isZh = lang === 'zh';
+  const heading = isZh ? '诗词意境' : 'Poetry of This Place';
+  return `
+    <h3 style="margin-top:30px; display:flex; align-items:center; gap:8px;">
+      <span>🖋</span> ${heading}
+    </h3>
+    ${poems.map(p => renderPoem(p, lang)).join('')}
+  `;
+}
+
+function PoetryGallery() {
+  updateMeta('Chinese Poetry Gallery', 'Famous Chinese poems inspired by each destination city.');
+  const isZh = currentLang === 'zh';
+  const cityNames = {
+    beijing:     isZh ? '北京' : 'Beijing',
+    shanghai:    isZh ? '上海' : 'Shanghai',
+    xian:        isZh ? '西安' : "Xi'an",
+    chengdu:     isZh ? '成都' : 'Chengdu',
+    chongqing:   isZh ? '重庆' : 'Chongqing',
+    hangzhou:    isZh ? '杭州' : 'Hangzhou',
+    harbin:      isZh ? '哈尔滨' : 'Harbin',
+    suzhou:      isZh ? '苏州' : 'Suzhou',
+    xiamen:      isZh ? '厦门' : 'Xiamen',
+    guilin:      isZh ? '桂林' : 'Guilin',
+    kunming:     isZh ? '昆明' : 'Kunming',
+    zhangjiajie: isZh ? '张家界' : 'Zhangjiajie',
+    hainan:      isZh ? '海南' : 'Hainan',
+    dali:        isZh ? '大理' : 'Dali',
+    yangshuo:    isZh ? '阳朔' : 'Yangshuo',
+    lijiang:     isZh ? '丽江' : 'Lijiang',
+    fenghuang:   isZh ? '凤凰' : 'Fenghuang',
+  };
+
+  const sections = Object.entries(poetry).map(([cityId, poems]) => {
+    const label = cityNames[cityId] || cityId;
+    return `
+      <div style="margin-bottom:40px;" id="poetry-${cityId}">
+        <h2 style="
+          font-size:1.3em;
+          color:#5a3e1b;
+          border-bottom:2px solid #c8a96e;
+          padding-bottom:6px;
+          margin-bottom:16px;
+          display:flex;
+          align-items:center;
+          gap:10px;
+        ">
+          <a href="#/city/${cityId}" style="color:inherit; text-decoration:none;">📍 ${label}</a>
+        </h2>
+        ${poems.map(p => renderPoem(p, currentLang)).join('')}
+      </div>
+    `;
+  }).join('');
+
+  const title = isZh ? '诗词画廊 · 行吟中国' : 'Poetry Gallery · Verses of China';
+  const subtitle = isZh
+    ? '千年诗词，为每一座城市留下最美的注脚'
+    : 'A thousand years of verse — the poets\' China, one city at a time';
+
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top:80px;">
+      <div style="text-align:center; margin-bottom:40px;" class="fade-in">
+        <h1 style="font-size:2em;">${title}</h1>
+        <p style="color:#8a6a3a; font-size:1.05em; margin-top:8px;">${subtitle}</p>
+      </div>
+
+      <div style="
+        display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+        margin-bottom:36px; padding:14px; background:rgba(200,169,110,0.1);
+        border-radius:10px;
+      ">
+        ${Object.entries(cityNames).map(([id, name]) => `
+          <a href="#poetry-${id}" style="
+            text-decoration:none; color:#5a3e1b; font-size:0.9em;
+            padding:4px 12px; border-radius:15px; border:1px solid #c8a96e;
+            transition:all 0.2s;
+          " onmouseover="this.style.background='#c8a96e';this.style.color='white'"
+             onmouseout="this.style.background='transparent';this.style.color='#5a3e1b'"
+          >${name}</a>
+        `).join('')}
+      </div>
+
+      <div class="fade-in">
+        ${sections}
+      </div>
+    </section>
+    ${Footer()}
+  `;
+}
+
+// ── End Poetry ────────────────────────────────────────────────────────────────
+
 function CityDetail() {
   const t = content[currentLang].ui;
   const d = content[currentLang].destinations;
@@ -402,16 +534,18 @@ function CityDetail() {
 
         <h3 style="margin-top: 30px;">City Map</h3>
         <div style="width: 100%; height: 350px; border-radius: 10px; overflow: hidden; margin-top: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <iframe 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                scrolling="no" 
-                marginheight="0" 
-                marginwidth="0" 
+            <iframe
+                width="100%"
+                height="100%"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
                 src="${city.mapUrl}"
             ></iframe>
         </div>
+
+        ${renderCityPoetry(cityId, currentLang)}
       </div>
     </section>
     ${Footer()}
