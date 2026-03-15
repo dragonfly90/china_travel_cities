@@ -54,7 +54,7 @@ Each city page features a classical Chinese poem that captures its spirit — fr
 | Hangzhou | 饮湖上初晴后雨 | 苏轼 |
 | Harbin | 白雪歌送武判官归京 | 岑参 |
 | Suzhou | 枫桥夜泊 | 张继 |
-| Xiamen | 次北固山下 | 王湾 |
+| Xiamen | 致橡树 | 舒婷 |
 | Guilin | 送桂州严大夫 | 韩愈 |
 | Kunming | 临江仙·滚滚长江东逝水 | 杨慎 |
 | Zhangjiajie | 望天门山 | 李白 |
