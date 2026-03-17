@@ -557,7 +557,7 @@ function CityDetail() {
             playsinline
             style="width: 100%; max-height: 540px; display: block; object-fit: cover;"
           >
-            <source src="/videos/yangshuo_visit.mp4" type="video/mp4">
+            <source src="./public/videos/yangshuo_visit.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
