@@ -545,6 +545,25 @@ function CityDetail() {
             ></iframe>
         </div>
 
+        ${cityId === 'yangshuo' ? `
+        <h3 style="margin-top: 30px;">🎬 Yangshuo in Motion</h3>
+        <p style="margin-bottom: 14px; opacity: 0.85;">A western traveller wanders the karst landscape — the Li River, bamboo rafts, and timeless scenery of Yangshuo.</p>
+        <div style="width: 100%; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.25); background: #000; margin-bottom: 10px;">
+          <video
+            controls
+            autoplay
+            muted
+            loop
+            playsinline
+            style="width: 100%; max-height: 540px; display: block; object-fit: cover;"
+          >
+            <source src="/videos/yangshuo_visit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p style="font-size: 0.8em; opacity: 0.55; margin-top: 6px;">AI-generated cinematic footage · Hailuo Video</p>
+        ` : ''}
+
         ${renderCityPoetry(cityId, currentLang)}
       </div>
     </section>
