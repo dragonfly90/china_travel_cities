@@ -28,7 +28,8 @@ const routes = {
   '/planner': ItineraryBuilder,
   '/visa': VisaGuide,
   '/food': ChineseFood,
-  '/poetry': PoetryGallery
+  '/poetry': PoetryGallery,
+  '/showcase': VideoShowcase
 }
 
 const app = document.querySelector('#app')
@@ -79,6 +80,7 @@ function Header() {
             <a href="#" data-link="/planner" onclick="closeMenu()">${t.nav.planner}</a>
             <a href="#" data-link="/tips" onclick="closeMenu()">${t.nav.tips}</a>
             <a href="#" data-link="/videos" onclick="closeMenu()">Videos</a>
+            <a href="#" data-link="/showcase" onclick="closeMenu()">AI Showcase</a>
             <a href="#" data-link="/community" onclick="closeMenu()">Community</a>
             <a href="#" data-link="/medical" onclick="closeMenu()">Medical Tour</a>
             <a href="#" data-link="/gear" onclick="closeMenu()">${t.nav.gear}</a>
@@ -1870,6 +1872,37 @@ function ChineseFood() {
     </section>
 
     ${CommentSection('food')}
+    ${Footer()}
+  `
+}
+
+function VideoShowcase() {
+  updateMeta("AI Video Showcase", "Watch AI-generated videos about traveling in China.");
+
+  return `
+    ${Header()}
+    <section class="section container" style="margin-top: 80px;">
+      <h1 class="fade-in">AI Video Showcase</h1>
+      <p class="fade-in" style="font-size: 1.1em; color: var(--text-secondary); margin-bottom: 40px;">
+        AI-generated video bringing China's travel destinations to life.
+      </p>
+
+      <div class="glass fade-in" style="padding: 30px;">
+        <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 12px; overflow: hidden; background: #000;">
+          <iframe
+            src="https://pai.utopaistudios.com/project/a1e2b333-4e3e-4367-a506-b278b1358b83/video"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+            allowfullscreen
+            allow="autoplay; fullscreen"
+          ></iframe>
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-secondary);">
+          Generated with <a href="https://pai.utopaistudios.com" target="_blank" style="color: var(--primary-color);">PAI by Utopai Studios</a>
+        </p>
+      </div>
+    </section>
+
+    ${CommentSection('showcase')}
     ${Footer()}
   `
 }
