@@ -1887,19 +1887,19 @@ function VideoShowcase() {
         AI-generated video bringing China's travel destinations to life.
       </p>
 
-      <div class="glass fade-in" style="padding: 30px;">
-        <div style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 12px; overflow: hidden; background: #000;">
-          <iframe
-            src="https://pai.utopaistudios.com/project/a1e2b333-4e3e-4367-a506-b278b1358b83/video"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-            allowfullscreen
-            allow="autoplay; fullscreen"
-          ></iframe>
+      <a href="https://pai.utopaistudios.com/project/a1e2b333-4e3e-4367-a506-b278b1358b83/video" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+        <div class="glass fade-in" style="padding: 40px; text-align: center; cursor: pointer; transition: var(--transition);" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-hover)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="font-size: 5rem; margin-bottom: 20px;">🎬</div>
+          <h2 style="margin-bottom: 12px;">China Travel — AI Generated Video</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            Experience China's stunning destinations through an AI-generated cinematic video, powered by PAI by Utopai Studios.
+          </p>
+          <span class="btn">Watch Video ↗</span>
+          <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-secondary);">
+            Opens on <strong>pai.utopaistudios.com</strong>
+          </p>
         </div>
-        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-secondary);">
-          Generated with <a href="https://pai.utopaistudios.com" target="_blank" style="color: var(--primary-color);">PAI by Utopai Studios</a>
-        </p>
-      </div>
+      </a>
     </section>
 
     ${CommentSection('showcase')}
